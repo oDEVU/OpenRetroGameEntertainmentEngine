@@ -6,7 +6,7 @@ Retro doom like engine with modern liblares. O.R.G.Y uses raylib and c++.
 
 his chanel : https://www.youtube.com/c/3DSage
 
-#How to compile?
+# How to compile?
 
 **Arch linux:**
 
