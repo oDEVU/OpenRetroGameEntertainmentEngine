@@ -8,7 +8,7 @@ his chanel : https://www.youtube.com/c/3DSage
 
 # How to compile?
 
-**Arch linux:**
+### **Arch linux:**
 
 1. Download zip or use git clone command.
 
@@ -23,7 +23,7 @@ cc main.cpp -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
 ```
 (This compile command works only for x11)
 
-**OpenSUSE:**
+### **OpenSUSE:**
 
 1. Download zip or use git clone command.
 
@@ -38,7 +38,7 @@ cc main.cpp -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
 ```
 (This compile command works only for x11)
 
-**Other OS:**
+### **Other OS:**
 
 1. Download zip or use git clone command.
 
