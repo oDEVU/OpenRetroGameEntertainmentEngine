@@ -10,14 +10,14 @@ his chanel : https://www.youtube.com/c/3DSage
 
 **Arch linux:**
 
-Download zip or use git clone command.
+1. Download zip or use git clone command.
 
-Download raylib:
+2. Download raylib:
 ```sh
 sudo pacman -Sy raylib
 ```
 
-Compile:
+3. Compile:
 ```sh
 cc main.cpp -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
 ```
@@ -25,14 +25,14 @@ cc main.cpp -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
 
 **OpenSUSE:**
 
-Download zip or use git clone command.
+1. Download zip or use git clone command.
 
-Download raylib:
+2. Download raylib:
 ```sh
 zypper in raylib-devel
 ```
 
-Compile:
+3. Compile:
 ```sh
 cc main.cpp -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
 ```
@@ -40,11 +40,11 @@ cc main.cpp -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
 
 **Other OS:**
 
-Download zip or use git clone command.
+1. Download zip or use git clone command.
 
-Download and install raylib (You can find many tutorials for other platforms)
+2. Download and install raylib (You can find many tutorials for other platforms)
 
-Compile it with your c++ compiler.
+3. Compile it with your c++ compiler.
 
 (i will add other OS later)
 
