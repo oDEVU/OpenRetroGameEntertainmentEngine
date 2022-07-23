@@ -48,6 +48,17 @@ cc main.cpp -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
 
 (i will add other OS later)
 
+# Controlls
+
+* WASD - moving (xy)
+* left shift/left control - up/down (z)
+* Arrows = Camera
+* F1 - Toggle debug info
+* F2 - Toggle VSYNC
+
+
+
+
 
 
 
