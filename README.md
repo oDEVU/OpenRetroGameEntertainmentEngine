@@ -2,13 +2,13 @@
 
 Retro doom like engine with modern liblares. O.R.G.Y uses raylib and c++.
 
-###Thanks to 3DSage for great tutorial.
+**Thanks to 3DSage for great tutorial.**
 
 his chanel : https://www.youtube.com/c/3DSage
 
 #How to compile?
 
-####Arch linux:
+**Arch linux:**
 
 Download zip or use git clone command.
 
@@ -23,7 +23,7 @@ cc main.cpp -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
 ```
 (This compile command works only for x11)
 
-####OpenSUSE:
+**OpenSUSE:**
 
 Download zip or use git clone command.
 
@@ -38,7 +38,7 @@ cc main.cpp -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
 ```
 (This compile command works only for x11)
 
-####Other OS:
+**Other OS:**
 
 Download zip or use git clone command.
 
