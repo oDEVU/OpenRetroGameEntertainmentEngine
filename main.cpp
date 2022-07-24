@@ -17,6 +17,12 @@
     Image grass = LoadImage("game/textures/grass.png"); 
     Image stone = LoadImage("game/textures/stone.png"); 
 
+    void Unload(){
+        UnloadImage(bricks);  
+        UnloadImage(grass); 
+        UnloadImage(stone);  
+    }
+
     int num_sec = 4;
     int num_wall = 16;  
 
@@ -643,7 +649,7 @@ int main()
     }
 
     // Destruction of window
-    UnloadImage(bricks);   
+    Unload();
     //--------------------------------------------------------------------------------------
     CloseWindow();        // Close window and OpenGL context
     //--------------------------------------------------------------------------------------
