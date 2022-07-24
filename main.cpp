@@ -11,6 +11,13 @@
 //#include <iostream>
 
 
+    //Load gmae files
+
+    Image bricks = LoadImage("game/textures/bricks.png"); 
+
+    //--------------
+
+
 char* unconstchar(const char* s) {
     if(!s)
       return NULL;
@@ -44,6 +51,8 @@ typedef struct{
     float x1,y1;
     float x2,y2;
     int c;
+    bool t;
+    int txt;
 }walls; walls W[30];
 
 typedef struct{
@@ -70,7 +79,7 @@ void clip_behind_camera(float *x1,float *y1, float *z1, float x2,float y2,float 
     *z1 = *z1 + s*(z2-(*z1)); //if(*z1<=0){*z1=1;};
 }
 
-void draw_wall(int x1, int x2, int b1, int b2, int t1, int t2, int c, int s){
+void draw_wall(int x1, int x2, int b1, int b2, int t1, int t2, int c, int s, int t, int txt){
     int x,y;
 
     int dyb = b2-b1;
@@ -101,30 +110,8 @@ void draw_wall(int x1, int x2, int b1, int b2, int t1, int t2, int c, int s){
         //    DrawPixel(i,y,WHITE);
         //}
 
-
-        Color wall_color{ 255, 255, 255, 255 };
         Color top{ 255, 255, 255, 255 };
         Color bottom{ 255, 255, 255, 255 };
-        
-        if (c == 0){
-             wall_color = Color{ 255, 0, 0, 255 };
-        }else if (c == 1){
-             wall_color = Color{ 155, 0, 0, 255 };
-        }else if (c == 2){
-             wall_color = Color{ 0, 255, 0, 255 };
-        }else if (c == 3){
-             wall_color = Color{ 0, 155, 0, 255 };
-        }else if (c == 4){
-             wall_color = Color{ 0, 0, 255, 255 };
-        }else if (c == 5){
-             wall_color = Color{ 0, 0, 155, 255 };
-        }else if (c == 6){
-             wall_color = Color{ 255, 255, 0, 255 };
-        }else if (c == 7){
-             wall_color = Color{ 155, 155, 0, 255 };
-        }else{
-             wall_color = Color{ 255, 255, 255, 100 };
-        }
         
         if (S[s].c1 == 0){
              top = Color{ 255, 0, 0, 255 };
@@ -171,7 +158,58 @@ void draw_wall(int x1, int x2, int b1, int b2, int t1, int t2, int c, int s){
         if(S[s].surface == -1){DrawLine(i, S[s].surf[i], i, y1, bottom);}
         if(S[s].surface == -2){DrawLine(i, y2, i, S[s].surf[i], top);}
 
+        if(t==0){
+
+        Color wall_color{ 255, 255, 255, 255 };
+        
+        if (c == 0){
+             wall_color = Color{ 255, 0, 0, 255 };
+        }else if (c == 1){
+             wall_color = Color{ 155, 0, 0, 255 };
+        }else if (c == 2){
+             wall_color = Color{ 0, 255, 0, 255 };
+        }else if (c == 3){
+             wall_color = Color{ 0, 155, 0, 255 };
+        }else if (c == 4){
+             wall_color = Color{ 0, 0, 255, 255 };
+        }else if (c == 5){
+             wall_color = Color{ 0, 0, 155, 255 };
+        }else if (c == 6){
+             wall_color = Color{ 255, 255, 0, 255 };
+        }else if (c == 7){
+             wall_color = Color{ 155, 155, 0, 255 };
+        }else{
+             wall_color = Color{ 255, 255, 255, 100 };
+        }
+
         DrawLine(i, y1, i, y2, wall_color);
+
+        }else if(t==1){
+
+            Image working = bricks;
+
+            if(txt == 1){
+                working = bricks;
+            }
+
+        for(int y=y1;y<y2;y++){
+
+            float fy = y2 - y1;
+            float fx = x2 - x1;
+            float py = (y-y1) / fy;
+            float px = (i-x1) / fx;
+            int iy = floor(working.height * py);
+            int ix = floor(working.width * px);
+            if(iy<working.height && ix <working.width){
+                Color col = GetImageColor(working, ix, iy);
+                DrawPixel(i,y,col);
+            }else{
+                DrawPixel(i,y,RED);
+                DrawText(TextFormat("! ERROR: Unable to load color from coordinates"), 5, 240, 10, RED);
+            }
+        }
+        //DrawLine(i, y1, i, y2, WHITE);
+        }
 
     }
 }
@@ -260,7 +298,7 @@ void Draw3D(){
     //DrawPixel(wx[1],wy[1],WHITE);
     //}
 
-                draw_wall(wx[0],wx[1],wy[0],wy[1],wy[2],wy[3],W[w].c, s);
+                draw_wall(wx[0],wx[1],wy[0],wy[1],wy[2],wy[3],W[w].c, s , W[w].t, W[w].txt);
             
             }
             S[s].d/=(S[s].we-S[s].ws);
@@ -316,27 +354,28 @@ int main()
     };
 
     int load_walls[] =
-    {  //x1,y1,x2,y2,color
-        0,0,32,0,0,     //sector 1 * 4 walls
-        32,0,32,32,1,
-        32,32,0,32,0,
-        0,32,0,0,1,
+    {  //x1,y1,x2,y2,color,is textured,texture,
+        0,0,32,0,0,0,0,     //sector 1 * 4 walls
+        32,0,32,32,1,0,0,
+        32,32,0,32,0,0,0,
+        0,32,0,0,1,0,0,
 
-        64,0,96,0,2,    //sector 2 * 4 walls
-        96,0,96,32,3,
-        96,32,64,32,2,
-        64,32,64,0,3,
+        64,0,96,0,2,0,0,    //sector 2 * 4 walls
+        96,0,96,32,3,0,0,
+        96,32,64,32,2,0,0,
+        64,32,64,0,3,0,0,
 
-        64,64,96,64,4,  //sector 3 * 4 walls
-        96,64,96,96,5,
-        96,96,64,96,4,
-        64,96,64,64,5,
+        64,64,96,64,4,0,0,  //sector 3 * 4 walls
+        96,64,96,96,5,0,0,
+        96,96,64,96,4,0,0,
+        64,96,64,64,5,0,0,
 
-        0,64,32,64,69,   //sector 4 * 4 walls
-        32,64,32,96,69,
-        32,96,0,96,69,
-        0,96,0,64,69,
+        0,64,32,64,69,0,0,   //sector 4 * 4 walls
+        32,64,32,96,69,0,0,
+        32,96,0,96,69,1,1,
+        0,96,0,64,69,1,1,
     };
+
 
     // INIT -----------------------------------------------------------------------
 
@@ -362,7 +401,9 @@ int main()
             W[w].x2=load_walls[v2+2];
             W[w].y2=load_walls[v2+3];
             W[w].c=load_walls[v2+4];
-            v2+=5;
+            W[w].t=load_walls[v2+5];
+            W[w].txt=load_walls[v2+6];
+            v2+=7;
         }
     }
 
@@ -508,6 +549,10 @@ int main()
                     DrawText(TextFormat("FPS: %i", GetFPS()), 5, 20, 10, fps_color);
                 }
             }
+
+            //DrawTextureQuad(bricks, Vector2{7,5}, Vector2{66,9}, Rectangle{40,150,60,90}, Color{255,255,255,255});
+            //DrawTexturePoly(bricks, (Vector2){ 200,200 },positions, texcoords, MAX_POINTS, WHITE);
+            //DrawTexture(bricks, 99, 99, WHITE);
             
             //DrawFPS(5, 17);
             //GetFPS(void)
@@ -522,6 +567,7 @@ int main()
     }
 
     // Destruction of window
+    UnloadImage(bricks);   
     //--------------------------------------------------------------------------------------
     CloseWindow();        // Close window and OpenGL context
     //--------------------------------------------------------------------------------------
