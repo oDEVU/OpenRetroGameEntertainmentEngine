@@ -11,9 +11,14 @@
 //#include <iostream>
 
 
-    //Load gmae files
+    //Game things
 
     Image bricks = LoadImage("game/textures/bricks.png"); 
+    Image grass = LoadImage("game/textures/grass.png"); 
+    Image stone = LoadImage("game/textures/stone.png"); 
+
+    int num_sec = 4;
+    int num_wall = 16;  
 
     //--------------
 
@@ -53,7 +58,7 @@ typedef struct{
     int c;
     bool t;
     int txt;
-}walls; walls W[30];
+}walls; walls W[64];
 
 typedef struct{
     float ws,we;
@@ -61,12 +66,12 @@ typedef struct{
     float x,y;
     float d;
     int c1,c2;
+    bool t;
+    int txtt;
+    int txtb;
     int surf[32000];
     int surface;
-}sectors; sectors S[30];
-
-int num_sec = 4;
-int num_wall = 16;
+}sectors; sectors S[64];
 
 void clip_behind_camera(float *x1,float *y1, float *z1, float x2,float y2,float z2){
     float da=*y1;
@@ -90,6 +95,9 @@ void draw_wall(int x1, int x2, int b1, int b2, int t1, int t2, int c, int s, int
     }
     int xs=x1;
 
+    int bx1 = x1;
+    int bx2 = x2;
+
     if(x1<1){x1=1;}
     if(x2<1){x2=1;}
     if(x1>(GetScreenWidth()-1)){x1=(GetScreenWidth()-1);}
@@ -98,6 +106,9 @@ void draw_wall(int x1, int x2, int b1, int b2, int t1, int t2, int c, int s, int
     for(int i=x1;i<x2;i++){
         int y1 = dyb*(i-xs+0.5)/dx+b1;
         int y2 = dyt*(i-xs+0.5)/dx+t1;
+
+        int by1 = y1;
+        int by2 = y2;
 
         if(y1<1){y1=1;}
         if(y2<1){y2=1;}
@@ -155,8 +166,66 @@ void draw_wall(int x1, int x2, int b1, int b2, int t1, int t2, int c, int s, int
 
         if(S[s].surface == 1){S[s].surf[i]=y1; continue;}
         if(S[s].surface == 2){S[s].surf[i]=y2; continue;}
-        if(S[s].surface == -1){DrawLine(i, S[s].surf[i], i, y1, bottom);}
-        if(S[s].surface == -2){DrawLine(i, y2, i, S[s].surf[i], top);}
+
+
+
+        Image tb = bricks;
+
+        if(S[s].txtt == 1){
+            tb = bricks;
+        }else if(S[s].txtt == 2){
+            tb = grass;
+        }else if(S[s].txtt == 3){
+            tb = stone;
+        }
+
+        Image bb = bricks;
+
+        if(S[s].txtb == 1){
+            bb = bricks;
+        }else if(S[s].txtb == 2){
+            bb = grass;
+        }else if(S[s].txtb == 3){
+            bb = stone;
+        }
+
+        if(S[s].surface == -1){
+            if(S[s].t==0){
+                DrawLine(i, S[s].surf[i], i, y1, bottom);
+            }else{
+                for(int y=S[s].surf[i];y<y1;y++){
+
+                    float ffy = by1 - S[s].surf[i];
+                    float ffx = bx2 - bx1;
+                    float ppy = (y-S[s].surf[i]) / ffy;
+                    float ppx = (i-bx1) / ffx;
+                    int iiy = floor(tb.height * ppy);
+                    int iix = floor(tb.width * ppx);
+                    Color bot = GetImageColor(tb, iix, iiy);
+
+                    DrawPixel(i,y,bot);
+                }
+            }
+        };
+
+        if(S[s].surface == -2){
+            if(S[s].t==0){
+                DrawLine(i, y2, i, S[s].surf[i], top);
+            }else{
+                for(int y=y2;y<S[s].surf[i];y++){
+
+                    float ffy = S[s].surf[i] - by2;
+                    float ffx = bx2 - bx1;
+                    float ppy = (y-by2) / ffy;
+                    float ppx = (i-bx1) / ffx;
+                    int iiy = floor(bb.height * ppy);
+                    int iix = floor(bb.width * ppx);
+                    Color tob = GetImageColor(bb, iix, iiy);
+
+                    DrawPixel(i,y,tob);
+                }
+            }
+        };
 
         if(t==0){
 
@@ -190,14 +259,18 @@ void draw_wall(int x1, int x2, int b1, int b2, int t1, int t2, int c, int s, int
 
             if(txt == 1){
                 working = bricks;
+            }else if(txt == 2){
+                working = grass;
+            }else if(txt == 3){
+                working = stone;
             }
 
         for(int y=y1;y<y2;y++){
 
-            float fy = y2 - y1;
-            float fx = x2 - x1;
-            float py = (y-y1) / fy;
-            float px = (i-x1) / fx;
+            float fy = by2 - by1;
+            float fx = bx2 - bx1;
+            float py = (y-by1) / fy;
+            float px = (i-bx1) / fx;
             int iy = floor(working.height * py);
             int ix = floor(working.width * px);
             if(iy<working.height && ix <working.width){
@@ -214,7 +287,7 @@ void draw_wall(int x1, int x2, int b1, int b2, int t1, int t2, int c, int s, int
     }
 }
 
-float dist(int x1,int y1, int x2, int y2){
+float dist(float x1,float y1, float x2, float y2){
     float distance = sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1));
     return distance;
 }
@@ -346,11 +419,11 @@ int main()
     // map loader
 
     int load_sectors[] =
-    { //ws,we,z1,z2
-        0,4,0,40,1,0,   //sector 1
-        4,8,0,40,3,2,   //sector 2
-        8,12,0,40,5,4,  //sector 3
-        12,16,0,40,99,99, //sector 4
+    { //ws,we,z1,z2,c1,c2,t,txtt,txtb
+        0,4,0,40,1,0,0,0,0,       //sector 1
+        4,8,0,40,3,2,0,0,0,       //sector 2
+        8,12,0,40,99,99,0,0,0,    //sector 3
+        12,16,0,40,99,99,1,2,3,   //sector 4
     };
 
     int load_walls[] =
@@ -365,13 +438,13 @@ int main()
         96,32,64,32,2,0,0,
         64,32,64,0,3,0,0,
 
-        64,64,96,64,4,0,0,  //sector 3 * 4 walls
-        96,64,96,96,5,0,0,
-        96,96,64,96,4,0,0,
-        64,96,64,64,5,0,0,
+        64,64,96,64,99,0,0,  //sector 3 * 4 walls
+        96,64,96,96,99,0,0,
+        96,96,64,96,99,0,0,
+        64,96,64,64,99,0,0,
 
-        0,64,32,64,69,0,0,   //sector 4 * 4 walls
-        32,64,32,96,69,0,0,
+        0,64,32,64,69,1,1,   //sector 4 * 4 walls
+        32,64,32,96,69,1,1,
         32,96,0,96,69,1,1,
         0,96,0,64,69,1,1,
     };
@@ -394,7 +467,10 @@ int main()
         S[s].z2=load_sectors[v1+3]-load_sectors[v1+2];
         S[s].c1=load_sectors[v1+4];
         S[s].c2=load_sectors[v1+5];
-        v1+=6;
+        S[s].t=load_sectors[v1+6];
+        S[s].txtt=load_sectors[v1+7];
+        S[s].txtb=load_sectors[v1+8];
+        v1+=9;
         for(w=S[s].ws;w<S[s].we;w++){
             W[w].x1=load_walls[v2+0];
             W[w].y1=load_walls[v2+1];
