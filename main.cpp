@@ -13,14 +13,16 @@
 
     //Game things
 
-    Image bricks = LoadImage("game/textures/bricks.png"); 
-    Image grass = LoadImage("game/textures/grass.png"); 
-    Image stone = LoadImage("game/textures/stone.png"); 
+    Image bricks    = LoadImage("game/textures/bricks.png"); 
+    Image grass     = LoadImage("game/textures/grass.png"); 
+    Image stone     = LoadImage("game/textures/stone.png"); 
+    Image temp     = LoadImage("game/textures/stone.png"); 
 
     void Unload(){
         UnloadImage(bricks);  
         UnloadImage(grass); 
         UnloadImage(stone);  
+        UnloadImage(temp); 
     }
 
     int num_sec = 4;
@@ -90,7 +92,7 @@ void clip_behind_camera(float *x1,float *y1, float *z1, float x2,float y2,float 
     *z1 = *z1 + s*(z2-(*z1)); //if(*z1<=0){*z1=1;};
 }
 
-void draw_wall(int x1, int x2, int b1, int b2, int t1, int t2, int c, int s, int t, int txt){
+void draw_wall(int x1, int x2, int b1, int b2, int t1, int t2, int c, int s, int t, int txt, int w){
     int x,y;
 
     int dyb = b2-b1;
@@ -198,6 +200,7 @@ void draw_wall(int x1, int x2, int b1, int b2, int t1, int t2, int c, int s, int
         if(S[s].surface == -1){
             if(S[s].t==0){
                 DrawLine(i, S[s].surf[i], i, y1, bottom);
+                DrawLine(i, y2, i, S[s].surf[i], Color{255,255,255,50});
             }else{
                 for(int y=S[s].surf[i];y<y1;y++){
 
@@ -217,6 +220,7 @@ void draw_wall(int x1, int x2, int b1, int b2, int t1, int t2, int c, int s, int
         if(S[s].surface == -2){
             if(S[s].t==0){
                 DrawLine(i, y2, i, S[s].surf[i], top);
+                DrawLine(i, S[s].surf[i], i, y1, Color{0,0,0,100});
             }else{
                 for(int y=y2;y<S[s].surf[i];y++){
 
@@ -240,19 +244,19 @@ void draw_wall(int x1, int x2, int b1, int b2, int t1, int t2, int c, int s, int
         if (c == 0){
              wall_color = Color{ 255, 0, 0, 255 };
         }else if (c == 1){
-             wall_color = Color{ 155, 0, 0, 255 };
+             wall_color = Color{ 255, 0, 255, 255 };
         }else if (c == 2){
              wall_color = Color{ 0, 255, 0, 255 };
         }else if (c == 3){
-             wall_color = Color{ 0, 155, 0, 255 };
+             wall_color = Color{ 0, 255, 255, 255 };
         }else if (c == 4){
              wall_color = Color{ 0, 0, 255, 255 };
         }else if (c == 5){
-             wall_color = Color{ 0, 0, 155, 255 };
+             wall_color = Color{ 0, 37, 155, 255 };
         }else if (c == 6){
              wall_color = Color{ 255, 255, 0, 255 };
         }else if (c == 7){
-             wall_color = Color{ 155, 155, 0, 255 };
+             wall_color = Color{ 155, 255, 0, 255 };
         }else{
              wall_color = Color{ 255, 255, 255, 100 };
         }
@@ -271,23 +275,28 @@ void draw_wall(int x1, int x2, int b1, int b2, int t1, int t2, int c, int s, int
                 working = stone;
             }
 
-        for(int y=y1;y<y2;y++){
 
-            float fy = by2 - by1;
-            float fx = bx2 - bx1;
-            float py = (y-by1) / fy;
-            float px = (i-bx1) / fx;
-            int iy = floor(working.height * py);
-            int ix = floor(working.width * px);
-            if(iy<working.height && ix <working.width){
-                Color col = GetImageColor(working, ix, iy);
-                DrawPixel(i,y,col);
-            }else{
-                DrawPixel(i,y,RED);
-                DrawText(TextFormat("! ERROR: Unable to load color from coordinates"), 5, 240, 10, RED);
+            for(int y=y1;y<y2;y++){
+
+                float fy = by2 - by1;
+                float fx = bx2 - bx1;
+                float py = (y-by1) / fy;
+                float px = (i-bx1) / fx;
+                int iy = floor(working.height * py);
+                int ix = floor(working.width * px);
+                if(iy<working.height && ix <working.width){
+                    Color col = GetImageColor(working, ix, iy);
+                    DrawPixel(i,y,col);
+                }else{
+                    DrawPixel(i,y,RED);
+                    DrawText(TextFormat("! ERROR: Unable to load color from coordinates"), 5, 240, 10, RED);
+                }
             }
         }
-        //DrawLine(i, y1, i, y2, WHITE);
+
+        if((w%2)==0){
+
+        DrawLine(i, y1, i, y2, Color{0,0,0,50});
         }
 
     }
@@ -377,7 +386,7 @@ void Draw3D(){
     //DrawPixel(wx[1],wy[1],WHITE);
     //}
 
-                draw_wall(wx[0],wx[1],wy[0],wy[1],wy[2],wy[3],W[w].c, s , W[w].t, W[w].txt);
+                draw_wall(wx[0],wx[1],wy[0],wy[1],wy[2],wy[3],W[w].c, s , W[w].t, W[w].txt, w);
             
             }
             S[s].d/=(S[s].we-S[s].ws);
@@ -426,8 +435,8 @@ int main()
 
     int load_sectors[] =
     { //ws,we,z1,z2,c1,c2,t,txtt,txtb
-        0,4,0,40,1,0,0,0,0,       //sector 1
-        4,8,0,40,3,2,0,0,0,       //sector 2
+        0,4,0,40,0,0,0,0,0,       //sector 1
+        4,8,0,40,2,2,0,0,0,       //sector 2
         8,12,0,40,99,99,0,0,0,    //sector 3
         12,16,0,40,99,99,1,2,3,   //sector 4
     };
@@ -435,14 +444,14 @@ int main()
     int load_walls[] =
     {  //x1,y1,x2,y2,color,is textured,texture,
         0,0,32,0,0,0,0,     //sector 1 * 4 walls
-        32,0,32,32,1,0,0,
+        32,0,32,32,0,0,0,
         32,32,0,32,0,0,0,
-        0,32,0,0,1,0,0,
+        0,32,0,0,0,0,0,
 
         64,0,96,0,2,0,0,    //sector 2 * 4 walls
-        96,0,96,32,3,0,0,
+        96,0,96,32,2,0,0,
         96,32,64,32,2,0,0,
-        64,32,64,0,3,0,0,
+        64,32,64,0,2,0,0,
 
         64,64,96,64,99,0,0,  //sector 3 * 4 walls
         96,64,96,96,99,0,0,
