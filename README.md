@@ -21,7 +21,7 @@ sudo pacman -Sy raylib
 
 3. Compile:
 ```sh
-cc main.cpp -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
+g++ -lstdc++fs -std=c++20 -o app main.cpp -lstdc++fs -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
 ```
 (This compile command works only for x11)
 
@@ -36,7 +36,7 @@ zypper in raylib-devel
 
 3. Compile:
 ```sh
-cc main.cpp -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
+g++ -lstdc++fs -std=c++20 -o app main.cpp -lstdc++fs -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
 ```
 (This compile command works only for x11)
 
