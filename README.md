@@ -57,6 +57,7 @@ g++ -lstdc++fs -std=c++20 -o app main.cpp -lstdc++fs -lraylib -lGL -lm -lpthread
 * Arrows = Camera
 * F1 - Toggle debug info
 * F2 - Toggle VSYNC
+* TAB - Take screenshots
 
 
 
