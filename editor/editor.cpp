@@ -16,7 +16,7 @@
 #include <iostream>
 
 #define RAYGUI_IMPLEMENTATION
-#include "raygui.h"                 // Required for GUI controls
+#include "../engine/raygui.hpp"                 // Required for GUI controls
 
     using namespace std::this_thread;     // sleep_for, sleep_until
     using namespace std::chrono_literals; // ns, us, ms, s, h, etc.

@@ -16,7 +16,7 @@
 #include <filesystem>
 
 #define RAYGUI_IMPLEMENTATION
-#include "raygui.h"                 // Required for GUI controls
+#include "raygui.hpp"                 // Required for GUI controls
 //#include "functions.hpp"
 //#include <iostream>
 
