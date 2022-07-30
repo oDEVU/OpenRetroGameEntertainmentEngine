@@ -7,6 +7,14 @@ Retro doom like engine with modern liblares. O.R.G.Y uses raylib and c++.
 his chanel : https://www.youtube.com/c/3DSage
 
 Engine presentation : https://youtu.be/PSlYORvC2ks
+Editor presentation : https://youtu.be/v456MNygMA0
+
+# Dependencies
+*raylib
+*boost
+*g++
+
+[uses c++20]
 
 # How to compile?
 
@@ -18,12 +26,13 @@ Engine presentation : https://youtu.be/PSlYORvC2ks
 ```sh
 sudo pacman -Sy raylib
 ```
+3. Go to editor folder
 
-3. Compile:
+4. Compile editor:
 ```sh
-g++ -lstdc++fs -std=c++20 -o app main.cpp -lstdc++fs -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
+g++ -lstdc++fs -std=c++20 -o editor editor.cpp pathhandler.cpp -lstdc++fs -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
 ```
-(This compile command works only for x11)
+(This compile command works only for x11, Later you can compile game from editor)
 
 ### **OpenSUSE:**
 
@@ -34,17 +43,19 @@ g++ -lstdc++fs -std=c++20 -o app main.cpp -lstdc++fs -lraylib -lGL -lm -lpthread
 zypper in raylib-devel
 ```
 
-3. Compile:
+3. Go to editor folder
+
+4. Compile editor:
 ```sh
-g++ -lstdc++fs -std=c++20 -o app main.cpp -lstdc++fs -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
+g++ -lstdc++fs -std=c++20 -o editor editor.cpp pathhandler.cpp -lstdc++fs -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
 ```
-(This compile command works only for x11)
+(This compile command works only for x11, Later you can compile game from editor)
 
 ### **Other OS:**
 
 1. Download zip or use git clone command.
 
-2. Download and install raylib (You can find many tutorials for other platforms)
+2. Download and install raylib and other dependences (You can find many tutorials for other platforms)
 
 3. Compile it with your c++ compiler.
 
