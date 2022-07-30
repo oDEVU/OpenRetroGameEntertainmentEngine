@@ -1,0 +1,1 @@
+I officialy suport only linux. I am not able to make editor or game compile on windows. If you mange to compile editor on windows, most functions will probably not work. But if you managed to compile it concact me :).
