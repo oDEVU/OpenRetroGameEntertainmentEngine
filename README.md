@@ -7,12 +7,13 @@ Retro doom like engine with modern liblares. O.R.G.Y uses raylib and c++.
 his chanel : https://www.youtube.com/c/3DSage
 
 Engine presentation : https://youtu.be/PSlYORvC2ks
+
 Editor presentation : https://youtu.be/v456MNygMA0
 
 # Dependencies
-*raylib
-*boost
-*g++
+* raylib
+* boost
+* g++
 
 [uses c++20]
 
