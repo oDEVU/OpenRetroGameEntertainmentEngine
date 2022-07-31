@@ -1,6 +1,6 @@
 #include <raylib.h>
 
-#include "player.cpp"
+#include "player.hpp"
 
 #define render_debug 1    // replace 1 with 0 to completly hide any debug info (engine name.fps,errors,etc)
 #define render_polys_lines 0  //to visualize polys rendered by render.hpp [GLITCHED A LITTLE BIT]
@@ -149,7 +149,7 @@ const char* dirs[size_of_dirs] {
             printf("F3 pressed!");
         }
 
-        handle_player_input();      //hadles player input from player.cpp
+        player_class::handle_player_input();      //hadles player input from player.cpp
     }
 
     void draw_game() {      // this function is called every draw call (dont over use it) (you can use all raylib.h draw functions here)

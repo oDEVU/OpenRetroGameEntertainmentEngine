@@ -1,4 +1,5 @@
- // Structures must be in another file because there are used in engine but must be user editable. 
+  // Structures must be in another file because there are used in engine but must be user editable.    
+  // This  is  writed  from  in  editor  code  editor  [im  mess  even  when  speling  C:] 
  
  //player
 
@@ -30,3 +31,4 @@
         int surf[32000];
         int surface;
     }sectors; sectors S[64];
+                                                                                                                                                                                                                                

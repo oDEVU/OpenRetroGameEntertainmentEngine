@@ -11,12 +11,15 @@
 #include <boost/filesystem/path.hpp>
 #include <chrono>
 #include <thread>
-#include "pathhandler.hpp"
 #include <filesystem>
 #include <iostream>
 
+#include "pathhandler.hpp"
+#include "../engine/functions.hpp"
+//#include "image_editor.hpp"
+
 #define RAYGUI_IMPLEMENTATION
-#include "../engine/raygui.hpp"                 // Required for GUI controls
+#include "../engine/raygui.hpp"                 // Required for GUI
 
     using namespace std::this_thread;     // sleep_for, sleep_until
     using namespace std::chrono_literals; // ns, us, ms, s, h, etc.
@@ -36,6 +39,9 @@
     int state = 0;
     bool type_menu = 0;
     const char* state_text = "Coding";
+
+    int x_text_offset = 0;
+    int y_text_offset = 0;
 
 void load_files() {
     iii = 0;
@@ -80,10 +86,20 @@ int main(int argc,char** argv){
 
     SetConfigFlags(FLAG_WINDOW_RESIZABLE);
 
+    // Drawing text
+
     int g = 0;
     const char* text = "Empty";
 
-    char* textfile = "test";
+    //Code editor
+
+    std::string textfile = "No file opened";
+    //char* working_textfile = glogal_functions::unconstchar(textfile);
+    int coursor_pos = 0;
+    char replaced = textfile.at(coursor_pos);
+    int txt_cnt = -1;
+
+    //Editor init stuff
 
     load_files();
     float gloabal_font_size = 1;
@@ -91,15 +107,16 @@ int main(int argc,char** argv){
     std::string path = MyPaths::getExecutablePath().substr(0, MyPaths::getExecutablePath().find_last_of("\\/"));
     const char* dir = path.c_str();
     text = path.c_str();
+    bool succes = ChangeDirectory(dir);
 
-    bool succes;
+    //image edotor stuff
+
     float img_contrs = 5;
     float old_img_contrs = 5;
-
     bool painting = 0;
     Color paint_color = BLACK;
 
-    succes = ChangeDirectory(dir);
+    //Init
 
     InitWindow(screenWidth, screenHeight, "O.R.G.Y Editor");
     MaximizeWindow();
@@ -115,8 +132,14 @@ int main(int argc,char** argv){
 
     SetTargetFPS(GetMonitorRefreshRate(GetCurrentMonitor()));
 
+
+    int timer = 0;
     while (!WindowShouldClose())
     {
+        timer++;
+        if(timer>(GetFPS()/10)){
+            timer = 0;
+        }
         SetWindowTitle(TextFormat("O.R.G.Y Editor - %i",GetFPS()));
 
         BeginDrawing();
@@ -150,11 +173,121 @@ int main(int argc,char** argv){
 
                 if(state == 0){
                     state_text = "Coding";
-                    GuiTextBoxMulti(Rectangle{(GetScreenWidth()*0.12),(GetScreenHeight()*0.08),(GetScreenWidth()-(GetScreenWidth()*0.32)),GetScreenHeight()-(GetScreenHeight()*0.08)}, textfile, 1024, 1);  
+                    y_text_offset += GetMouseWheelMove()*(GetFPS()/4);
+                    if(y_text_offset > 0){
+                        y_text_offset = 0;
+                    }
+                    //GuiTextBoxMulti(Rectangle{(GetScreenWidth()*0.12),(GetScreenHeight()*0.08),(GetScreenWidth()-(GetScreenWidth()*0.32)),GetScreenHeight()-(GetScreenHeight()*0.08)}, textfile, 1024, 1); 
+
+                    if(txt_cnt != -1){
+                        DrawText(textfile.c_str(), (GetScreenWidth()*0.12)+x_text_offset, (GetScreenHeight()*0.08)+y_text_offset, gloabal_font_size, WHITE);
+                        if ( GuiButton( (Rectangle){ (GetScreenWidth()-(GetScreenWidth()*0.32))-16, (GetScreenHeight())-((GetScreenHeight()*0.04)+16), (GetScreenWidth()*0.12), (GetScreenHeight()*0.04) }, "Save") ){
+                        //ImageColorInvert(&current_for_edit);  
+                        //ExportImage(current_for_edit, files[whith_image].c_str());
+                        textfile.at(coursor_pos) = replaced;
+                        SaveFileText(files[txt_cnt].c_str(), glogal_functions::unconstchar(textfile.c_str()));
+                        }
+
+                        /*
+                        if (IsKeyDown(KEY_SPACE)){
+                            if(timer==(GetFPS()/10)){
+                            textfile.at(coursor_pos) = replaced;
+                            textfile += "  ";
+                            for(int i = (textfile.size()-2); i>=coursor_pos ;i--){
+                                textfile.at(i+1)=textfile.at(i);
+                            }
+                            textfile.at(coursor_pos) = ' ';
+                            coursor_pos++;
+                            replaced = textfile.at(coursor_pos);
+                            }
+                        }
+                        */
+
+                        if (IsKeyDown(KEY_ENTER)){
+                            if(timer==(GetFPS()/10)){
+                            textfile.at(coursor_pos) = replaced;
+                            textfile += "  ";
+                            for(int i = (textfile.size()-2); i>=coursor_pos ;i--){
+                                textfile.at(i+1)=textfile.at(i);
+                            }
+                            textfile.at(coursor_pos) = '\n';
+                            coursor_pos++;
+                            replaced = textfile.at(coursor_pos);
+                            }
+                        }
+
+                        if (IsKeyDown(KEY_BACKSPACE)){
+                            if(timer==(GetFPS()/10)){
+                            textfile.at(coursor_pos) = replaced;
+                            if(coursor_pos > 0){
+                                //textfile += "  ";
+                                for(int i = coursor_pos-1; i<(textfile.size()-1) ;i++){
+                                    textfile.at(i)=textfile.at(i+1);
+                                }
+                                //textfile.at(coursor_pos) = ' ';
+                                coursor_pos--;
+                                replaced = textfile.at(coursor_pos);
+                            }
+                            }
+                        }
+
+                        if (IsKeyDown(KEY_RIGHT)){
+                            if(timer==(GetFPS()/10)){
+                            textfile.at(coursor_pos) = replaced;
+                            if(coursor_pos < textfile.size()){
+                                coursor_pos++;
+                                replaced = textfile.at(coursor_pos);
+                            }
+                            }
+                        }
+
+                        if (IsKeyDown(KEY_LEFT)){
+                            if(timer==(GetFPS()/10)){
+                            textfile.at(coursor_pos) = replaced;
+                            if(coursor_pos > 0){
+                                coursor_pos--;
+                                replaced = textfile.at(coursor_pos);
+                            }
+                            }
+                        }
+
+                            int key = GetCharPressed();
+
+                            // Check if more characters have been pressed on the same frame
+                            while (key > 0)
+                            {
+                            // NOTE: Only allow keys in range [32..125]
+                            if ((key >= 32) && (key <= 125))
+                            {
+                                textfile.at(coursor_pos) = replaced;
+                                textfile += "  ";
+                                for(int i = (textfile.size()-2); i>=coursor_pos ;i--){
+                                    textfile.at(i+1)=textfile.at(i);
+                            }
+                            textfile.at(coursor_pos) = (char)key;
+                            coursor_pos++;
+                            replaced = textfile.at(coursor_pos);
+                            }
+
+                            key = GetCharPressed();  // Check next character in the queue
+                            }
+
+                        //coursor_pos = 0;
+                        if(textfile.at(coursor_pos) != '_'){
+                        replaced = textfile.at(coursor_pos);
+                        }
+
+                        if(textfile.at(coursor_pos) != '\n'){
+                        textfile.at(coursor_pos) = '_';
+                        }
+                        //int txt_cnt = -1;
+                    }
                 }else if(state == 1){
                     state_text = "Map editing";
+                    DrawText("Not implemented yet :C", (GetScreenWidth()*0.12), (GetScreenHeight()*0.08), gloabal_font_size, RED);
                 }else if(state == 2){
                     state_text = "Image editing";
+
 
                     texture = LoadTextureFromImage(current_for_edit); 
                     //DrawTexture(texture, (GetScreenWidth()*0.12)+8, (GetScreenHeight()*0.08)+8, WHITE); 
@@ -166,17 +299,57 @@ int main(int argc,char** argv){
                         ImageColorInvert(&current_for_edit);  
 
                     }
+
                     if ( GuiButton( (Rectangle){ (GetScreenWidth()-(GetScreenWidth()*0.32))-16, (GetScreenHeight()*0.08)+16+(GetScreenHeight()*0.04)+16, (GetScreenWidth()*0.12), (GetScreenHeight()*0.04) }, "Grayscale") ){
                         ImageColorGrayscale(&current_for_edit);  
 
                     }
+
+                    if ( GuiButton( (Rectangle){ (GetScreenWidth()-(GetScreenWidth()*0.32))-16+(GetScreenWidth()*0.06), (GetScreenHeight()*0.08)+16+(GetScreenHeight()*0.08)+32, (GetScreenWidth()*0.06), (GetScreenHeight()*0.04) }, "+") ){
+                        //ImageColorGrayscale(&current_for_edit);  
+                        ImageColorBrightness(&current_for_edit, 1); 
+
+                    }
+                    if ( GuiButton( (Rectangle){ (GetScreenWidth()-(GetScreenWidth()*0.32))-16, (GetScreenHeight()*0.08)+16+(GetScreenHeight()*0.08)+32, (GetScreenWidth()*0.06), (GetScreenHeight()*0.04) }, "-") ){
+                        //ImageColorGrayscale(&current_for_edit);  
+                        ImageColorBrightness(&current_for_edit, -1); 
+
+                    }
+                    GuiLabel((Rectangle){ ((GetScreenWidth()-(GetScreenWidth()*0.32))-16)-(GetScreenWidth()*0.05), (GetScreenHeight()*0.08)+16+(GetScreenHeight()*0.08)+32, (GetScreenWidth()*0.12), (GetScreenHeight()*0.04) }, "Brightness: "); 
+                    
+
+                    if ( GuiButton( (Rectangle){ (GetScreenWidth()-(GetScreenWidth()*0.32))-16+(GetScreenWidth()*0.06), (GetScreenHeight()*0.08)+16+(GetScreenHeight()*0.12)+48, (GetScreenWidth()*0.06), (GetScreenHeight()*0.04) }, "+") ){
+                        //ImageColorGrayscale(&current_for_edit);  
+                        ImageColorContrast(&current_for_edit, 1); 
+
+                    }
+                    if ( GuiButton( (Rectangle){ (GetScreenWidth()-(GetScreenWidth()*0.32))-16, (GetScreenHeight()*0.08)+16+(GetScreenHeight()*0.12)+48, (GetScreenWidth()*0.06), (GetScreenHeight()*0.04) }, "-") ){
+                        //ImageColorGrayscale(&current_for_edit);  
+                        ImageColorContrast(&current_for_edit, -1); 
+
+                    }
+                    GuiLabel((Rectangle){ ((GetScreenWidth()-(GetScreenWidth()*0.32))-16)-(GetScreenWidth()*0.05), (GetScreenHeight()*0.08)+16+(GetScreenHeight()*0.12)+48, (GetScreenWidth()*0.12), (GetScreenHeight()*0.04) }, "Contrast: "); 
+                    
+                    if ( GuiButton( (Rectangle){ (GetScreenWidth()-(GetScreenWidth()*0.32))-16+(GetScreenWidth()*0.06), (GetScreenHeight()*0.08)+16+(GetScreenHeight()*0.16)+64, (GetScreenWidth()*0.06), (GetScreenHeight()*0.04) }, "+90*") ){
+                        //ImageColorGrayscale(&current_for_edit);  
+                        //ImageColorContrast(&current_for_edit, 1); 
+                        ImageRotateCW( &current_for_edit ); 
+
+                    }
+                    if ( GuiButton( (Rectangle){ (GetScreenWidth()-(GetScreenWidth()*0.32))-16, (GetScreenHeight()*0.08)+16+(GetScreenHeight()*0.16)+64, (GetScreenWidth()*0.06), (GetScreenHeight()*0.04) }, "-90*") ){
+                        //ImageColorGrayscale(&current_for_edit);  
+                        //ImageColorContrast(&current_for_edit, -1); 
+                        ImageRotateCCW( &current_for_edit ); 
+
+                    }
+                    GuiLabel((Rectangle){ ((GetScreenWidth()-(GetScreenWidth()*0.32))-16)-(GetScreenWidth()*0.05), (GetScreenHeight()*0.08)+16+(GetScreenHeight()*0.16)+64, (GetScreenWidth()*0.12), (GetScreenHeight()*0.04) }, "Rotate: "); 
+                    
+                    //DrawText("Brightness: ", (GetScreenWidth()-(GetScreenWidth()*0.32))-16+(GetScreenWidth()*0.06)-(GetScreenWidth()*0.11), (GetScreenHeight()*0.08)+16+(GetScreenHeight()*0.08)+32, gloabal_font_size, WHITE);
+                    //DrawText(const char *text, int posX, int posY, int fontSize, Color color); 
+                    /*
                     if ( GuiButton( (Rectangle){ (GetScreenWidth()-(GetScreenWidth()*0.32))-16, (GetScreenHeight()*0.08)+16+(GetScreenHeight()*0.08)+32, (GetScreenWidth()*0.12), (GetScreenHeight()*0.04) }, "[EXPERIMENTAL] Toggle painting") ){
                         painting = !painting;
 
-                    }
-                    if ( GuiButton( (Rectangle){ (GetScreenWidth()-(GetScreenWidth()*0.32))-16, (GetScreenHeight())-((GetScreenHeight()*0.04)+16), (GetScreenWidth()*0.12), (GetScreenHeight()*0.04) }, "Save") ){
-                        //ImageColorInvert(&current_for_edit);  
-                        ExportImage(current_for_edit, files[whith_image].c_str());
                     }
                     //DrawText("Brightness: ", 5, (GetScreenWidth()-(GetScreenWidth()*0.32))-16, (GetScreenHeight()*0.08)+16+(GetScreenHeight()*0.08)+32, WHITE);
                     img_contrs = GuiSliderBar((Rectangle){ (GetScreenWidth()-(GetScreenWidth()*0.32))-16, (GetScreenHeight()*0.08)+16+(GetScreenHeight()*0.12)+32+16, (GetScreenWidth()*0.12), (GetScreenHeight()*0.04) }, "Brush size: ", NULL, img_contrs, 1, 256);
@@ -187,6 +360,11 @@ int main(int argc,char** argv){
                                 ImageDrawCircle(&current_for_edit, ((GetMousePosition().x-(GetScreenWidth()*0.12)+8)/txt_scale)-((img_contrs/2)/txt_scale), ((GetMousePosition().y-(GetScreenHeight()*0.08)+8)/txt_scale)-((img_contrs/2)/txt_scale), img_contrs/txt_scale, paint_color);   
                             
                         }
+                    }
+                    */
+                    if ( GuiButton( (Rectangle){ (GetScreenWidth()-(GetScreenWidth()*0.32))-16, (GetScreenHeight())-((GetScreenHeight()*0.04)+16), (GetScreenWidth()*0.12), (GetScreenHeight()*0.04) }, "Save") ){
+                        //ImageColorInvert(&current_for_edit);  
+                        ExportImage(current_for_edit, files[whith_image].c_str());
                     }
                 }
 
@@ -199,6 +377,11 @@ int main(int argc,char** argv){
                         if ( GuiButton( (Rectangle){ 5, (GetScreenHeight()-left_anchor), (GetScreenWidth()*0.12)-10, (GetScreenHeight()*0.04) }, files[bdir].c_str() ) ){
                             state = 0;
                             std::cout << "Running coding sesion\n";
+                            textfile = glogal_functions::unconstchar(LoadFileText( (game_path+files[bdir]).c_str() ));  
+                            txt_cnt = bdir;
+                            coursor_pos = 0;
+                            y_text_offset = 0;
+                            x_text_offset = 0;
                         }
                     }else if(files[bdir].find(".png") != std::string::npos || files[bdir].find(".bmp") != std::string::npos){
                         if ( GuiButton( (Rectangle){ 5, (GetScreenHeight()-left_anchor), (GetScreenWidth()*0.12)-10, (GetScreenHeight()*0.04) }, files[bdir].c_str() ) ){

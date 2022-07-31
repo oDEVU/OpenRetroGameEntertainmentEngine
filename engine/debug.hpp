@@ -1,4 +1,11 @@
- 
+#pragma once
+
+#include <raylib.h>
+#include <math.h>
+//#include "structures.hpp"
+
+namespace debug_class{
+
 void draw_debug(bool show_debug,bool vsync) {
 
             //Fps related
@@ -38,4 +45,5 @@ void draw_debug(bool show_debug,bool vsync) {
                     DrawText(TextFormat("FPS: %i", GetFPS()), 5, 20, 10, fps_color);
                 }
             }
+}
 }

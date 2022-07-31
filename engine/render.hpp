@@ -1,3 +1,11 @@
+#pragma once
+
+#include <raylib.h>
+#include <math.h>
+//#include "structures.hpp"
+
+namespace render_class {
+    
 //#include "game.cpp"
 void clip_behind_camera(float *x1,float *y1, float *z1, float x2,float y2,float z2){
     float da=*y1;
@@ -216,7 +224,7 @@ float dist(float x1,float y1, float x2, float y2){
 void draw_3d(){
      float wx[4],wy[4],wz[4];
      int s,w;
-     float CS=cos(torad(P.a)), SN=sin(torad(P.a));
+     float CS=cos(glogal_functions::torad(P.a)), SN=sin(glogal_functions::torad(P.a));
 
     for(s=0;s<num_sec-1;s++){
         for(w=0;w<num_sec-s-1;w++){
@@ -302,4 +310,6 @@ void draw_3d(){
             S[s].surface*=-1;
         }
     }
+}
+
 }

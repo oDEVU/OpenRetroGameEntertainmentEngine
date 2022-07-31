@@ -1,4 +1,11 @@
 //Functions to use in game.cpp and main.cpp
+#pragma once
+
+#include <raylib.h>
+#include <math.h>
+//#include "structures.hpp"
+
+namespace glogal_functions{
 
 char* unconstchar(const char* s) {
     if(!s)
@@ -22,3 +29,5 @@ float torad(float x){
     float rad = (x * M_PI) / 180;
     return rad;
 } 
+
+}

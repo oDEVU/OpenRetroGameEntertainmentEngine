@@ -37,6 +37,7 @@
 
     //--------------
 
+
 int main()
 {
     //SetWindowIcon(icon);
@@ -137,9 +138,9 @@ int main()
 
             //KeyInputs
         if (IsKeyPressed(KEY_TAB)){
-            TakeScreenshot(unconstchar(TextFormat("screenshots/screen%i.png", screens_num)));
+            TakeScreenshot(glogal_functions::unconstchar(TextFormat("screenshots/screen%i.png", screens_num)));
             screens_num++;
-            SaveFileText("screenshots/num.cfg", unconstchar(TextFormat("%i", screens_num)));
+            SaveFileText("screenshots/num.cfg", glogal_functions::unconstchar(TextFormat("%i", screens_num)));
         }
 
 
@@ -147,9 +148,9 @@ int main()
             show_debug = !show_debug;
 
             if (show_debug == true){
-                SaveFileText("configs/debug.cfg", unconstchar(TextFormat("debug")));
+                SaveFileText("configs/debug.cfg", glogal_functions::unconstchar(TextFormat("debug")));
             }else{
-               SaveFileText("configs/debug.cfg", unconstchar(TextFormat("")));
+               SaveFileText("configs/debug.cfg", glogal_functions::unconstchar(TextFormat("")));
             }
         }
 
@@ -157,9 +158,9 @@ int main()
             vsync = !vsync;
 
             if (vsync == true){
-                SaveFileText("configs/vsync.cfg", unconstchar(TextFormat("on")));
+                SaveFileText("configs/vsync.cfg", glogal_functions::unconstchar(TextFormat("on")));
             }else{
-                SaveFileText("configs/vsync.cfg", unconstchar(TextFormat("")));
+                SaveFileText("configs/vsync.cfg", glogal_functions::unconstchar(TextFormat("")));
             }
         }
 
@@ -168,8 +169,8 @@ int main()
             int new_screen_x = GetScreenWidth();
             int new_screen_y = GetScreenHeight();
 
-            SaveFileText("configs/resolutionx.cfg", unconstchar(TextFormat("%i", new_screen_x)));
-            SaveFileText("configs/resolutiony.cfg", unconstchar(TextFormat("%i", new_screen_y)));
+            SaveFileText("configs/resolutionx.cfg", glogal_functions::unconstchar(TextFormat("%i", new_screen_x)));
+            SaveFileText("configs/resolutiony.cfg", glogal_functions::unconstchar(TextFormat("%i", new_screen_y)));
         }
 
         if (vsync == true){
@@ -188,12 +189,12 @@ int main()
 
             ClearBackground(BLACK);
 
-            draw_3d();
+            render_class::draw_3d();
 
             //Debug
 
             if(render_debug == 1){
-                draw_debug(show_debug,vsync);
+                debug_class::draw_debug(show_debug,vsync);
             }
 
         EndDrawing();
