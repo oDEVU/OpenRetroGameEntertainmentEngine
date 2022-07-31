@@ -8,7 +8,7 @@ his chanel : https://www.youtube.com/c/3DSage
 
 Engine presentation : https://youtu.be/PSlYORvC2ks
 
-Editor presentation : https://youtu.be/v456MNygMA0
+Editor presentation : https://youtu.be/DXZNMwoE_4E
 
 # Dependencies
 * raylib
