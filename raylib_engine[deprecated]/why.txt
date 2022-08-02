@@ -1,0 +1,6 @@
+i keep this old version of engine because:
+
+1. not all been ported yet (for example debuging options)
+2. i still have some backup ol older versions which i know were, sort of, working.
+
+(mostly for me, not end user)
