@@ -31,7 +31,7 @@ sudo pacman -Sy raylib
 
 4. Compile editor:
 ```sh
-g++ -lstdc++fs -std=c++20 -o editor editor.cpp pathhandler.cpp -lstdc++fs -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
+g++ -lstdc++fs -std=c++20 -o editor editor.cpp -lstdc++fs -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
 ```
 (This compile command works only for x11, Later you can compile game from editor)
 
@@ -48,7 +48,7 @@ zypper in raylib-devel
 
 4. Compile editor:
 ```sh
-g++ -lstdc++fs -std=c++20 -o editor editor.cpp pathhandler.cpp -lstdc++fs -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
+g++ -lstdc++fs -std=c++20 -o editor editor.cpp -lstdc++fs -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
 ```
 (This compile command works only for x11, Later you can compile game from editor)
 
