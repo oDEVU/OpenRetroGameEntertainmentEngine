@@ -3,6 +3,7 @@
 
 #define render_debug 1    // replace 1 with 0 to completly hide any debug info (engine name.fps,errors,etc) 
 #define render_polys_lines 0  //to visualize polys rendered by render.hpp [GLITCHY BUT USEFULL]
+#define correct_perspective 1   //Texture perspective transformation 0 - Affine , 1 - Correct [affine is not recomended but gives ps1 looks]
 #define window_title "O.R.G.Y - DEMO_GAME"
 
 
@@ -126,11 +127,11 @@ const char* dirs[size_of_dirs] {
     }
 
     //Player spawn position
-        int player_x = -16;     //Statick info
-        int player_y = 0;
-        int player_z = -50;
-        int player_a = 0;
-        int player_l = 0;
+        int cam_x = -16;     //Statick info
+        int cam_y = 0;
+        int cam_z = -50;
+        int cam_a = 0;
+        int cam_l = 0;
 
     //Every frame stuff  
 
@@ -139,8 +140,12 @@ const char* dirs[size_of_dirs] {
         player_class::handle_player_input(currentTime);      //hadles player input from player.cpp
     }
 
-    void event(sf::Event* e){                           //Used to handle single clicks (look sfml website)
+    void event(sf::Event* e,sf::RenderWindow* window, double delta, double fps){                           //Used to handle single clicks (look sfml website)
 
+            if ((e->type == sf::Event::KeyPressed) && (e->key.code == sf::Keyboard::Escape)){   //Closes window when escape clicked
+                //window.setVerticalSyncEnabled(vsync);
+                window->close();
+            }
     }
 
     void draw_game(sf::RenderWindow* window) {      // this function is called every draw call (dont over use it) (you can use all sfml (use [->] instead of [.] after window variable) draw functions here)

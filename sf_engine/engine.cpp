@@ -87,7 +87,7 @@ int main() {
     init();
     //init_player();
 
-    Cam.x = player_x; Cam.y = player_y; Cam.z = player_y; Cam.a = player_a; Cam.l = player_l;
+    Cam.x = cam_x; Cam.y = cam_y; Cam.z = cam_y; Cam.a = cam_a; Cam.l = cam_l;
 
     int s,w,v1=0,v2=0;
 
@@ -164,7 +164,7 @@ int main() {
                 debug = !debug;
             }
 
-            event(&e);
+            event(&e,&window,currentTime,fps);
         }
         //window.create(sf::VideoMode(e.size.width, e.size.height), "O.R.G.Y - SFML_REWRITE");
 

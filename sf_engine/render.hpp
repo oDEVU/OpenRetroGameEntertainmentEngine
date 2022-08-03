@@ -121,7 +121,7 @@ void draw_wall(int x1, int x2, int b1, int b2, int t1, int t2, int c, int s, int
         }else{
         if(x2<x1){
             sf::Color wall_color{ 255, 255, 255 };
-        
+
             wall_color = get_color_from_colormap(c);
 
             int sy1 = dyb*(bx1-xs+0.5)/dx+b1;
@@ -142,7 +142,12 @@ void draw_wall(int x1, int x2, int b1, int b2, int t1, int t2, int c, int s, int
             int ey1 = dyb*(bx2-xs+0.5)/dx+b1;
             int ey2 = dyt*(bx2-xs+0.5)/dx+t1;
             std::string txt_path = get_texture_from_texturemap(txt);
-            poly::draw_poly_txt_correct( bx1,  sy2,  bx2,  ey2,  bx2,  ey1,  bx1,  sy1, txt_path, window);
+            if(correct_perspective==1){
+                poly::draw_poly_txt_correct( bx1,  sy2,  bx2,  ey2,  bx2,  ey1,  bx1,  sy1, txt_path, window);
+            }else if(correct_perspective==0){
+                poly::draw_poly_txt_affine( bx1,  sy2,  bx2,  ey2,  bx2,  ey1,  bx1,  sy1, txt_path, window);
+            }
+
             if(render_polys_lines == 1){
                 poly::draw_poly_lines( bx1,  sy2,  bx2,  ey2,  bx2,  ey1,  bx1,  sy1, window);
             }
@@ -154,7 +159,12 @@ void draw_wall(int x1, int x2, int b1, int b2, int t1, int t2, int c, int s, int
             int ey1 = dyb*(bx2-xs+0.5)/dx+b1;
             int ey2 = dyt*(bx2-xs+0.5)/dx+t1;
             std::string txt_path = get_texture_from_texturemap(txt);
-            poly::draw_poly_txt_correct( bx1,  sy2,  bx2,  ey2,  bx2,  ey1,  bx1,  sy1, txt_path, window);
+            if(correct_perspective==1){
+                poly::draw_poly_txt_correct( bx1,  sy2,  bx2,  ey2,  bx2,  ey1,  bx1,  sy1, txt_path, window);
+            }else if(correct_perspective==0){
+                poly::draw_poly_txt_affine( bx1,  sy2,  bx2,  ey2,  bx2,  ey1,  bx1,  sy1, txt_path, window);
+            }
+
             if(render_polys_lines == 1){
                 poly::draw_poly_lines( bx1,  sy2,  bx2,  ey2,  bx2,  ey1,  bx1,  sy1, window);
             }
@@ -186,8 +196,8 @@ void draw_wall(int x1, int x2, int b1, int b2, int t1, int t2, int c, int s, int
             sf::Vertex(sf::Vector2f(i, y1))
         };
 
-        line[0].color = get_color_from_colormap(S[s].c2);
-        line[1].color = get_color_from_colormap(S[s].c2);
+        line[0].color = get_color_from_colormap(S[s].c2)+sf::Color(55,55,55,5);
+        line[1].color = get_color_from_colormap(S[s].c2)+sf::Color(55,55,55,5);
         window->draw(line, 2, sf::Lines);
         };
 
@@ -199,8 +209,8 @@ void draw_wall(int x1, int x2, int b1, int b2, int t1, int t2, int c, int s, int
             sf::Vertex(sf::Vector2f(i, S[s].surf[i]))
         };
 
-        line[0].color = get_color_from_colormap(S[s].c1);
-        line[1].color = get_color_from_colormap(S[s].c1);
+        line[0].color = get_color_from_colormap(S[s].c1)-sf::Color(33,33,33,0);
+        line[1].color = get_color_from_colormap(S[s].c1)-sf::Color(33,33,33,0);
         window->draw(line, 2, sf::Lines);
         };
         }

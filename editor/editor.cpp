@@ -122,7 +122,7 @@ int main(int argc,char** argv){
         if(timer>(GetFPS()/10)){
             timer = 0;
         }
-        SetWindowTitle(TextFormat("O.R.G.Y Editor - %i",GetFPS()));
+        SetWindowTitle(TextFormat("O.R.G.Y Editor - %i FPS",GetFPS()));
 
         BeginDrawing();
 
