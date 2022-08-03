@@ -3,6 +3,7 @@
 // IF YOU COMPILE FROM TERMIANAL YOU NEED TO COPY ASSTETS YOURSELF.
 
 #include <SFML/Graphics.hpp>
+#include <SFML/Config.hpp>
 #include <cassert>
 #include <iostream>
 #include <string>
@@ -17,6 +18,7 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <filesystem>
+#include <fstream>
 
     #include "functions.hpp" 
     #include "../game/structures.hpp"
@@ -40,6 +42,31 @@ int main() {
     int w_x = 800;
     int w_y = 600;
 
+    bool vsync = 0;
+    bool debug = 0;
+
+    std::fstream file;
+
+    file.open("setting.cfg",std::ios::in);
+    if(!file){
+        std::cout<<"Error in opening file..";
+        //return 0;
+    }
+    file>>vsync;
+    file>>debug;
+    file>>w_x;
+    file>>w_y;
+    file.close();
+
+    for(int i=0;i<size_of_dirs;i++){
+    const char* engine_path = path.c_str();
+    const char* dir = dirs[i];
+
+    std::string buf(engine_path);
+    buf.append(dir);
+
+    std::filesystem::create_directories(buf);
+    }  
 
     int frame_counter = 0;
 
@@ -58,9 +85,9 @@ int main() {
     //init
 
     init();
-    init_player();
+    //init_player();
 
-    P.x = player_x; P.y = player_y; P.z = player_y; P.a = player_a; P.l = player_l;
+    Cam.x = player_x; Cam.y = player_y; Cam.z = player_y; Cam.a = player_a; Cam.l = player_l;
 
     int s,w,v1=0,v2=0;
 
@@ -87,23 +114,34 @@ int main() {
 
 
     sf::Clock clock;
-    float lastTime = 0;
+    double lastTime = 0;
 
 
     while (window.isOpen()) {
         //frame_counter++;
-        float currentTime = clock.restart().asSeconds();
-        float fps = 1.f / currentTime;
+        double currentTime = clock.restart().asSeconds();
+        double fps = 1.f / currentTime;
         lastTime = currentTime;
 
         //GAmeloop
 
         tick(currentTime);
+ 
+        file.open("setting.cfg",std::ios::out);
+        if(!file)
+        {
+            std::cout<<"Error in creating file..\n"<<std::endl;
+            //return 0;
+        }else{
+            file<<vsync<<" "<<debug<<" "<<w_x<<" "<<w_y<<std::endl;
+            file.close();
+        }
+
 
         sf::Event e;
         while (window.pollEvent(e)) {
-            w_x = e.size.width;
-            w_y = e.size.height;
+            w_x = window.getSize().x;
+            w_y = window.getSize().y;
 
             switch (e.type) {
             case sf::Event::EventType::Closed:
@@ -115,10 +153,22 @@ int main() {
                 sf::FloatRect visibleArea(0, 0, e.size.width, e.size.height);
                 window.setView(sf::View(visibleArea));
             }
+
+            if ((e.type == sf::Event::KeyPressed) && (e.key.code == sf::Keyboard::F2)){
+                window.setVerticalSyncEnabled(vsync);
+                vsync = !vsync;
+            }
+
+            if ((e.type == sf::Event::KeyPressed) && (e.key.code == sf::Keyboard::F1)){
+                //window.setVerticalSyncEnabled(vsync);
+                debug = !debug;
+            }
+
+            event(&e);
         }
         //window.create(sf::VideoMode(e.size.width, e.size.height), "O.R.G.Y - SFML_REWRITE");
 
-        window.clear();
+        window.clear(sf::Color(22,22,22));
         //draw call
 
         /*rectangle
@@ -167,8 +217,61 @@ int main() {
 
         draw_game(&window);
 
-        message.setString("FPS: "+std::to_string(fps)+"\n");
-        window.draw(message);
+        if(debug && render_debug == 1){
+            sf::Color fps_col;
+            if(fps>=240){
+                fps_col = sf::Color(0,255,255);
+            }else if(fps>=120){
+                fps_col = sf::Color(0,255,100);
+            }else if(fps>=60){
+                fps_col = sf::Color(0,255,0);
+            }else if(fps>=45){
+                fps_col = sf::Color(100,255,0);
+            }else if(fps>=30){
+                fps_col = sf::Color(255,200,0);
+            }else if(fps>=0){
+                fps_col = sf::Color(255,0,0);
+            }
+
+            message.setString("OpenRetroGameYngine - SFML "+std::to_string(SFML_VERSION_MAJOR)+"."+std::to_string(SFML_VERSION_MINOR)+"."+std::to_string(SFML_VERSION_PATCH)+" [0.0.4]");
+            //message.setColor(sf::Color(255,0,0));
+            message.setPosition(8,8);
+            message.setFillColor(sf::Color(255,255,0));
+            message.setOutlineColor(sf::Color(0,0,0));
+            message.setOutlineThickness(w_y/(70*2.5));
+            message.setCharacterSize(w_y/70);
+            window.draw(message);
+
+            sf::Text messagea("", font);
+            messagea.setString("FPS: "+std::to_string(fps)+"\n");
+            //message.setColor(sf::Color(255,0,0));
+            messagea.setPosition(8,8+((w_y/70)+8));
+            messagea.setFillColor(fps_col);
+            messagea.setOutlineColor(sf::Color(0,0,0));
+            messagea.setOutlineThickness(w_y/(70*2.5));
+            messagea.setCharacterSize(w_y/70);
+            window.draw(messagea);
+
+            sf::Text messageab("", font);
+            messageab.setString("Delta: "+std::to_string(currentTime)+"\n");
+            //message.setColor(sf::Color(255,0,0));
+            messageab.setPosition(8,8+((w_y/70)+8)*2);
+            messageab.setFillColor(fps_col);
+            messageab.setOutlineColor(sf::Color(0,0,0));
+            messageab.setOutlineThickness(w_y/(70*2.5));
+            messageab.setCharacterSize(w_y/70);
+            window.draw(messageab);
+
+            sf::Text messageabc("", font);
+            messageabc.setString("Camera pos / X: "+std::to_string(Cam.x)+" | Y: "+std::to_string(Cam.y)+" | Z: "+std::to_string(Cam.z)+" |");
+            //message.setColor(sf::Color(255,0,0));
+            messageabc.setPosition(8,8+((w_y/70)+8)*3);
+            messageabc.setFillColor(sf::Color(255,255,255));
+            messageabc.setOutlineColor(sf::Color(0,0,0));
+            messageabc.setOutlineThickness(w_y/(70*2.5));
+            messageabc.setCharacterSize(w_y/70);
+            window.draw(messageabc);
+        }
         window.display();
     }
     return 0;

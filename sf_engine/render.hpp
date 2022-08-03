@@ -5,23 +5,23 @@
 #include "SelbaWard/ElasticSprite.hpp"
 #include "poly.hpp"
 
-float   pos_celing[8];
+double   pos_celing[8];
 int     celing_counter=0;
 
 namespace render_class {
     
 //#include "game.cpp"
-void clip_behind_camera(float *x1,float *y1, float *z1, float x2,float y2,float z2){
-    float da=*y1;
-    float db=y2;
-    //float d=da-db;
+void clip_behind_camera(double *x1,double *y1, double *z1, double x2,double y2,double z2){
+    double da=*y1;
+    double db=y2;
+    //double d=da-db;
     //if (d==0){d=1;};
-    float s = da / (da-db);
+    double s = da / (da-db);
     *x1 = *x1 + s*(x2-(*x1));
     *y1 = *y1 + s*(y2-(*y1)); if(*y1<1){*y1=1;};
     *z1 = *z1 + s*(z2-(*z1)); //if(*z1<=0){*z1=1;};
 } 
-void shade_wall(int x1, int x2, int b1, int b2, int t1, int t2, int c, int s, int t, int txt, int w, sf::RenderWindow* window, int l){
+void shade_wall(int x1, int x2, int b1, int b2, int t1, int t2, int c, int s, int t, int txt, int w, sf::RenderWindow* window, int l, int loop){
     if(w%2==0){
     if(x2 > 0 || x1 < window->getSize().x){
     int x,y;
@@ -47,7 +47,7 @@ void shade_wall(int x1, int x2, int b1, int b2, int t1, int t2, int c, int s, in
     if(x2>(window->getSize().x-1)){x2=(window->getSize().x-1);}
 
 
-    //if(loop==0){
+    if(loop==1){
         if(l==0){
         if(x2>x1){
             sf::Color wall_color{ 0, 0, 0, 55 };
@@ -73,7 +73,7 @@ void shade_wall(int x1, int x2, int b1, int b2, int t1, int t2, int c, int s, in
             poly::draw_poly( bx1,  sy2,  bx2,  ey2,  bx2,  ey1,  bx1,  sy1, wall_color, window);
         }
         }
-    }}
+    }}}
 }
 
 void draw_wall(int x1, int x2, int b1, int b2, int t1, int t2, int c, int s, int t, int txt, int w, sf::RenderWindow* window, int l, int loop){
@@ -114,6 +114,9 @@ void draw_wall(int x1, int x2, int b1, int b2, int t1, int t2, int c, int s, int
             int ey1 = dyb*(bx2-xs+0.5)/dx+b1;
             int ey2 = dyt*(bx2-xs+0.5)/dx+t1;
             poly::draw_poly( bx1,  sy2,  bx2,  ey2,  bx2,  ey1,  bx1,  sy1, wall_color, window);
+            if(render_polys_lines == 1){
+                poly::draw_poly_lines( bx1,  sy2,  bx2,  ey2,  bx2,  ey1,  bx1,  sy1, window);
+            }
         }
         }else{
         if(x2<x1){
@@ -126,6 +129,9 @@ void draw_wall(int x1, int x2, int b1, int b2, int t1, int t2, int c, int s, int
             int ey1 = dyb*(bx2-xs+0.5)/dx+b1;
             int ey2 = dyt*(bx2-xs+0.5)/dx+t1;
             poly::draw_poly( bx1,  sy2,  bx2,  ey2,  bx2,  ey1,  bx1,  sy1, wall_color, window);
+            if(render_polys_lines == 1){
+                poly::draw_poly_lines( bx1,  sy2,  bx2,  ey2,  bx2,  ey1,  bx1,  sy1, window);
+            }
         }
         }
     }else{
@@ -137,6 +143,9 @@ void draw_wall(int x1, int x2, int b1, int b2, int t1, int t2, int c, int s, int
             int ey2 = dyt*(bx2-xs+0.5)/dx+t1;
             std::string txt_path = get_texture_from_texturemap(txt);
             poly::draw_poly_txt_correct( bx1,  sy2,  bx2,  ey2,  bx2,  ey1,  bx1,  sy1, txt_path, window);
+            if(render_polys_lines == 1){
+                poly::draw_poly_lines( bx1,  sy2,  bx2,  ey2,  bx2,  ey1,  bx1,  sy1, window);
+            }
         }
         }else{
         if(x2<x1){
@@ -146,6 +155,9 @@ void draw_wall(int x1, int x2, int b1, int b2, int t1, int t2, int c, int s, int
             int ey2 = dyt*(bx2-xs+0.5)/dx+t1;
             std::string txt_path = get_texture_from_texturemap(txt);
             poly::draw_poly_txt_correct( bx1,  sy2,  bx2,  ey2,  bx2,  ey1,  bx1,  sy1, txt_path, window);
+            if(render_polys_lines == 1){
+                poly::draw_poly_lines( bx1,  sy2,  bx2,  ey2,  bx2,  ey1,  bx1,  sy1, window);
+            }
         }
         }
     
@@ -197,15 +209,15 @@ void draw_wall(int x1, int x2, int b1, int b2, int t1, int t2, int c, int s, int
 }
 
 
-float dist(float x1,float y1, float x2, float y2){
-    float distance = sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1));
+double dist(double x1,double y1, double x2, double y2){
+    double distance = sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1));
     return distance;
 }
 
 void draw_3d(sf::RenderWindow* window){
-     float wx[4],wy[4],wz[4];
+     double wx[4],wy[4],wz[4];
      int s,w;
-     float CS=cos(glogal_functions::torad(P.a)), SN=sin(glogal_functions::torad(P.a));
+     double CS=cos(glogal_functions::torad(Cam.a)), SN=sin(glogal_functions::torad(Cam.a));
 
     for(s=0;s<num_sec-1;s++){
         for(w=0;w<num_sec-s-1;w++){
@@ -222,20 +234,20 @@ void draw_3d(sf::RenderWindow* window){
         S[s].d=0;
 
         if(S[s].flip == 0){
-        if(P.z<S[s].z1){S[s].surface=1;}
-        else if (P.z>S[s].z2){S[s].surface=2;}
+        if(Cam.z<S[s].z1){S[s].surface=1;}
+        else if (Cam.z>S[s].z2){S[s].surface=2;}  //Why this isnt fucking working !!!!!!!!!
         else {S[s].surface=0;}
         }else{
-        if(P.z<S[s].z1){S[s].surface=2;}
-        else if (P.z>S[s].z2){S[s].surface=1;}
+        if(Cam.z<S[s].z1){S[s].surface=2;}
+        else if (Cam.z>S[s].z2){S[s].surface=1;}
         else {S[s].surface=0;}
         }
 
         for(int loop=0; loop < 2; loop++){
             for(w=S[s].ws;w<S[s].we;w++){
 
-                 int x1=W[w].x1-P.x, y1=W[w].y1-P.y;
-                 int x2=W[w].x2-P.x, y2=W[w].y2-P.y;
+                 int x1=W[w].x1-Cam.x, y1=W[w].y1-Cam.y;
+                 int x2=W[w].x2-Cam.x, y2=W[w].y2-Cam.y;
 
                  if(loop==0){int swp=x1; x1=x2;x2=swp;swp=y1;y1=y2;y2=swp;}
 
@@ -254,8 +266,8 @@ void draw_3d(sf::RenderWindow* window){
                 wy[2]=wy[0];
                 wy[3]=wy[1];
 
-                wz[0]=S[s].z1-P.z+((P.l*wy[0])/32.0);
-                wz[1]=S[s].z1-P.z+((P.l*wy[1])/32.0);
+                wz[0]=S[s].z1-Cam.z+((Cam.l*wy[0])/32.0);
+                wz[1]=S[s].z1-Cam.z+((Cam.l*wy[1])/32.0);
                 wz[2]=wz[0]+S[s].z2;
                 wz[3]=wz[1]+S[s].z2;
                 S[s].d+=dist(0,0,(wx[0]+wx[1])/2,(wy[0]+wy[1])/2);
@@ -312,7 +324,7 @@ void draw_3d(sf::RenderWindow* window){
     //}
 
                 draw_wall(wx[0],wx[1],wy[0],wy[1],wy[2],wy[3],W[w].c, s , W[w].t, W[w].txt, w, window, S[s].flip,loop);
-                shade_wall(wx[0],wx[1],wy[0],wy[1],wy[2],wy[3],W[w].c, s , W[w].t, W[w].txt, w, window, S[s].flip);
+                shade_wall(wx[0],wx[1],wy[0],wy[1],wy[2],wy[3],W[w].c, s , W[w].t, W[w].txt, w, window, S[s].flip,loop);
                 
             
             }

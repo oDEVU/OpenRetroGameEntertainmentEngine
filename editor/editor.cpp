@@ -142,14 +142,6 @@ int main(int argc,char** argv){
                 
                 int left_anchor = (GetScreenHeight()*0.04) + 5;
 
-                if(game_path != working_path){
-                    if ( GuiButton( (Rectangle){ 5, (GetScreenHeight()-left_anchor), (GetScreenWidth()*0.12)-10, (GetScreenHeight()*0.04) }, "../") ){
-                        working_path = working_path.substr(0, working_path.find_last_of("\\/")+1);
-                        load_files();
-                    }
-                    left_anchor += (GetScreenHeight()*0.04) + 5;
-                }
-
 
                 if(state == 0){
                     state_text = "Coding";
@@ -368,6 +360,14 @@ int main(int argc,char** argv){
                 DrawRectangle((GetScreenWidth()*0.12),0,(GetScreenWidth()-(GetScreenWidth()*0.32)),(GetScreenHeight()*0.08),Color{20,20,20,(unsigned char)fade});
                 if(GuiButton( (Rectangle){ (GetScreenWidth()*0.12)+(GetScreenHeight()*0.02), (GetScreenHeight()*0.02), (GetScreenWidth()*0.085), (GetScreenHeight()*0.04) }, state_text )){
                     type_menu = !type_menu;
+                }
+                
+                if(game_path != working_path){
+                    if ( GuiButton( (Rectangle){ 5, (GetScreenHeight()-left_anchor), (GetScreenWidth()*0.12)-10, (GetScreenHeight()*0.04) }, "../") ){
+                        working_path = working_path.substr(0, working_path.find_last_of("\\/")+1);
+                        load_files();
+                    }
+                    left_anchor += (GetScreenHeight()*0.04) + 5;
                 }
 
                 for(int bdir = 0; bdir < iii; bdir++){

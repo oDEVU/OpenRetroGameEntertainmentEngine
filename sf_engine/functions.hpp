@@ -25,8 +25,8 @@ char* unconstchar(const char* s) {
     }
 }
 
-float torad(float x){
-    float rad = (x * M_PI) / 180;
+double torad(double x){
+    double rad = (x * M_PI) / 180;
     return rad;
 } 
 

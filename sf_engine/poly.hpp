@@ -2,6 +2,33 @@
 
 namespace poly {
 
+void draw_poly_lines(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4, sf::RenderWindow* window){
+sf::ConvexShape convex;
+
+// resize it to 5 points
+convex.setPointCount(4);
+
+// define the points
+convex.setPoint(0, sf::Vector2f(x1, y1));
+convex.setPoint(1, sf::Vector2f(x2, y2));
+convex.setPoint(2, sf::Vector2f(x3, y3));
+convex.setPoint(3, sf::Vector2f(x4, y4));
+
+convex.setFillColor(sf::Color(0,0,0,0));
+convex.setOutlineThickness(2);
+convex.setOutlineColor(sf::Color(255,255,255,255));
+
+window->draw(convex);
+
+sf::Vertex line[] =
+{
+    sf::Vertex(sf::Vector2f(x2, y2)),
+    sf::Vertex(sf::Vector2f(x4, y4))
+};
+
+window->draw(line, 5, sf::Lines);
+}
+
 void draw_poly(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4, sf::Color col, sf::RenderWindow* window){
         sf::VertexArray tris{sf::PrimitiveType::Triangles, 6};
         tris[0].position = {x4, y4};

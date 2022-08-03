@@ -4,27 +4,27 @@
  //player
 
     typedef struct{
-        float x,y,z;  //Position
-        float a;      // angle left-right
-        float l;      // angle up-down
-    }player; player P;
+        double x,y,z;  //Position
+        double a;      // angle left-right
+        double l;      // angle up-down
+    }camera; camera Cam;
 
 //rendering structures
 
     typedef struct{
-        float x1,y1;
-        float x2,y2;
-        float d;
+        double x1,y1;
+        double x2,y2;
+        double d;
         int c;
         bool t;
         int txt;
     }walls; walls W[64];
 
     typedef struct{
-        float ws,we;
-        float z1,z2;
-        float x,y;
-        float d;
+        double ws,we;
+        double z1,z2;
+        double x,y;
+        double d;
         int c1,c2;
         int surf[32000];
         int surface;
