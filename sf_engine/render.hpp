@@ -21,8 +21,9 @@ void clip_behind_camera(double *x1,double *y1, double *z1, double x2,double y2,d
     *y1 = *y1 + s*(y2-(*y1)); if(*y1<1){*y1=1;};
     *z1 = *z1 + s*(z2-(*z1)); //if(*z1<=0){*z1=1;};
 } 
-void shade_wall(int x1, int x2, int b1, int b2, int t1, int t2, int c, int s, int t, int txt, int w, sf::RenderWindow* window, int l, int loop){
-    if(w%2==0){
+
+void shade_wall(int x1, int x2, int b1, int b2, int t1, int t2, sf::Color shade, int s, int t, int txt, int w, sf::RenderWindow* window, int l, int loop){
+    //if(w%2==0){
     if(x2 > 0 || x1 < window->getSize().x){
     int x,y;
 
@@ -50,7 +51,7 @@ void shade_wall(int x1, int x2, int b1, int b2, int t1, int t2, int c, int s, in
     if(loop==1){
         if(l==0){
         if(x2>x1){
-            sf::Color wall_color{ 0, 0, 0, 55 };
+            //sf::Color wall_color{ 0, 0, 0, 55 };
         
             //wall_color = get_color_from_colormap(c);
 
@@ -58,11 +59,11 @@ void shade_wall(int x1, int x2, int b1, int b2, int t1, int t2, int c, int s, in
             int sy2 = dyt*(bx1-xs+0.5)/dx+t1;
             int ey1 = dyb*(bx2-xs+0.5)/dx+b1;
             int ey2 = dyt*(bx2-xs+0.5)/dx+t1;
-            poly::draw_poly( bx1,  sy2,  bx2,  ey2,  bx2,  ey1,  bx1,  sy1, wall_color, window);
+            poly::draw_poly( bx1,  sy2,  bx2,  ey2,  bx2,  ey1,  bx1,  sy1, shade, window);
         }
         }else{
         if(x2<x1){
-            sf::Color wall_color{ 0, 0, 0, 55 };
+            //sf::Color wall_color{ 0, 0, 0, 55 };
         
             //wall_color = get_color_from_colormap(c);
 
@@ -70,10 +71,10 @@ void shade_wall(int x1, int x2, int b1, int b2, int t1, int t2, int c, int s, in
             int sy2 = dyt*(bx1-xs+0.5)/dx+t1;
             int ey1 = dyb*(bx2-xs+0.5)/dx+b1;
             int ey2 = dyt*(bx2-xs+0.5)/dx+t1;
-            poly::draw_poly( bx1,  sy2,  bx2,  ey2,  bx2,  ey1,  bx1,  sy1, wall_color, window);
+            poly::draw_poly( bx1,  sy2,  bx2,  ey2,  bx2,  ey1,  bx1,  sy1, shade, window);
         }
         }
-    }}}
+    }}//}
 }
 
 void draw_wall(int x1, int x2, int b1, int b2, int t1, int t2, int c, int s, int t, int txt, int w, sf::RenderWindow* window, int l, int loop){
@@ -245,7 +246,7 @@ void draw_3d(sf::RenderWindow* window){
 
         if(S[s].flip == 0){
         if(Cam.z<S[s].z1){S[s].surface=1;}
-        else if (Cam.z>S[s].z2){S[s].surface=2;}  //Why this isnt fucking working !!!!!!!!!
+        else if (Cam.z>(S[s].z2+S[s].z1)){S[s].surface=2;}  //Why this isnt fucking working !!!!!!!!!
         else {S[s].surface=0;}
         }else{
         if(Cam.z<S[s].z1){S[s].surface=2;}
@@ -271,10 +272,16 @@ void draw_3d(sf::RenderWindow* window){
                 wx[2]=wx[0];
                 wx[3]=wx[1];
 
+                double shx1 = W[w].x1;
+                double shx2 = W[w].x2;
+
                 wy[0]=y1*CS+x1*SN;
                 wy[1]=y2*CS+x2*SN;
                 wy[2]=wy[0];
                 wy[3]=wy[1];
+
+                double shy1 = W[w].y1;
+                double shy2 = W[w].y2;
 
                 wz[0]=S[s].z1-Cam.z+((Cam.l*wy[0])/32.0);
                 wz[1]=S[s].z1-Cam.z+((Cam.l*wy[1])/32.0);
@@ -334,7 +341,23 @@ void draw_3d(sf::RenderWindow* window){
     //}
 
                 draw_wall(wx[0],wx[1],wy[0],wy[1],wy[2],wy[3],W[w].c, s , W[w].t, W[w].txt, w, window, S[s].flip,loop);
-                shade_wall(wx[0],wx[1],wy[0],wy[1],wy[2],wy[3],W[w].c, s , W[w].t, W[w].txt, w, window, S[s].flip,loop);
+
+                float angle = ((atan2(shy1 - shy2, shx1 - shx2))*180/M_PI)+180;
+                //std::cout<<angle<<std::endl;
+
+                angle /= 360;
+                angle = pow((18*angle-9),2);//+160;
+                angle *= -1;
+                angle += 80;
+                if(angle > 80 || angle < 0){
+                    angle = 0;
+                }
+
+                sf::Color shadow = sf::Color(0,0,0,angle);
+
+
+
+                shade_wall(wx[0],wx[1],wy[0],wy[1],wy[2],wy[3],shadow, s , W[w].t, W[w].txt, w, window, S[s].flip,loop);
                 
             
             }
