@@ -1,4 +1,3 @@
-//hi and hello C:
 #include "player.hpp"
 
 #define render_debug 1    // replace 1 with 0 to completly hide any debug info (engine name.fps,errors,etc) 

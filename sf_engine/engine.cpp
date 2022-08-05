@@ -1,5 +1,5 @@
 
-// compile with: g++ -o ../packaged/app engine.cpp SelbaWard/ElasticSprite.cpp -std=c++20 -lsfml-graphics -lsfml-window -lsfml-system
+// compile with: g++ -o ../packaged/app engine.cpp SelbaWard/ElasticSprite.cpp -std=c++20 -O3 -lsfml-graphics -lsfml-window -lsfml-system
 // IF YOU COMPILE FROM TERMIANAL YOU NEED TO COPY ASSTETS YOURSELF.
 
 #include <SFML/Graphics.hpp>
@@ -44,6 +44,10 @@ int main() {
 
     bool vsync = 0;
     bool debug = 0;
+    bool normal = 0;
+    bool lit = 1;
+    bool light_only = 0;
+    std::string shade = "lit";
 
     std::fstream file;
 
@@ -54,6 +58,9 @@ int main() {
     }
     file>>vsync;
     file>>debug;
+    file>>normal;
+    file>>lit;
+    file>>light_only;
     file>>w_x;
     file>>w_y;
     file.close();
@@ -133,7 +140,7 @@ int main() {
             std::cout<<"Error in creating file..\n"<<std::endl;
             //return 0;
         }else{
-            file<<vsync<<" "<<debug<<" "<<w_x<<" "<<w_y<<std::endl;
+            file<<vsync<<" "<<debug<<" "<<normal<<" "<<light_only<<" "<<lit<<" "<<w_x<<" "<<w_y<<std::endl;
             file.close();
         }
 
@@ -164,11 +171,26 @@ int main() {
                 debug = !debug;
             }
 
+            if ((e.type == sf::Event::KeyPressed) && (e.key.code == sf::Keyboard::F3)){
+                //window.setVerticalSyncEnabled(vsync);
+                normal = !normal;
+            }
+
+            if ((e.type == sf::Event::KeyPressed) && (e.key.code == sf::Keyboard::F4)){
+                //window.setVerticalSyncEnabled(vsync);
+                lit = !lit;
+            }
+
+            if ((e.type == sf::Event::KeyPressed) && (e.key.code == sf::Keyboard::F5)){
+                //window.setVerticalSyncEnabled(vsync);
+                light_only = !light_only;
+            }
+
             event(&e,&window,currentTime,fps);
         }
         //window.create(sf::VideoMode(e.size.width, e.size.height), "O.R.G.Y - SFML_REWRITE");
 
-        window.clear(sf::Color(22,22,22));
+        window.clear(sf::Color(22,28,32));
         //draw call
 
         /*rectangle
@@ -212,8 +234,8 @@ int main() {
         sf::Text message3("-Textured Poly [correct]", font);
         message3.setPosition(300,350);
         window.draw(message3);*/
-
-        render_class::draw_3d(&window);
+        bool rd = render_debug;
+        render_class::draw_3d(&window,normal,lit,light_only,rd);
 
         draw_game(&window);
 
@@ -232,6 +254,24 @@ int main() {
             }else if(fps>=0){
                 fps_col = sf::Color(255,0,0);
             }
+
+                if(normal == 1){
+                    shade = "Normal buffer";
+                }else{
+                if(light_only==1){
+                        if(lit == 1){
+                            shade = "Light only [lit]";
+                        }else{
+                            shade = "Light only [unlit]";
+                        }
+                    }else{
+                        if(lit == 1){
+                            shade = "Lit";
+                        }else{
+                            shade = "Unlit";
+                        }
+                    }
+                }
 
             message.setString("OpenRetroGameYngine - SFML "+std::to_string(SFML_VERSION_MAJOR)+"."+std::to_string(SFML_VERSION_MINOR)+"."+std::to_string(SFML_VERSION_PATCH)+" [0.0.4]");
             //message.setColor(sf::Color(255,0,0));
@@ -271,6 +311,17 @@ int main() {
             messageabc.setOutlineThickness(w_y/(70*2.5));
             messageabc.setCharacterSize(w_y/70);
             window.draw(messageabc);
+
+            sf::Text messageabcd("", font);
+            messageabcd.setString("Shading type: "+shade);
+            //message.setColor(sf::Color(255,0,0));
+            messageabcd.setPosition(8,8+((w_y/70)+8)*4);
+            messageabcd.setFillColor(sf::Color(255,255,255));
+            messageabcd.setOutlineColor(sf::Color(0,0,0));
+            messageabcd.setOutlineThickness(w_y/(70*2.5));
+            messageabcd.setCharacterSize(w_y/70);
+            window.draw(messageabcd);
+
         }
         window.display();
     }

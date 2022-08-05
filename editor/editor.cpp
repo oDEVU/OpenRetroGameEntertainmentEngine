@@ -450,7 +450,7 @@ int main(int argc,char** argv){
                         system("cp -R ../game ../packaged");
                         system("cp -R ../sf_engine ../packaged");
                         //system("cp -R ../engine/run.sh ../packaged");
-                        system("g++ -o ../packaged/app ../sf_engine/engine.cpp ../sf_engine/SelbaWard/ElasticSprite.cpp -std=c++20 -lsfml-graphics -lsfml-window -lsfml-system");
+                        system("g++ -o ../packaged/app ../sf_engine/engine.cpp ../sf_engine/SelbaWard/ElasticSprite.cpp -std=c++20 -O3 -lsfml-graphics -lsfml-window -lsfml-system");
                         source::clear_source_code();
                     }else{
                         //std::cout << "Unsuported OS" << std::endl;
@@ -479,7 +479,7 @@ int main(int argc,char** argv){
                         system("cp -R ../sf_engine ../packaged");
                         source::clear_source_code();
                         system("cp -R ../sf_engine/run.sh ../packaged");
-                        system("g++ -o ../packaged/app ../sf_engine/engine.cpp ../sf_engine/SelbaWard/ElasticSprite.cpp -std=c++20 -lsfml-graphics -lsfml-window -lsfml-system");
+                        system("g++ -o ../packaged/app ../sf_engine/engine.cpp ../sf_engine/SelbaWard/ElasticSprite.cpp -std=c++20 -O3 -lsfml-graphics -lsfml-window -lsfml-system");
                         system("./../packaged/run.sh");
                         system("rm -f ../packaged/*.sh");
                     }else{

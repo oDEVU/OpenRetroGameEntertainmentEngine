@@ -77,7 +77,127 @@ void shade_wall(int x1, int x2, int b1, int b2, int t1, int t2, sf::Color shade,
     }}//}
 }
 
-void draw_wall(int x1, int x2, int b1, int b2, int t1, int t2, int c, int s, int t, int txt, int w, sf::RenderWindow* window, int l, int loop){
+void draw_normal(int x1, int x2, int b1, int b2, int t1, int t2, int c, int s, int t, int txt, int w, sf::RenderWindow* window, int l, int loop, double angle){
+    //window.clear(sf::Color(22,32,26));
+    int x,y;
+
+    if(x2 > 0 || x1 < window->getSize().x){
+
+    //DrawTriangle(Vector2 v1, Vector2 v2, Vector2 v3, Color color); 
+
+    int dyb = b2-b1;
+    int dyt = t2-t1;
+    int dx = x2-x1;
+    if(dx==0){
+        dx=1;
+    }
+    int xs=x1;
+
+    int bx1 = x1;
+    int bx2 = x2;
+
+    if(x1<1){x1=1;}
+    if(x2<1){x2=1;}
+    if(x1>(window->getSize().x-1)){x1=(window->getSize().x-1);}
+    if(x2>(window->getSize().x-1)){x2=(window->getSize().x-1);}
+
+
+    //if(loop==0){
+    if(loop==1){
+        if(l==0){
+        if(x2>x1){
+                float r = ((pow((31.96*angle-(31.96/2)),2)*-1)+255);
+                if(r>255){r=255;}
+                if(r<0){r=0;}
+                float b = pow((31.96*angle-(31.96/2)),2);
+                if(b>255){b=255;}
+                if(b<0){b=0;}
+
+                std::cout << "RGB:("<<r<<",0,"<<b<<");\n";
+
+            sf::Color wall_color{ r, 0, b };
+        
+            //wall_color = get_color_from_colormap(c);
+
+            int sy1 = dyb*(bx1-xs+0.5)/dx+b1;
+            int sy2 = dyt*(bx1-xs+0.5)/dx+t1;
+            int ey1 = dyb*(bx2-xs+0.5)/dx+b1;
+            int ey2 = dyt*(bx2-xs+0.5)/dx+t1;
+            poly::draw_poly( bx1,  sy2,  bx2,  ey2,  bx2,  ey1,  bx1,  sy1, wall_color, window);
+            if(render_polys_lines == 1){
+                poly::draw_poly_lines( bx1,  sy2,  bx2,  ey2,  bx2,  ey1,  bx1,  sy1, window);
+            }
+        }
+        }else{
+        if(x2<x1){
+                float r = ((pow((31.96*angle-(31.96/2)),2)*-1)+255);
+                if(r>255){r=255;}
+                if(r<0){r=0;}
+                float b = pow((31.96*angle-(31.96/2)),2);
+                if(b>255){b=255;}
+                if(b<0){b=0;}
+
+            sf::Color wall_color{ r, 0, b };
+
+            //wall_color = get_color_from_colormap(c);
+
+            int sy1 = dyb*(bx1-xs+0.5)/dx+b1;
+            int sy2 = dyt*(bx1-xs+0.5)/dx+t1;
+            int ey1 = dyb*(bx2-xs+0.5)/dx+b1;
+            int ey2 = dyt*(bx2-xs+0.5)/dx+t1;
+            poly::draw_poly( bx1,  sy2,  bx2,  ey2,  bx2,  ey1,  bx1,  sy1, wall_color, window);
+            if(render_polys_lines == 1){
+                poly::draw_poly_lines( bx1,  sy2,  bx2,  ey2,  bx2,  ey1,  bx1,  sy1, window);
+            }
+        }
+        }
+    }
+        for(int i = x1; i<x2; i++){
+        int y1 = dyb*(i-xs+0.5)/dx+b1;
+        int y2 = dyt*(i-xs+0.5)/dx+t1;
+
+        int by1 = y1;
+        int by2 = y2;
+
+        if(y1<0){y1=0;}
+        if(y2<0){y2=0;}
+        if(y1>(window->getSize().y)){y1=(window->getSize().y);}
+        if(y2>(window->getSize().y)){y2=(window->getSize().y);}
+
+        if(S[s].surface == 1){S[s].surf[i]=y1; continue;}
+        if(S[s].surface == 2){S[s].surf[i]=y2; continue;}
+
+        if(S[s].surface == -1){
+                //DrawLine(i, S[s].surf[i], i, y1, bottom);
+       sf::Vertex line[] =
+        {
+            sf::Vertex(sf::Vector2f(i, S[s].surf[i])),
+            sf::Vertex(sf::Vector2f(i, y1))
+        };
+
+        line[0].color = sf::Color(0,255,0,255);
+        line[1].color = sf::Color(0,255,0,255);
+        window->draw(line, 2, sf::Lines);
+        };
+
+        if(S[s].surface == -2){
+                //DrawLine(i, y2, i, S[s].surf[i], top); 
+       sf::Vertex line[] =
+        {
+            sf::Vertex(sf::Vector2f(i, y2)),
+            sf::Vertex(sf::Vector2f(i, S[s].surf[i]))
+        };
+
+        line[0].color = sf::Color(0,255,0,255);
+        line[1].color = sf::Color(0,255,0,255);
+        window->draw(line, 2, sf::Lines);
+        };
+        }
+   //}
+    }
+}
+
+void draw_wall(int x1, int x2, int b1, int b2, int t1, int t2, int c, int s, int t, int txt, int w, sf::RenderWindow* window, int l, int loop, bool lit, bool light){
     int x,y;
 
     if(x2 > 0 || x1 < window->getSize().x){
@@ -175,16 +295,17 @@ void draw_wall(int x1, int x2, int b1, int b2, int t1, int t2, int c, int s, int
     }
     }
         for(int i = x1; i<x2; i++){
+        if(light ==0){
         int y1 = dyb*(i-xs+0.5)/dx+b1;
         int y2 = dyt*(i-xs+0.5)/dx+t1;
 
         int by1 = y1;
         int by2 = y2;
 
-        if(y1<1){y1=1;}
-        if(y2<1){y2=1;}
-        if(y1>(window->getSize().y-1)){y1=(window->getSize().y-1);}
-        if(y2>(window->getSize().y-1)){y2=(window->getSize().y-1);}
+        if(y1<0){y1=0;}
+        if(y2<0){y2=0;}
+        if(y1>(window->getSize().y)){y1=(window->getSize().y);}
+        if(y2>(window->getSize().y)){y2=(window->getSize().y);}
 
         if(S[s].surface == 1){S[s].surf[i]=y1; continue;}
         if(S[s].surface == 2){S[s].surf[i]=y2; continue;}
@@ -197,8 +318,13 @@ void draw_wall(int x1, int x2, int b1, int b2, int t1, int t2, int c, int s, int
             sf::Vertex(sf::Vector2f(i, y1))
         };
 
-        line[0].color = get_color_from_colormap(S[s].c2)+sf::Color(55,55,55,5);
-        line[1].color = get_color_from_colormap(S[s].c2)+sf::Color(55,55,55,5);
+        if(lit ==1){
+            line[0].color = get_color_from_colormap(S[s].c2)+sf::Color(55,55,55,5);
+            line[1].color = get_color_from_colormap(S[s].c2)+sf::Color(55,55,55,5);
+        }else{
+            line[0].color = get_color_from_colormap(S[s].c2);
+            line[1].color = get_color_from_colormap(S[s].c2);
+        }
         window->draw(line, 2, sf::Lines);
         };
 
@@ -210,10 +336,66 @@ void draw_wall(int x1, int x2, int b1, int b2, int t1, int t2, int c, int s, int
             sf::Vertex(sf::Vector2f(i, S[s].surf[i]))
         };
 
-        line[0].color = get_color_from_colormap(S[s].c1)-sf::Color(33,33,33,0);
-        line[1].color = get_color_from_colormap(S[s].c1)-sf::Color(33,33,33,0);
+        if(lit ==1){
+            line[0].color = get_color_from_colormap(S[s].c2)+sf::Color(33,33,33,0);
+            line[1].color = get_color_from_colormap(S[s].c2)+sf::Color(33,33,33,0);
+        }else{
+            line[0].color = get_color_from_colormap(S[s].c2);
+            line[1].color = get_color_from_colormap(S[s].c2);
+        }
         window->draw(line, 2, sf::Lines);
         };
+        }else{
+        int y1 = dyb*(i-xs+0.5)/dx+b1;
+        int y2 = dyt*(i-xs+0.5)/dx+t1;
+
+        int by1 = y1;
+        int by2 = y2;
+
+        if(y1<0){y1=0;}
+        if(y2<0){y2=0;}
+        if(y1>(window->getSize().y)){y1=(window->getSize().y);}
+        if(y2>(window->getSize().y)){y2=(window->getSize().y);}
+
+        if(S[s].surface == 1){S[s].surf[i]=y1; continue;}
+        if(S[s].surface == 2){S[s].surf[i]=y2; continue;}
+
+        if(S[s].surface == -1){
+                //DrawLine(i, S[s].surf[i], i, y1, bottom);
+       sf::Vertex line[] =
+        {
+            sf::Vertex(sf::Vector2f(i, S[s].surf[i])),
+            sf::Vertex(sf::Vector2f(i, y1))
+        };
+
+        if(lit ==1){
+            line[0].color = get_color_from_colormap(1)+sf::Color(55,55,55,5);
+            line[1].color = get_color_from_colormap(1)+sf::Color(55,55,55,5);
+        }else{
+            line[0].color = get_color_from_colormap(1);
+            line[1].color = get_color_from_colormap(1);
+        }
+        window->draw(line, 2, sf::Lines);
+        };
+
+        if(S[s].surface == -2){
+                //DrawLine(i, y2, i, S[s].surf[i], top); 
+       sf::Vertex line[] =
+        {
+            sf::Vertex(sf::Vector2f(i, y2)),
+            sf::Vertex(sf::Vector2f(i, S[s].surf[i]))
+        };
+
+        if(lit ==1){
+            line[0].color = get_color_from_colormap(1)+sf::Color(33,33,33,0);
+            line[1].color = get_color_from_colormap(1)+sf::Color(33,33,33,0);
+        }else{
+            line[0].color = get_color_from_colormap(1);
+            line[1].color = get_color_from_colormap(1);
+        }
+        window->draw(line, 2, sf::Lines);
+        };
+        }
         }
    //}
     }
@@ -225,10 +407,14 @@ double dist(double x1,double y1, double x2, double y2){
     return distance;
 }
 
-void draw_3d(sf::RenderWindow* window){
-     double wx[4],wy[4],wz[4];
-     int s,w;
-     double CS=cos(glogal_functions::torad(Cam.a)), SN=sin(glogal_functions::torad(Cam.a));
+void draw_3d(sf::RenderWindow* window,bool normal,bool lit,bool light,bool rd){
+    if(normal == 1 && rd == 1){
+        window->clear(sf::Color(0,0,0));
+    }
+
+    double wx[4],wy[4],wz[4];
+    int s,w;
+    double CS=cos(glogal_functions::torad(Cam.a)), SN=sin(glogal_functions::torad(Cam.a));
 
     for(s=0;s<num_sec-1;s++){
         for(w=0;w<num_sec-s-1;w++){
@@ -340,12 +526,13 @@ void draw_3d(sf::RenderWindow* window){
     //DrawPixel(wx[1],wy[1],WHITE);
     //}
 
-                draw_wall(wx[0],wx[1],wy[0],wy[1],wy[2],wy[3],W[w].c, s , W[w].t, W[w].txt, w, window, S[s].flip,loop);
+                //draw_wall(wx[0],wx[1],wy[0],wy[1],wy[2],wy[3],W[w].c, s , W[w].t, W[w].txt, w, window, S[s].flip,loop);
 
                 float angle = ((atan2(shy1 - shy2, shx1 - shx2))*180/M_PI)+180;
                 //std::cout<<angle<<std::endl;
 
                 angle /= 360;
+                double anglen = angle;
                 angle = pow((18*angle-9),2);//+160;
                 angle *= -1;
                 angle += 80;
@@ -355,9 +542,31 @@ void draw_3d(sf::RenderWindow* window){
 
                 sf::Color shadow = sf::Color(0,0,0,angle);
 
-
-
-                shade_wall(wx[0],wx[1],wy[0],wy[1],wy[2],wy[3],shadow, s , W[w].t, W[w].txt, w, window, S[s].flip,loop);
+                if(rd == 1){
+                if(normal == 1){
+                    //shade_wall(wx[0],wx[1],wy[0],wy[1],wy[2],wy[3],shadow, s , W[w].t, W[w].txt, w, window, S[s].flip,loop);
+                    draw_normal(wx[0],wx[1],wy[0],wy[1],wy[2],wy[3],W[w].c, s , W[w].t, W[w].txt, w, window, S[s].flip,loop,anglen);
+                }else{
+                if(light==1){
+                        draw_wall(wx[0],wx[1],wy[0],wy[1],wy[2],wy[3],1, s , 0 , W[w].txt, w, window, S[s].flip,loop,lit,light);
+                        if(lit == 1){
+                            shade_wall(wx[0],wx[1],wy[0],wy[1],wy[2],wy[3],shadow, s , W[w].t, W[w].txt, w, window, S[s].flip,loop);
+                        }else{
+                        }
+                    }else{
+                        draw_wall(wx[0],wx[1],wy[0],wy[1],wy[2],wy[3],W[w].c, s , W[w].t, W[w].txt, w, window, S[s].flip,loop,lit,light);
+                        if(lit == 1){
+                            shade_wall(wx[0],wx[1],wy[0],wy[1],wy[2],wy[3],shadow, s , W[w].t, W[w].txt, w, window, S[s].flip,loop);
+                        }else{
+                        }
+                    }
+                }
+                    //std::cout << rd << std::endl;
+                }else if(rd == 0){
+                    draw_wall(wx[0],wx[1],wy[0],wy[1],wy[2],wy[3],W[w].c, s , W[w].t, W[w].txt, w, window, S[s].flip,loop,1,0);
+                    shade_wall(wx[0],wx[1],wy[0],wy[1],wy[2],wy[3],shadow, s , W[w].t, W[w].txt, w, window, S[s].flip,loop);
+                    //std::cout << rd << std::endl;
+                }
                 
             
             }

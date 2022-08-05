@@ -1,5 +1,4 @@
-  // Structures must be in another file because there are used in engine but must be user editable.    
-  // This  is  writed  from  in  editor  code  editor  [im  mess  even  when  speling  C:] 
+  // Structures must be in another file because there are used in engine but must be user editable.  
  
  //player
 

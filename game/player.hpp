@@ -1,6 +1,3 @@
-//thanks for watching C:
-
-
 #pragma once
 
 //#include "structures.hpp"
