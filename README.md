@@ -75,7 +75,12 @@ g++ -lstdc++fs -std=c++20 -o editor editor.cpp -lstdc++fs -lraylib -lGL -lm -lpt
 * Arrows = Camera
 * F1 - Toggle debug info
 * F2 - Toggle VSYNC
-* TAB - Take screenshots
+* F3 - Show normal buffer
+* F4 - Change lighting mode
+* F5 - Show light only scene
+
+(screenshot function temporarily removed)
+
 
 
 
