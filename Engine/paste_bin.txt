@@ -1,0 +1,65 @@
+Creating map: 
+
+    orgy::static_object object1;
+
+    object1.celing = 128;
+    object1.floor = 0;
+
+    orgy::wall wall1;
+
+    wall1.sx = 0;
+    wall1.sy = 0;
+    wall1.ex = 16;
+    wall1.ey = 0;
+
+    object1.walls.push_back(wall1);
+
+    orgy::wall wall2;
+
+    wall2.sx = 16;
+    wall2.sy = 0;
+    wall2.ex = 16;
+    wall2.ey = 16;
+
+    object1.walls.push_back(wall2);
+
+    orgy::wall wall3;
+
+    wall3.sx = 16;
+    wall3.sy = 16;
+    wall3.ex = 0;
+    wall3.ey = 16;
+
+    object1.walls.push_back(wall3);
+
+    orgy::wall wall4;
+
+    wall4.sx = 0;
+    wall4.sy = 16;
+    wall4.ex = 0;
+    wall4.ey = 0;
+
+    object1.walls.push_back(wall4);
+
+    orgy::Map level;
+
+    level.addObj(object1);
+
+    orgy::SaveMapToFile(level, "level.map");
+
+Map loading and saving
+
+
+        Map loading should look like this:
+
+        orgy::Map map = LoadMapFromFile("/data/maps/level.map");
+
+        render.LoadMap(map);        // map should be loaded to memory (for now map object only holds static objects)
+
+
+        After game sesion you will be able save map file like this:
+
+        if(!SaveMapToFile(render.GetMap(), "/data/maps/level.map")){
+            std::cout << "Save failed!\n";
+        }else{
+           
