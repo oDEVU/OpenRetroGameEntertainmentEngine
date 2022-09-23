@@ -33,11 +33,11 @@ For example:
 ```sh
 sudo pacman -Sy sfml
 ```
-3. Go to editor folder
+3. Go to Project folder
 
 4. Compile game:
 ```sh
-go to example project dir and run main (editor will copy example project for now do it your self)
+run main (editor will make it much eaiser)
 
 ```
 
