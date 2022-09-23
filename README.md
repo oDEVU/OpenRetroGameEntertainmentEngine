@@ -1,10 +1,8 @@
-# OpenRetroGameYngine
-
-[I AM CURENTLY REWRITING IT BECAUSE THIS CODE IS A JOKE]
-
-current builds are in branch 'rewrite' later it would be in brach 'engine MAJOR_VERSION' and 'editor MAJOR_VERSION'
+# OpenRetroGameYngine - Rewrite
 
 Retro doom like engine with modern liblares. O.R.G.Y uses sfml and c++.
+
+This is attemt to rewrite my shitty ass code.
 
 **Thanks to 3DSage for great tutorial.**
 
@@ -15,9 +13,9 @@ Presentation : https://youtu.be/xFryM8no5UA
 Documentation will be created when any usable version will be released.
 
 # Dependencies
-* [raylib](https://www.raylib.com/)+[raygui](https://github.com/raysan5/raygui)  -for editor
-* [SFML](https://www.sfml-dev.org/)
-* [Selba Ward](https://github.com/Hapaxia/SelbaWard)
+* [Qt](https://www.qt.io/download-open-source)  -for editor (not yet)
+* [SFML](https://www.sfml-dev.org/) -for main engine
+* [Selba Ward](https://github.com/Hapaxia/SelbaWard) -for textured walls rendering
 * boost
 * g++
 
@@ -33,34 +31,15 @@ Documentation will be created when any usable version will be released.
 
 For example:
 ```sh
-sudo pacman -Sy raylib
+sudo pacman -Sy sfml
 ```
 3. Go to editor folder
 
-4. Compile editor:
+4. Compile game:
 ```sh
-g++ -lstdc++fs -std=c++20 -o editor editor.cpp -lstdc++fs -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
+go to example project dir and run main (editor will copy example project for now do it your self)
+
 ```
-(From here you will be able to compile game with 1 button)
-
-### **OpenSUSE:**
-
-1. Download zip or use git clone command.
-
-2. Download dependences.
-
-For example:
-```sh
-zypper in raylib-devel
-```
-
-3. Go to editor folder
-
-4. Compile editor:
-```sh
-g++ -lstdc++fs -std=c++20 -o editor editor.cpp -lstdc++fs -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
-```
-(From here you will be able to compile game with 1 button)
 
 ### **Other OS:**
 
@@ -71,19 +50,6 @@ g++ -lstdc++fs -std=c++20 -o editor editor.cpp -lstdc++fs -lraylib -lGL -lm -lpt
 3. Compile it with your c++ compiler.
 
 (i will add other OS later)
-
-# Controlls
-
-* WASD - moving (xy)
-* left shift/left control - up/down (z)
-* Arrows = Camera
-* F1 - Toggle debug info
-* F2 - Toggle VSYNC
-* F3 - Show normal buffer
-* F4 - Change lighting mode
-* F5 - Show light only scene
-
-(screenshot function temporarily removed)
 
 
 
