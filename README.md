@@ -37,7 +37,7 @@ sudo pacman -Sy sfml
 
 4. Compile game:
 ```sh
-run main (editor will make it much eaiser)
+run make (editor will make it much eaiser)
 
 ```
 
