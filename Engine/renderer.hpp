@@ -31,6 +31,7 @@
 
                     double currentTime = clock.restart().asSeconds();
                     fps = 1.f / currentTime;
+                    delta = currentTime;
                     lastTime = currentTime;
 
                     // Event processing
@@ -88,6 +89,10 @@
                 return fps;
             }
 
+            double getDelta() {
+                return delta;
+            }
+
             void printToScreen(std::string text) {
                 sf::Text txt("Hello, World !", font);
                 txt.setString(text);
@@ -120,6 +125,7 @@
         private:
             sf::Font font;
             double fps = 0; 
+            double delta = 0;
             bool show_fps = 0;
 
             bool loaded_map = 0;

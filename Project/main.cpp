@@ -27,8 +27,8 @@ int main() {
 
     window.setResolution(1280, 720);
 
-    render.printToScreen("Writed first");
-    render.printToScreen("Writed second");
+    //render.printToScreen("Writed first");         //Un comment to see how printtoscreen function works
+    //render.printToScreen("Writed second");
 
     render.showFps(true);
 

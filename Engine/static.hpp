@@ -14,6 +14,11 @@ namespace orgy
         double ex = 0;
         double ey = 0;
 
+        double mx = 0;
+        double my = 0;
+
+        double dist = 0;
+
         bool mat = true;
 
         int r = 255;

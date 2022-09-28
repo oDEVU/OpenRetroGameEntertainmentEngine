@@ -57,8 +57,8 @@ namespace orgy
     if(x2>(window->getSize().x-1)){x2=(window->getSize().x-1);}
 
 
-    if(true){
-    if(t==0){
+    if(loop = 1){
+    if(wll.mat == 0){
         //if(l==0){
         if(x2>x1){
             sf::Color wall_color{ wll.r, wll.g, wll.b };
@@ -92,7 +92,43 @@ namespace orgy
             //}
         }
         //}
+    }else{
+        //std::cout << "texture rendering is wip\n";
+        //if(l==0){
+        if(x2>x1){
+            //sf::Color wall_color{ wll.r, wll.g, wll.b };
+        
+            //wall_color = get_color_from_colormap(c);
+
+            int sy1 = dyb*(bx1-xs+0.5)/dx+b1;
+            int sy2 = dyt*(bx1-xs+0.5)/dx+t1;
+            int ey1 = dyb*(bx2-xs+0.5)/dx+b1;
+            int ey2 = dyt*(bx2-xs+0.5)/dx+t1;
+            poly::draw_poly_txt_correct( bx1,  sy2,  bx2,  ey2,  bx2,  ey1,  bx1,  sy1, wll.texture_path, window);
+
+            //if(render_polys_lines == 1){
+            //    poly::draw_poly_lines( bx1,  sy2,  bx2,  ey2,  bx2,  ey1,  bx1,  sy1, window);
+            //}
+        }
+        //}else{
+        if(x2<x1){
+            //sf::Color wall_color{ wll.r, wll.g, wll.b };
+
+            //wall_color = get_color_from_colormap(c);
+
+            int sy1 = dyb*(bx1-xs+0.5)/dx+b1;
+            int sy2 = dyt*(bx1-xs+0.5)/dx+t1;
+            int ey1 = dyb*(bx2-xs+0.5)/dx+b1;
+            int ey2 = dyt*(bx2-xs+0.5)/dx+t1;
+            poly::draw_poly_txt_correct( bx1,  sy2,  bx2,  ey2,  bx2,  ey1,  bx1,  sy1, wll.texture_path, window);
+            
+            //if(render_polys_lines == 1){
+            //    poly::draw_poly_lines( bx1,  sy2,  bx2,  ey2,  bx2,  ey1,  bx1,  sy1, window);
+            //}
+        }
+        //}
     }
+
     }
         for(int i = x1; i<x2; i++){
         int y1 = dyb*(i-xs+0.5)/dx+b1;
@@ -120,16 +156,30 @@ namespace orgy
     int s,w;
     double CS=cos(d_to_rad(cam.a)), SN=sin(d_to_rad(cam.a));
 
+    for(s=0;s<map->getObjCount();s++){
+        double temp_x = 0, temp_y = 0;
+
+        for(w=0;w<map->objs.at(s).walls.size();w++){
+            map->objs.at(s).distance += dist(cam.x, cam.y, map->objs.at(s).walls.at(w).mx, map->objs.at(s).walls.at(w).my);
+        }
+
+        map->objs.at(s).distance /= map->objs.at(s).walls.size();
+    }
+
     for(s=0;s<map->getObjCount()-1;s++){
         for(w=0;w<map->getObjCount()-s-1;w++){
-            if(map->getObjAt(w).distance<map->getObjAt(w+1).distance){
-                static_object st=map->getObjAt(w);
-                map->getObjAt(w)=map->getObjAt(w+1);
-                map->getObjAt(w+1)=st;
+            if(map->getObjAt(w).distance < map->getObjAt(w+1).distance){
+                static_object tmp_obj=map->objs.at(w);
+                map->objs.at(w)=map->objs.at(w+1);
+                map->objs.at(w+1)=tmp_obj;
+
+                //std::cout << "sort\n" <<  "\n";
+                //render.printToScreen("Object sorted");
             }
         }
     }
-     //sectors
+    
+    //sectors
      
      for(s=0;s<map->getObjCount();s++){
         map->objs.at(s).distance=0;
@@ -144,13 +194,37 @@ namespace orgy
         else {map->objs.at(s).surface=0;}
         }
 
-        for(int loop=0; loop < 2; loop++){
+        for(int loop=0; loop < 1; loop++){
+
+
+            for(w=0;w<map->objs.at(s).walls.size();w++){
+                map->objs.at(s).walls.at(w).mx = (map->objs.at(s).walls.at(w).sx + map->objs.at(s).walls.at(w).ex)/2;
+                map->objs.at(s).walls.at(w).my = (map->objs.at(s).walls.at(w).sy + map->objs.at(s).walls.at(w).ey)/2;
+                map->objs.at(s).walls.at(w).dist = dist(cam.x, cam.y, map->objs.at(s).walls.at(w).mx, map->objs.at(s).walls.at(w).my);
+            }
+
+            //sort walls here
+            for(w=0;w<map->objs.at(s).walls.size()-1;w++){
+                for(int v=0;v<map->objs.at(s).walls.size()-w-1;v++){
+                    //double midle_x = 0, midle_y = 0;
+                    //map->objs.at(s).walls.at(v);
+                    if(map->objs.at(s).walls.at(v).dist < map->objs.at(s).walls.at(v+1).dist){
+                        wall temp;
+                        temp = map->objs.at(s).walls.at(v);
+                        map->objs.at(s).walls.at(v) = map->objs.at(s).walls.at(v+1);
+                        map->objs.at(s).walls.at(v+1) = temp;
+                    }
+                }
+            }
+            
+
+
             for(w=0;w<map->objs.at(s).walls.size();w++){
 
-                 double x1=map->objs.at(s).walls.at(w).sx-cam.x, y1=map->objs.at(s).walls.at(w).sy-cam.y;
-                 double x2=map->objs.at(s).walls.at(w).ex-cam.x, y2=map->objs.at(s).walls.at(w).ey-cam.y;
+                double x1=map->objs.at(s).walls.at(w).sx-cam.x, y1=map->objs.at(s).walls.at(w).sy-cam.y;
+                double x2=map->objs.at(s).walls.at(w).ex-cam.x, y2=map->objs.at(s).walls.at(w).ey-cam.y;
 
-                 if(loop==0){double swp=x1; x1=x2;x2=swp;swp=y1;y1=y2;y2=swp;}
+                if(loop==0){double swp=x1; x1=x2;x2=swp;swp=y1;y1=y2;y2=swp;}
 
                 wx[0]=x1*CS-y1*SN;
                 wx[1]=x2*CS-y2*SN;
@@ -172,7 +246,7 @@ namespace orgy
                 wz[1]=map->objs.at(s).floor-cam.z+((cam.l*wy[1])/32.0);
                 wz[2]=wz[0]+map->objs.at(s).celing;
                 wz[3]=wz[1]+map->objs.at(s).celing;
-                map->objs.at(s).distance+=dist(0,0,(wx[0]+wx[1])/2,(wy[0]+wy[1])/2);
+                //map->objs.at(s).distance+=dist(0,0,(wx[0]+wx[1])/2,(wy[0]+wy[1])/2);
 
                 if(wy[0]<=0 && wy[1]<=0){continue;};
 
@@ -207,7 +281,7 @@ namespace orgy
                 draw_wall(wx[0],wx[1],wy[0],wy[1],wy[2],wy[3],1, s , 0, map->objs.at(s).walls.at(w), w, window, map->objs.at(s).flip,loop, map->objs.at(s));
                 //shade_wall(wx[0],wx[1],wy[0],wy[1],wy[2],wy[3],shadow, s , W[w].t, W[w].txt, w, window, map->objs.at(s).flip,loop,W[w].c);
             }
-            map->objs.at(s).distance/=(map->objs.at(s).walls.size());
+            //map->objs.at(s).distance/=(map->objs.at(s).walls.size());
             map->objs.at(s).surface*=-1;
         }
     }
