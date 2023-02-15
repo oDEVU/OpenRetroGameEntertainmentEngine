@@ -3,9 +3,13 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Config.hpp>
 #include <iostream>
-#include <SelbaWard/ElasticSprite.hpp>
+#include <map>
+
+#include "ThirdParty/SelbaWard/SelbaWard.hpp"
 
 namespace poly {
+
+std::map<std::string, sf::Texture> textures_map;
 
 void draw_poly_lines(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4, sf::RenderWindow* window){
 sf::ConvexShape convex;
@@ -52,15 +56,22 @@ void draw_poly(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4, s
 }
 
 void draw_poly_txt_affine(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4, std::string path, sf::RenderWindow* window){
-    sf::Texture texture;
-    if (!texture.loadFromFile(path))
-    {
-        if (!texture.loadFromFile("sf_engine/sf_engine_src/textures/temp.png"))
+
+    if(!textures_map.contains(path)){
+
+        sf::Texture texture;
+        if (!texture.loadFromFile(path))
         {
-            std::cout << "Fatal error!!! could not find sf_engine path\n";
+            if (!texture.loadFromFile("empty.png"))
+            {
+                std::cout << "Fatal error!!! could not find EngineAssets folder\n";
+            }
+            std::cout << "Failed to load texture from path!\n";
         }
-        std::cout << "Failed to load texture from path!\n";
+
+        textures_map.insert({path, texture});
     }
+
         sf::VertexArray tris{sf::PrimitiveType::Triangles, 6};
         tris[0].position = {x4, y4};
         tris[1].position = {x1, y1};
@@ -69,33 +80,44 @@ void draw_poly_txt_affine(int x1, int y1, int x2, int y2, int x3, int y3, int x4
         tris[4].position = {x3, y3};
         tris[5].position = {x4, y4};
         tris[0].texCoords = {0,                     0};
-        tris[1].texCoords = {0,                     texture.getSize().y};
-        tris[2].texCoords = {texture.getSize().x,   texture.getSize().y};
-        tris[3].texCoords = {texture.getSize().x,   texture.getSize().y};
-        tris[4].texCoords = {texture.getSize().x,   0};
+        tris[1].texCoords = {0,                     textures_map[path].getSize().y};
+        tris[2].texCoords = {textures_map[path].getSize().x,   textures_map[path].getSize().y};
+        tris[3].texCoords = {textures_map[path].getSize().x,   textures_map[path].getSize().y};
+        tris[4].texCoords = {textures_map[path].getSize().x,   0};
         tris[5].texCoords = {0,                     0};
-        window->draw(tris, &texture);
+        window->draw(tris, &textures_map[path]);
 }
 
 void draw_poly_txt_correct(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4, std::string path, sf::RenderWindow* window){
-    sf::Texture texture;
-    if (!texture.loadFromFile(path))
-    {
-        if (!texture.loadFromFile("sf_engine/sf_engine_src/textures/temp.png"))
+
+    if(!textures_map.contains(path)){
+
+        sf::Texture texture;
+        if (!texture.loadFromFile(path))
         {
-            std::cout << "Fatal error!!! could not find sf_engine path\n";
+            if (!texture.loadFromFile("EngineAssets/textures/empty.png"))
+            {
+                std::cout << "Fatal error!!! could not find EngineAssets folder\n";
+            }
+            std::cout << "Failed to load texture from path!\n";
         }
-        std::cout << "Failed to load texture from path!\n";
+
+        textures_map.insert({path, texture});
     }
-    int x = texture.getSize().x;
-    int y = texture.getSize().y;
-    sw::ElasticSprite sprite(texture);
-    sprite.setVertexOffset(0, { x1       , y1        });
-    sprite.setVertexOffset(3, { x2-x     , y2        });
-    sprite.setVertexOffset(2, { x3-x     , y3-y      });
-    sprite.setVertexOffset(1, { x4       , y4-y      });
+
+    int x = textures_map[path].getSize().x;//texture.getSize().x;
+    int y = textures_map[path].getSize().y;
+
+    //std::cout << "Texture size x: " << x << " | y: " << y <<"\n";
+    sw::ElasticSprite sprite(textures_map[path]);
+
+    sprite.setVertexOffset(0, { x1       , y4        });
+    sprite.setVertexOffset(3, { x2-x     , y3        });
+    sprite.setVertexOffset(2, { x3-x     , y2-y      });
+    sprite.setVertexOffset(1, { x4       , y1-y      });
 
     sprite.activatePerspectiveInterpolation();
+    //sprite.activateBilinearInterpolation();
     //sprite.setUseShader();
 
     //std::cout << x << std::endl;

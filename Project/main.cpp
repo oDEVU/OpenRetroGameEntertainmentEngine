@@ -34,9 +34,9 @@ int main() {
 
     orgy::Map level;
 
-    level = orgy::loadMapFromFile("level.map");
+    level = orgy::loadMapFromFile("level.json");
 
-    orgy::SaveMapToFile(level, "lvl_coruption_tester.map");
+    //orgy::SaveMapToFile(level, "level_backup.map");       // function to save level file
 
     render.LoadMap(level);
 

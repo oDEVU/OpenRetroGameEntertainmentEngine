@@ -1,4 +1,4 @@
-#pragma oncemap->
+#pragma once
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Config.hpp>
@@ -9,6 +9,7 @@
 #include "static.hpp"
 #include "engine_math.hpp"
 #include "camera.hpp"
+#include <boost/compute.hpp>
 
 namespace orgy
 {
@@ -29,107 +30,52 @@ namespace orgy
         return distance;
     }
 
-    void draw_wall(int x1, int x2, int b1, int b2, int t1, int t2, int c, int s, int t, wall wll, int w, sf::RenderWindow* window, int l, int loop, static_object S){
+    void draw_wall(int x1, int x2, int b1, int b2, int t1, int t2, int c, int s, int t, wall wll, int w, sf::RenderWindow* window, int l, int loop, static_object S, bool debug_lines, bool affine_rendering){
     srand(time(0));
 
-    t = 0;
+        t = 0;
 
-    int x,y;
+        int x,y;
 
-    if(x2 > 0 || x1 < window->getSize().x){
-
-    //DrawTriangle(Vector2 v1, Vector2 v2, Vector2 v3, Color color); 
-
-    int dyb = b2-b1;
-    int dyt = t2-t1;
-    int dx = x2-x1;
-    if(dx==0){
-        dx=1;
-    }
-    int xs=x1;
-
-    int bx1 = x1;
-    int bx2 = x2;
-
-    if(x1<1){x1=1;}
-    if(x2<1){x2=1;}
-    if(x1>(window->getSize().x-1)){x1=(window->getSize().x-1);}
-    if(x2>(window->getSize().x-1)){x2=(window->getSize().x-1);}
+        if(x2 > 0 || x1 < window->getSize().x){
 
 
-    if(loop = 1){
-    if(wll.mat == 0){
-        //if(l==0){
-        if(x2>x1){
-            sf::Color wall_color{ wll.r, wll.g, wll.b };
-        
-            //wall_color = get_color_from_colormap(c);
-
-            int sy1 = dyb*(bx1-xs+0.5)/dx+b1;
-            int sy2 = dyt*(bx1-xs+0.5)/dx+t1;
-            int ey1 = dyb*(bx2-xs+0.5)/dx+b1;
-            int ey2 = dyt*(bx2-xs+0.5)/dx+t1;
-            poly::draw_poly( bx1,  sy2,  bx2,  ey2,  bx2,  ey1,  bx1,  sy1, wall_color, window);
-
-            //if(render_polys_lines == 1){
-            //    poly::draw_poly_lines( bx1,  sy2,  bx2,  ey2,  bx2,  ey1,  bx1,  sy1, window);
-            //}
+        int dyb = b2-b1;
+        int dyt = t2-t1;
+        int dx = x2-x1;
+        if(dx==0){
+            dx=1;
         }
-        //}else{
-        if(x2<x1){
-            sf::Color wall_color{ wll.r, wll.g, wll.b };
+        int xs=x1;
 
-            //wall_color = get_color_from_colormap(c);
+        int bx1 = x1;
+        int bx2 = x2;
 
-            int sy1 = dyb*(bx1-xs+0.5)/dx+b1;
-            int sy2 = dyt*(bx1-xs+0.5)/dx+t1;
-            int ey1 = dyb*(bx2-xs+0.5)/dx+b1;
-            int ey2 = dyt*(bx2-xs+0.5)/dx+t1;
-            poly::draw_poly( bx1,  sy2,  bx2,  ey2,  bx2,  ey1,  bx1,  sy1, wall_color, window);
+        if(x1<1){x1=1;}
+        if(x2<1){x2=1;}
+        if(x1>(window->getSize().x-1)){x1=(window->getSize().x-1);}
+        if(x2>(window->getSize().x-1)){x2=(window->getSize().x-1);}
+
+        int sy1 = dyb*(bx1-xs+0.5)/dx+b1;
+        int sy2 = dyt*(bx1-xs+0.5)/dx+t1;
+        int ey1 = dyb*(bx2-xs+0.5)/dx+b1;
+        int ey2 = dyt*(bx2-xs+0.5)/dx+t1;
+
+        if(wll.mat.txt == 0){
+            sf::Color wall_color{ wll.mat.r, wll.mat.g, wll.mat.b, wll.mat.a};
+            poly::draw_poly( bx1,  sy2,  bx2,  ey2,  bx2,  ey1,  bx1,  sy1, wall_color, window);  //draws colored poly.
+        }else{
+            if(affine_rendering == true){
+                poly::draw_poly_txt_affine( bx1,  sy2,  bx2,  ey2,  bx2,  ey1,  bx1,  sy1, wll.mat.txt_path, window);  //draws textured poly.
+            }else{
+                poly::draw_poly_txt_correct( bx1,  sy2,  bx2,  ey2,  bx2,  ey1,  bx1,  sy1, wll.mat.txt_path, window);  //draws textured poly.
+            }
+        }
             
-            //if(render_polys_lines == 1){
-            //    poly::draw_poly_lines( bx1,  sy2,  bx2,  ey2,  bx2,  ey1,  bx1,  sy1, window);
-            //}
+        if(debug_lines == true){     // if debug lines are turned on it will render them
+             poly::draw_poly_lines( bx1,  sy2,  bx2,  ey2,  bx2,  ey1,  bx1,  sy1, window);
         }
-        //}
-    }else{
-        //std::cout << "texture rendering is wip\n";
-        //if(l==0){
-        if(x2>x1){
-            //sf::Color wall_color{ wll.r, wll.g, wll.b };
-        
-            //wall_color = get_color_from_colormap(c);
 
-            int sy1 = dyb*(bx1-xs+0.5)/dx+b1;
-            int sy2 = dyt*(bx1-xs+0.5)/dx+t1;
-            int ey1 = dyb*(bx2-xs+0.5)/dx+b1;
-            int ey2 = dyt*(bx2-xs+0.5)/dx+t1;
-            poly::draw_poly_txt_correct( bx1,  sy2,  bx2,  ey2,  bx2,  ey1,  bx1,  sy1, wll.texture_path, window);
-
-            //if(render_polys_lines == 1){
-            //    poly::draw_poly_lines( bx1,  sy2,  bx2,  ey2,  bx2,  ey1,  bx1,  sy1, window);
-            //}
-        }
-        //}else{
-        if(x2<x1){
-            //sf::Color wall_color{ wll.r, wll.g, wll.b };
-
-            //wall_color = get_color_from_colormap(c);
-
-            int sy1 = dyb*(bx1-xs+0.5)/dx+b1;
-            int sy2 = dyt*(bx1-xs+0.5)/dx+t1;
-            int ey1 = dyb*(bx2-xs+0.5)/dx+b1;
-            int ey2 = dyt*(bx2-xs+0.5)/dx+t1;
-            poly::draw_poly_txt_correct( bx1,  sy2,  bx2,  ey2,  bx2,  ey1,  bx1,  sy1, wll.texture_path, window);
-            
-            //if(render_polys_lines == 1){
-            //    poly::draw_poly_lines( bx1,  sy2,  bx2,  ey2,  bx2,  ey1,  bx1,  sy1, window);
-            //}
-        }
-        //}
-    }
-
-    }
         for(int i = x1; i<x2; i++){
         int y1 = dyb*(i-xs+0.5)/dx+b1;
         int y2 = dyt*(i-xs+0.5)/dx+t1;
@@ -142,15 +88,57 @@ namespace orgy
         if(y1>(window->getSize().y)){y1=(window->getSize().y);}
         if(y2>(window->getSize().y)){y2=(window->getSize().y);}
         }
-   //}
+    }
+}
+    void shade_wall(int x1, int x2, int b1, int b2, int t1, int t2, sf::Color color, sf::RenderWindow* window){
+
+        if(x2 > 0 || x1 < window->getSize().x){
+
+
+        int dyb = b2-b1;
+        int dyt = t2-t1;
+        int dx = x2-x1;
+        if(dx==0){
+            dx=1;
+        }
+        int xs=x1;
+
+        int bx1 = x1;
+        int bx2 = x2;
+
+        if(x1<1){x1=1;}
+        if(x2<1){x2=1;}
+        if(x1>(window->getSize().x-1)){x1=(window->getSize().x-1);}
+        if(x2>(window->getSize().x-1)){x2=(window->getSize().x-1);}
+
+        int sy1 = dyb*(bx1-xs+0.5)/dx+b1;
+        int sy2 = dyt*(bx1-xs+0.5)/dx+t1;
+        int ey1 = dyb*(bx2-xs+0.5)/dx+b1;
+        int ey2 = dyt*(bx2-xs+0.5)/dx+t1;
+
+        poly::draw_poly( bx1,  sy2,  bx2,  ey2,  bx2,  ey1,  bx1,  sy1, color, window);  //draws colored poly.
+            
+        for(int i = x1; i<x2; i++){
+        int y1 = dyb*(i-xs+0.5)/dx+b1;
+        int y2 = dyt*(i-xs+0.5)/dx+t1;
+
+        int by1 = y1;
+        int by2 = y2;
+
+        if(y1<0){y1=0;}
+        if(y2<0){y2=0;}
+        if(y1>(window->getSize().y)){y1=(window->getSize().y);}
+        if(y2>(window->getSize().y)){y2=(window->getSize().y);}
+        }
     }
 }
 
-    void static_draw(sf::RenderWindow *window, Camera &cam, Map *map) {
+    void static_draw(sf::RenderWindow *window, Camera &cam, Map *map, bool debug_lines, bool affine_rendering) {
         //poly::draw_poly_txt_correct(0,0,250,50,250,300,0,250,"../Engine/EngineAssets/textures/empty.png",window);
         //poly::draw_poly_txt_affine(0,300,250,350,250,600,0,550,"../Engine/EngineAssets/textures/empty.png",window);
-            //sf::Color wall_color{ 255, 255, 255 };
-            //poly::draw_poly( 0,300,250,350,250,600,0,550, wall_color, window);
+        //sf::Color wall_color{ 255, 255, 255 };
+        //poly::draw_poly( 0,300,250,350,250,600,0,550, wall_color, window);
+
 
     double wx[4],wy[4],wz[4];
     int s,w;
@@ -184,17 +172,9 @@ namespace orgy
      for(s=0;s<map->getObjCount();s++){
         map->objs.at(s).distance=0;
 
-        if(map->objs.at(s).flip == 0){
         if(cam.z<map->objs.at(s).floor){map->objs.at(s).surface=1;}
         else if (cam.z>(map->objs.at(s).celing+map->objs.at(s).floor)){map->objs.at(s).surface=2;}  //Why this isnt fucking working !!!!!!!!!
         else {map->objs.at(s).surface=0;}
-        }else{
-        if(cam.z<map->objs.at(s).floor){map->objs.at(s).surface=2;}
-        else if (cam.z>map->objs.at(s).celing){map->objs.at(s).surface=1;}
-        else {map->objs.at(s).surface=0;}
-        }
-
-        for(int loop=0; loop < 1; loop++){
 
 
             for(w=0;w<map->objs.at(s).walls.size();w++){
@@ -224,7 +204,7 @@ namespace orgy
                 double x1=map->objs.at(s).walls.at(w).sx-cam.x, y1=map->objs.at(s).walls.at(w).sy-cam.y;
                 double x2=map->objs.at(s).walls.at(w).ex-cam.x, y2=map->objs.at(s).walls.at(w).ey-cam.y;
 
-                if(loop==0){double swp=x1; x1=x2;x2=swp;swp=y1;y1=y2;y2=swp;}
+                //if(loop==0){double swp=x1; x1=x2;x2=swp;swp=y1;y1=y2;y2=swp;}
 
                 wx[0]=x1*CS-y1*SN;
                 wx[1]=x2*CS-y2*SN;
@@ -268,7 +248,6 @@ namespace orgy
                 float angle = ((atan2(shy1 - shy2, shx1 - shx2))*180/M_PI)+180;
 
                 angle /= 360;
-                double anglen = angle;
                 angle = pow((18*angle-9),2);//+160;
                 angle *= -1;
                 angle += 80;
@@ -278,12 +257,11 @@ namespace orgy
                 
                 sf::Color shadow = sf::Color(0,0,0,angle);
 
-                draw_wall(wx[0],wx[1],wy[0],wy[1],wy[2],wy[3],1, s , 0, map->objs.at(s).walls.at(w), w, window, map->objs.at(s).flip,loop, map->objs.at(s));
-                //shade_wall(wx[0],wx[1],wy[0],wy[1],wy[2],wy[3],shadow, s , W[w].t, W[w].txt, w, window, map->objs.at(s).flip,loop,W[w].c);
+                draw_wall(wx[0],wx[1],wy[0],wy[1],wy[2],wy[3],1, s , 0, map->objs.at(s).walls.at(w), w, window, map->objs.at(s).flip,true, map->objs.at(s), debug_lines, affine_rendering);
+                shade_wall(wx[0],wx[1],wy[0],wy[1],wy[2],wy[3],shadow, window);
             }
             //map->objs.at(s).distance/=(map->objs.at(s).walls.size());
             map->objs.at(s).surface*=-1;
-        }
     }
     }
 

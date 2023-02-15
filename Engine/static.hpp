@@ -7,6 +7,19 @@
 
 namespace orgy
 {
+    struct material
+    {
+        bool txt = 0;
+        std::string txt_path = "[none]";
+
+        // later add emisive
+
+        int r = 0;
+        int g = 0;
+        int b = 0;
+        int a = 0;
+    };
+
     struct wall
     {
         double sx = 0;
@@ -19,18 +32,17 @@ namespace orgy
 
         double dist = 0;
 
-        bool mat = true;
-
-        int r = 255;
-        int g = 255;
-        int b = 255;
-        std::string texture_path = "EngineAssets/textures/empty.png";
+        material mat;
     };
         
     struct static_object
     {
         double floor = 0;
         double celing = 0;
+
+        material celling_mat;
+        material floor_mat;
+
         double distance = 0;
         bool flip = 0;
         int surface = 0;

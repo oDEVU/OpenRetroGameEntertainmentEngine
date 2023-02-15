@@ -7,6 +7,7 @@
 #include <filesystem>
 #include <fstream>
 #include <bits/stdc++.h> 
+#include <json/json.h>
 
 #include "static.hpp"
 #include "map.hpp"
@@ -18,102 +19,61 @@
         Map map;
 
         std::cout << "Loading map from path: " << path << std::endl;
-        
-        std::fstream file;
 
-        file.open(path, std::ios::in);
-        if(!file)
-        {
-            std::cout<<"Error in creating file..\n"<<std::endl;
-            //return 0;
-        }else{
-            int l = 0;
-            file >> l;
+        std::ifstream map_file(path, std::ifstream::binary);
+        Json::Reader reader;
+        Json::Value map_raw_data;
+        reader.parse(map_file, map_raw_data);
 
-            std::cout << "Loaded " << l << " objects." << std::endl;
+        static_object obj;
 
-            for(int i = 0; i < l; i++){
-                static_object obj;// = map.getObjAt(i);
-                file >> obj.celing;
-                file >> obj.floor;
-                file >> obj.distance;
-                file >> obj.flip;
+        for(Json::Value::ArrayIndex i = 0; i < map_raw_data["Objects"].size(); i++){
 
-                int l2 = 0;
+            obj.celing = map_raw_data["Objects"][i]["celling"].asDouble();// << std::endl;
+            obj.floor = map_raw_data["Objects"][i]["floor"].asDouble();// << std::endl;
+            obj.celling_mat.txt = map_raw_data["Objects"][i]["celing_is_textured"].asBool();
+            obj.celling_mat.r = map_raw_data["Objects"][i]["celing_r"].asInt();
+            obj.celling_mat.g = map_raw_data["Objects"][i]["celing_g"].asInt();
+            obj.celling_mat.b = map_raw_data["Objects"][i]["celing_b"].asInt();
+            obj.celling_mat.a = map_raw_data["Objects"][i]["celing_a"].asInt();
+            obj.celling_mat.txt_path = map_raw_data["Objects"][i]["celing_texture_path"].asString();
+            
+            obj.celing = map_raw_data["Objects"][i]["celling"].asDouble();// << std::endl;
+            obj.floor = map_raw_data["Objects"][i]["floor"].asDouble();// << std::endl;
+            obj.floor_mat.txt = map_raw_data["Objects"][i]["floor_is_textured"].asBool();
+            obj.floor_mat.r = map_raw_data["Objects"][i]["floor_r"].asInt();
+            obj.floor_mat.g = map_raw_data["Objects"][i]["floor_g"].asInt();
+            obj.floor_mat.b = map_raw_data["Objects"][i]["floor_b"].asInt();
+            obj.floor_mat.a = map_raw_data["Objects"][i]["floor_a"].asInt();
+            obj.floor_mat.txt_path = map_raw_data["Objects"][i]["floor_texture_path"].asString();
 
-                file >> l2;
-
-                std::cout << "Object " << (i+1) << " has " << l2 << " walls." << std::endl;
-
-                for(int i = 0; i < l2; i++){
-                    wall wall;// = obj.walls.at(i);
-                    file >> wall.sx;
-                    file >> wall.sy;
-                    file >> wall.ex;
-                    file >> wall.ey;
-                    file >> wall.mat;
-                    file >> wall.r;
-                    file >> wall.g;
-                    file >> wall.b;
-                    file >> wall.texture_path;
-
-                    obj.walls.push_back(wall);
-                }
-
-                map.addObj(obj);
+            for(Json::Value::ArrayIndex j = 0; j < map_raw_data["Objects"][i]["walls"].size(); j++){
+                wall wall;
+                wall.sx = map_raw_data["Objects"][i]["walls"][j]["sx"].asDouble();
+                wall.sy = map_raw_data["Objects"][i]["walls"][j]["sy"].asDouble();
+                wall.ex = map_raw_data["Objects"][i]["walls"][j]["ex"].asDouble();
+                wall.ey = map_raw_data["Objects"][i]["walls"][j]["ey"].asDouble();
+                wall.mat.txt = map_raw_data["Objects"][i]["walls"][j]["is_textured"].asBool();
+                wall.mat.r = map_raw_data["Objects"][i]["walls"][j]["r"].asInt();
+                wall.mat.g = map_raw_data["Objects"][i]["walls"][j]["g"].asInt();
+                wall.mat.b = map_raw_data["Objects"][i]["walls"][j]["b"].asInt();
+                wall.mat.a = map_raw_data["Objects"][i]["walls"][j]["a"].asInt();
+                wall.mat.txt_path = map_raw_data["Objects"][i]["walls"][j]["texture_path"].asString();
+                obj.walls.push_back(wall);
             }
-            file.close();
         }
 
-        return map;
+        map.addObj(obj);
 
-        std::cout << "Loaded map from path: " << path << std::endl;
+        return map;
     }
 
     bool SaveMapToFile(Map map, std::string path) {
 
         std::cout << "Saving map to path: " << path << std::endl;
 
-        std::fstream file;
-
-        file.open(path, std::ios::out);
-        if(!file)
-        {
-            std::cout<<"Error in creating file..\n"<<std::endl;
-            //return 0;
-        }else{
-            file << map.getObjCount() << " ";
-
-            std::cout << "Object count: " << map.getObjCount() << std::endl;
-
-            for(int i = 0; i < map.getObjCount(); i++){
-                static_object obj = map.getObjAt(i);
-                file << obj.celing << " ";
-                file << obj.floor << " ";
-                file << obj.distance << " ";
-                file << obj.flip << " ";
-
-                file << obj.walls.size() << " ";
-
-                std::cout << "walls count: " << obj.walls.size() << std::endl;
-
-                for(int i = 0; i < obj.walls.size(); i++){
-                    wall wall = obj.walls.at(i);
-                    file << wall.sx << " ";
-                    file << wall.sy << " ";
-                    file << wall.ex << " ";
-                    file << wall.ey << " ";
-                    file << wall.mat << " ";
-                    file << wall.r << " ";
-                    file << wall.g << " ";
-                    file << wall.b << " ";
-                    file << wall.texture_path << " ";
-                }
-            }
-            file.close();
-        }
-
         std::cout << "Saved map to path: " << path << std::endl;
+        return true;
     }
  } // namespace orgy
  

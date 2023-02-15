@@ -4,18 +4,24 @@
 #include <SFML/Config.hpp>
 #include <iostream>
 #include <vector>
+
 #include "map.hpp"
 #include "static.hpp"
 #include "static_rendering.hpp"
 #include "engine_math.hpp"
 #include "camera.hpp"
+#include "debug_screen.hpp"
 
  namespace orgy
  {
     class Renderer{
         public:
+
+            bool affine_rendering = false;
+            bool debug_lines = false;
+
             Renderer() {
-                font.loadFromFile("../Engine/font/font.ttf");
+                font.loadFromFile("EngineAssets/fonts/font.ttf");
 
                 std::cout << "Renderer object created!" << std::endl;
             }
@@ -26,6 +32,8 @@
 
                 while (window->isOpen())
                 {
+                    frame_count++;
+
                     int w_x = window->getSize().x;
                     int w_y = window->getSize().y;
 
@@ -47,14 +55,27 @@
                             sf::FloatRect visibleArea(0, 0, event.size.width, event.size.height);
                             window->setView(sf::View(visibleArea));
                         }
+                        if (event.type == sf::Event::KeyReleased)
+                        {
+                            if (event.key.code == sf::Keyboard::F1)
+                            {
+                                affine_rendering = !affine_rendering;
+                            }
+                            if (event.key.code == sf::Keyboard::F2)
+                            {
+                                debug_lines = !debug_lines;
+                            }
+                        }
                     }
 
                     window->clear(sf::Color(25,25,25));
 
+                    Camera temp_cam = cam;
+
                     if(loaded_map){
                         //render map
 
-                        static_draw(window, cam, &map);
+                        static_draw(window, temp_cam, &map, debug_lines, affine_rendering);
                     }
 
                     if(show_fps){
@@ -64,6 +85,8 @@
                     txt.setCharacterSize(w_y/70);
                     window->draw(txt);
                     }
+
+                    print_debug(window, font, w_y, debug_lines, affine_rendering);
 
                     if(texts.size()>0){
                         for(int i = texts.size()-1; i >= 0; i--){
@@ -116,6 +139,10 @@
                 cam = camera;
             }
 
+            int get_current_frame(){
+                return frame_count;
+            }
+
             Camera getCamera() {
                 return cam;
             }
@@ -127,6 +154,8 @@
             double fps = 0; 
             double delta = 0;
             bool show_fps = 0;
+
+            int frame_count = 0;
 
             bool loaded_map = 0;
 
