@@ -16,6 +16,7 @@ Documentation will be created when any usable version will be released.
 * [Qt](https://www.qt.io/download-open-source)  -for editor (not yet)
 * [SFML](https://www.sfml-dev.org/) -for main engine
 * [Selba Ward](https://github.com/Hapaxia/SelbaWard) -for textured walls rendering
+* jsoncpp -for asset loading and saving
 * boost
 * g++
 
@@ -37,7 +38,7 @@ sudo pacman -Sy sfml
 
 4. Compile game:
 ```sh
-run make (editor will make it much eaiser)
+make; clear; ./app (editor will make it much eaiser)
 
 ```
 
@@ -47,7 +48,7 @@ run make (editor will make it much eaiser)
 
 2. Download and install dependences (You can find many tutorials for other platforms)
 
-3. Compile it with your c++ compiler.
+3. Compile it with your c++ compiler or just run make file.
 
 (i will add other OS later)
 
