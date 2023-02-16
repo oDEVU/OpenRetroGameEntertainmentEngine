@@ -8,7 +8,7 @@ This is attemt to rewrite my shitty ass code.
 
 His chanel : https://www.youtube.com/c/3DSage
 
-Presentation : https://youtu.be/xFryM8no5UA [OLD VERSION] new isnt ready yet :C
+Presentation : https://youtu.be/kIx6bQlxqQ0
 
 Documentation will be created when any usable version will be released.
 
