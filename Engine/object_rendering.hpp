@@ -75,19 +75,6 @@ namespace orgy
         if(debug_lines == true){     // if debug lines are turned on it will render them
              poly::draw_poly_lines( bx1,  sy2,  bx2,  ey2,  bx2,  ey1,  bx1,  sy1, window);
         }
-
-        for(int i = x1; i<x2; i++){
-        int y1 = dyb*(i-xs+0.5)/dx+b1;
-        int y2 = dyt*(i-xs+0.5)/dx+t1;
-
-        int by1 = y1;
-        int by2 = y2;
-
-        if(y1<0){y1=0;}
-        if(y2<0){y2=0;}
-        if(y1>(window->getSize().y)){y1=(window->getSize().y);}
-        if(y2>(window->getSize().y)){y2=(window->getSize().y);}
-        }
     }
 }
     void shade_wall(int x1, int x2, int b1, int b2, int t1, int t2, sf::Color color, sf::RenderWindow* window){
@@ -117,19 +104,55 @@ namespace orgy
         int ey2 = dyt*(bx2-xs+0.5)/dx+t1;
 
         poly::draw_poly( bx1,  sy2,  bx2,  ey2,  bx2,  ey1,  bx1,  sy1, color, window);  //draws colored poly.
-            
-        for(int i = x1; i<x2; i++){
-        int y1 = dyb*(i-xs+0.5)/dx+b1;
-        int y2 = dyt*(i-xs+0.5)/dx+t1;
+    }
+}
+    void draw_entity(int x1, int x2, int b1, int b2, int t1, int t2, std::string texture_path, sf::RenderWindow* window){
 
-        int by1 = y1;
-        int by2 = y2;
+        if(x2 > 0 || x1 < window->getSize().x){
 
-        if(y1<0){y1=0;}
-        if(y2<0){y2=0;}
-        if(y1>(window->getSize().y)){y1=(window->getSize().y);}
-        if(y2>(window->getSize().y)){y2=(window->getSize().y);}
+
+        int dyb = b2-b1;
+        int dyt = t2-t1;
+        int dx = x2-x1;
+        if(dx==0){
+            dx=1;
         }
+        int xs=x1;
+
+        int bx1 = x1;
+        int bx2 = x2;
+
+        if(x1<1){x1=1;}
+        if(x2<1){x2=1;}
+        if(x1>(window->getSize().x-1)){x1=(window->getSize().x-1);}
+        if(x2>(window->getSize().x-1)){x2=(window->getSize().x-1);}
+
+        int sy1 = dyb*(bx1-xs+0.5)/dx+b1;
+        int sy2 = dyt*(bx1-xs+0.5)/dx+t1;
+        
+        if(!poly::textures_map.contains(texture_path)){
+
+        sf::Texture texture;
+        if (!texture.loadFromFile(texture_path))
+        {
+            if (!texture.loadFromFile("EngineAssets/textures/empty.png"))
+            {
+                std::cout << "Fatal error!!! could not find EngineAssets folder\n";
+            }
+            std::cout << "Failed to load texture from path!\n";
+        }
+
+        poly::textures_map.insert({texture_path, texture});
+    }
+
+        double txt_x = poly::textures_map[texture_path].getSize().x;
+        double txt_y = poly::textures_map[texture_path].getSize().y;
+
+        txt_y /= sy2 - sy1;
+        txt_x /= txt_y;
+
+
+        poly::draw_poly_txt_correct( bx1-(txt_x/2),  sy2,  bx1+(txt_x/2),  sy2,  bx1+(txt_x/2),  sy1,  bx1-(txt_x/2),  sy1, texture_path, window);
     }
 }
 
@@ -257,8 +280,17 @@ namespace orgy
                 
                 sf::Color shadow = sf::Color(0,0,0,angle);
 
-                draw_wall(wx[0],wx[1],wy[0],wy[1],wy[2],wy[3],1, s , 0, map->objs.at(s).walls.at(w), w, window, map->objs.at(s).flip,true, map->objs.at(s), debug_lines, affine_rendering);
-                shade_wall(wx[0],wx[1],wy[0],wy[1],wy[2],wy[3],shadow, window);
+                if(map->objs.at(s).type == "static"){
+                    draw_wall(wx[0],wx[1],wy[0],wy[1],wy[2],wy[3],1, s , 0, map->objs.at(s).walls.at(w), w, window, map->objs.at(s).flip,true, map->objs.at(s), debug_lines, affine_rendering);
+                    //shade_wall(wx[0],wx[1],wy[0],wy[1],wy[2],wy[3],shadow, window);
+                }else if(map->objs.at(s).type == "entity"){
+                    // TODO
+                    map->objs.at(s).walls.at(0).ex = map->objs.at(s).walls.at(0).sx;
+                    map->objs.at(s).walls.at(0).ey = map->objs.at(s).walls.at(0).sy;
+                    draw_entity(wx[0],wx[1],wy[0],wy[1],wy[2],wy[3],map->objs.at(s).walls.at(0).mat.txt_path, window);
+                }else{
+                    std::cout << "Unknown object type\n";
+                }
             }
             //map->objs.at(s).distance/=(map->objs.at(s).walls.size());
             map->objs.at(s).surface*=-1;

@@ -37,6 +37,8 @@ namespace orgy
         
     struct static_object
     {
+        std::string type = "static";
+
         double floor = 0;
         double celing = 0;
 

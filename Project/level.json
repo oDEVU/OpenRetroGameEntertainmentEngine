@@ -1,6 +1,7 @@
 {
     "Objects": [
         {
+            "type":"static",
             "celling":16,
             "floor":0,
             "walls":[
@@ -67,6 +68,7 @@
             ]
         },
         {
+            "type":"static",
             "celling":16,
             "floor":0,
             "walls":[
@@ -121,6 +123,7 @@
             ]
         },
         {
+            "type":"static",
             "celling":16,
             "floor":0,
             "celing_is_textured":true,
@@ -187,6 +190,7 @@
             ]
         },
         {
+            "type":"static",
             "celling":16,
             "floor":0,
             "walls":[
@@ -229,6 +233,7 @@
             ]
         },
         {
+            "type":"static",
             "celling":16,
             "floor":0,
             "celing_is_textured":false,
@@ -293,19 +298,18 @@
                     "texture_path":"[none]"
                 }
             ]
-        }
-    ],
-    "Movables": [
+        },
         {
-            "name":"tux",
-            "pos-x":0,
-            "pos-y":0,
-            "is_textured":true,
-            "r":255,
-            "g":255,
-            "b":255,
-            "a":255,
-            "texture_path":"GameAssets/textures/tux.png"
-        }
+        "type":"entity",
+        "celling":16,
+        "floor":0,
+        "walls":[
+            {
+                "pos-x":24,
+                "pos-y":24,
+                "texture_path":"GameAssets/textures/tux.png"
+            }
+        ]
+    }
     ]
  }

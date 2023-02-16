@@ -7,7 +7,7 @@
 
 #include "map.hpp"
 #include "static.hpp"
-#include "static_rendering.hpp"
+#include "object_rendering.hpp"
 #include "engine_math.hpp"
 #include "camera.hpp"
 #include "debug_screen.hpp"
