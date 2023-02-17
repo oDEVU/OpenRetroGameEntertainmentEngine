@@ -73,6 +73,19 @@
                 wall.mat.txt_path = map_raw_data["Objects"][i]["walls"][0]["texture_path"].asString();
 
                 obj.walls.push_back(wall);
+            }else if(obj.type == "text"){
+                obj.celing = map_raw_data["Objects"][i]["y"].asDouble();// << std::endl;
+                obj.floor = map_raw_data["Objects"][i]["y"].asDouble();// << std::endl;
+
+                wall wall;
+                wall.sx = map_raw_data["Objects"][i]["x"].asDouble();
+                wall.sy = map_raw_data["Objects"][i]["z"].asDouble();
+                wall.ex = map_raw_data["Objects"][i]["x"].asDouble();
+                wall.ey = map_raw_data["Objects"][i]["z"].asDouble();
+                wall.mat.txt_path = map_raw_data["Objects"][i]["text"].asString();
+                wall.mat.r = map_raw_data["Objects"][i]["font-size"].asDouble();
+
+                obj.walls.push_back(wall);
             }else{
                 std::cout << "Could not load unknown object type.\n";
             }

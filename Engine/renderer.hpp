@@ -75,7 +75,7 @@
                     if(loaded_map){
                         //render map
 
-                        static_draw(window, temp_cam, &map, debug_lines, affine_rendering);
+                        static_draw(window, temp_cam, &map, debug_lines, affine_rendering, font);
                     }
 
                     if(show_fps){

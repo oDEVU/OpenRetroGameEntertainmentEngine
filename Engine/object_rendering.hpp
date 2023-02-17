@@ -106,6 +106,44 @@ namespace orgy
         poly::draw_poly( bx1,  sy2,  bx2,  ey2,  bx2,  ey1,  bx1,  sy1, color, window);  //draws colored poly.
     }
 }
+    void draw_text_3d(int x1, int x2, int b1, int b2, int t1, int t2, std::string text, sf::RenderWindow* window, int size, sf::Font font){
+
+        if(x2 > 0 || x1 < window->getSize().x){
+
+
+        int dyb = b2-b1;
+        int dyt = t2-t1;
+        int dx = x2-x1;
+        if(dx==0){
+            dx=1;
+        }
+        int xs=x1;
+
+        int bx1 = x1;
+        int bx2 = x2;
+
+        if(x1<1){x1=1;}
+        if(x2<1){x2=1;}
+        if(x1>(window->getSize().x-1)){x1=(window->getSize().x-1);}
+        if(x2>(window->getSize().x-1)){x2=(window->getSize().x-1);}
+
+        int sy1 = dyb*(bx1-xs+0.5)/dx+b1;
+        int sy2 = dyt*(bx1-xs+0.5)/dx+t1;
+        int ey1 = dyb*(bx2-xs+0.5)/dx+b1;
+        int ey2 = dyt*(bx2-xs+0.5)/dx+t1;
+
+        sf::Text txt(text, font);
+        txt.setCharacterSize(size);
+
+        float width = txt.getLocalBounds().width;
+        float height = txt.getLocalBounds().height;
+
+        txt.setPosition((x1-width/2), (sy1-height/2));
+        window->draw(txt);
+
+        //poly::draw_poly( bx1,  sy2,  bx2,  ey2,  bx2,  ey1,  bx1,  sy1, color, window);  //draws colored poly.
+    }
+}
     void draw_entity(int x1, int x2, int b1, int b2, int t1, int t2, std::string texture_path, sf::RenderWindow* window){
 
         if(x2 > 0 || x1 < window->getSize().x){
@@ -156,7 +194,7 @@ namespace orgy
     }
 }
 
-    void static_draw(sf::RenderWindow *window, Camera &cam, Map *map, bool debug_lines, bool affine_rendering) {
+    void static_draw(sf::RenderWindow *window, Camera &cam, Map *map, bool debug_lines, bool affine_rendering, sf::Font font) {
         //poly::draw_poly_txt_correct(0,0,250,50,250,300,0,250,"../Engine/EngineAssets/textures/empty.png",window);
         //poly::draw_poly_txt_affine(0,300,250,350,250,600,0,550,"../Engine/EngineAssets/textures/empty.png",window);
         //sf::Color wall_color{ 255, 255, 255 };
@@ -283,6 +321,8 @@ namespace orgy
                 if(map->objs.at(s).type == "static"){
                     draw_wall(wx[0],wx[1],wy[0],wy[1],wy[2],wy[3],1, s , 0, map->objs.at(s).walls.at(w), w, window, map->objs.at(s).flip,true, map->objs.at(s), debug_lines, affine_rendering);
                     //shade_wall(wx[0],wx[1],wy[0],wy[1],wy[2],wy[3],shadow, window);
+                }else if(map->objs.at(s).type == "text"){
+                    draw_text_3d(wx[0], wx[1], wy[0], wy[1], wy[2], wy[3], map->objs.at(s).walls.at(0).mat.txt_path, window, map->objs.at(s).walls.at(0).mat.r, font);
                 }else if(map->objs.at(s).type == "entity"){
                     // TODO
                     map->objs.at(s).walls.at(0).ex = map->objs.at(s).walls.at(0).sx;

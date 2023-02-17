@@ -305,11 +305,59 @@
         "floor":0,
         "walls":[
             {
-                "pos-x":24,
-                "pos-y":24,
+                "pos-x":40,
+                "pos-y":-16,
                 "texture_path":"GameAssets/textures/tux.png"
             }
         ]
-    }
+        },
+        {
+        "type":"text",
+        "x":-24,
+        "y":-8,
+        "z":8,
+        "text":"Not closed sectors",
+        "font-size":16
+        },
+        {
+        "type":"text",
+        "x":8,
+        "y":-8,
+        "z":8,
+        "text":"Transparent sectors",
+        "font-size":16
+        },
+        {
+        "type":"text",
+        "x":40,
+        "y":-8,
+        "z":8,
+        "text":"Colored sectors",
+        "font-size":16
+        },
+        {
+        "type":"text",
+        "x":40,
+        "y":-8,
+        "z":40,
+        "text":"Unregular sectors",
+        "font-size":16
+        },
+        {
+        "type":"text",
+        "x":72,
+        "y":-8,
+        "z":8,
+        "text":"Textured sectors",
+        "font-size":16
+        },
+        {
+        "type":"text",
+        "x":40,
+        "y":-8,
+        "z":-16,
+        "text":"Entity rendering",
+        "font-size":16
+        }
     ]
  }
