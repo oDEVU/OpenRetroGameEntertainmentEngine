@@ -39,6 +39,8 @@ namespace orgy
     {
         std::string type = "static";
 
+        int extra = 0;
+
         double floor = 0;
         double celing = 0;
 

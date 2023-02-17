@@ -83,7 +83,11 @@
                 wall.ex = map_raw_data["Objects"][i]["x"].asDouble();
                 wall.ey = map_raw_data["Objects"][i]["z"].asDouble();
                 wall.mat.txt_path = map_raw_data["Objects"][i]["text"].asString();
-                wall.mat.r = map_raw_data["Objects"][i]["font-size"].asDouble();
+                obj.extra = map_raw_data["Objects"][i]["font-size"].asDouble();
+                wall.mat.r = map_raw_data["Objects"][i]["r"].asInt();
+                wall.mat.g = map_raw_data["Objects"][i]["g"].asInt();
+                wall.mat.b = map_raw_data["Objects"][i]["b"].asInt();
+                wall.mat.a = map_raw_data["Objects"][i]["a"].asInt();
 
                 obj.walls.push_back(wall);
             }else{

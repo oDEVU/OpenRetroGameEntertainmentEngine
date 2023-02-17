@@ -106,7 +106,7 @@ namespace orgy
         poly::draw_poly( bx1,  sy2,  bx2,  ey2,  bx2,  ey1,  bx1,  sy1, color, window);  //draws colored poly.
     }
 }
-    void draw_text_3d(int x1, int x2, int b1, int b2, int t1, int t2, std::string text, sf::RenderWindow* window, int size, sf::Font font){
+    void draw_text_3d(int x1, int x2, int b1, int b2, int t1, int t2, std::string text, sf::RenderWindow* window, int size, sf::Font font, sf::Color col){
 
         if(x2 > 0 || x1 < window->getSize().x){
 
@@ -134,6 +134,7 @@ namespace orgy
 
         sf::Text txt(text, font);
         txt.setCharacterSize(size);
+        txt.setColor(col);
 
         float width = txt.getLocalBounds().width;
         float height = txt.getLocalBounds().height;
@@ -322,7 +323,7 @@ namespace orgy
                     draw_wall(wx[0],wx[1],wy[0],wy[1],wy[2],wy[3],1, s , 0, map->objs.at(s).walls.at(w), w, window, map->objs.at(s).flip,true, map->objs.at(s), debug_lines, affine_rendering);
                     //shade_wall(wx[0],wx[1],wy[0],wy[1],wy[2],wy[3],shadow, window);
                 }else if(map->objs.at(s).type == "text"){
-                    draw_text_3d(wx[0], wx[1], wy[0], wy[1], wy[2], wy[3], map->objs.at(s).walls.at(0).mat.txt_path, window, map->objs.at(s).walls.at(0).mat.r, font);
+                    draw_text_3d(wx[0], wx[1], wy[0], wy[1], wy[2], wy[3], map->objs.at(s).walls.at(0).mat.txt_path, window, map->objs.at(s).extra, font, sf::Color(map->objs.at(s).walls.at(0).mat.r,map->objs.at(s).walls.at(0).mat.g,map->objs.at(s).walls.at(0).mat.b,map->objs.at(s).walls.at(0).mat.a));
                 }else if(map->objs.at(s).type == "entity"){
                     // TODO
                     map->objs.at(s).walls.at(0).ex = map->objs.at(s).walls.at(0).sx;
