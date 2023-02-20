@@ -4,15 +4,19 @@
 #include <SFML/Config.hpp>
 #include <iostream>
 #include <vector>
+#include <boost/compute.hpp>
+
 #include "map.hpp"
 #include "poly.hpp"
 #include "static.hpp"
 #include "engine_math.hpp"
 #include "camera.hpp"
-#include <boost/compute.hpp>
+#include "pathhandler.hpp"
 
 namespace orgy
 {
+    std::string global_path = orgy::getExecutablePath().substr(0, orgy::getExecutablePath().find_last_of("\\/")+1);
+
     void clip_behind_camera(double *x1,double *y1, double *z1, double x2,double y2,double z2){
         double da=*y1;
         double db=y2;
@@ -147,6 +151,8 @@ namespace orgy
 }
     void draw_entity(int x1, int x2, int b1, int b2, int t1, int t2, std::string texture_path, sf::RenderWindow* window){
 
+        //std::cout << texture_path << std::endl;
+
         if(x2 > 0 || x1 < window->getSize().x){
 
 
@@ -174,7 +180,7 @@ namespace orgy
         sf::Texture texture;
         if (!texture.loadFromFile(texture_path))
         {
-            if (!texture.loadFromFile("EngineAssets/textures/empty.png"))
+            if (!texture.loadFromFile(global_path + "EngineAssets/textures/empty.png"))
             {
                 std::cout << "Fatal error!!! could not find EngineAssets folder\n";
             }

@@ -11,10 +11,15 @@
 
 #include "static.hpp"
 #include "map.hpp"
+#include "pathhandler.hpp"
 
  namespace orgy
  {
+    std::string exe_dir = orgy::getExecutablePath().substr(0, orgy::getExecutablePath().find_last_of("\\/")+1);
+
     Map loadMapFromFile(std::string path) {
+
+        path = exe_dir + path;
 
         Map map;
 
@@ -39,14 +44,14 @@
                 obj.celling_mat.g = map_raw_data["Objects"][i]["celing_g"].asInt();
                 obj.celling_mat.b = map_raw_data["Objects"][i]["celing_b"].asInt();
                 obj.celling_mat.a = map_raw_data["Objects"][i]["celing_a"].asInt();
-                obj.celling_mat.txt_path = map_raw_data["Objects"][i]["celing_texture_path"].asString();
+                obj.celling_mat.txt_path = exe_dir + map_raw_data["Objects"][i]["celing_texture_path"].asString();
             
                 obj.floor_mat.txt = map_raw_data["Objects"][i]["floor_is_textured"].asBool();
                 obj.floor_mat.r = map_raw_data["Objects"][i]["floor_r"].asInt();
                 obj.floor_mat.g = map_raw_data["Objects"][i]["floor_g"].asInt();
                 obj.floor_mat.b = map_raw_data["Objects"][i]["floor_b"].asInt();
                 obj.floor_mat.a = map_raw_data["Objects"][i]["floor_a"].asInt();
-                obj.floor_mat.txt_path = map_raw_data["Objects"][i]["floor_texture_path"].asString();
+                obj.floor_mat.txt_path = exe_dir + map_raw_data["Objects"][i]["floor_texture_path"].asString();
 
                 for(Json::Value::ArrayIndex j = 0; j < map_raw_data["Objects"][i]["walls"].size(); j++){
                     wall wall;
@@ -59,7 +64,7 @@
                     wall.mat.g = map_raw_data["Objects"][i]["walls"][j]["g"].asInt();
                     wall.mat.b = map_raw_data["Objects"][i]["walls"][j]["b"].asInt();
                     wall.mat.a = map_raw_data["Objects"][i]["walls"][j]["a"].asInt();
-                    wall.mat.txt_path = map_raw_data["Objects"][i]["walls"][j]["texture_path"].asString();
+                    wall.mat.txt_path = exe_dir + map_raw_data["Objects"][i]["walls"][j]["texture_path"].asString();
                     obj.walls.push_back(wall);
                 }
             }else if(obj.type == "entity"){
@@ -70,7 +75,7 @@
                 wall.sx = map_raw_data["Objects"][i]["walls"][0]["pos-x"].asDouble();
                 wall.sy = map_raw_data["Objects"][i]["walls"][0]["pos-y"].asDouble();
                 wall.mat.txt = true;
-                wall.mat.txt_path = map_raw_data["Objects"][i]["walls"][0]["texture_path"].asString();
+                wall.mat.txt_path = exe_dir + map_raw_data["Objects"][i]["walls"][0]["texture_path"].asString();
 
                 obj.walls.push_back(wall);
             }else if(obj.type == "text"){
@@ -102,6 +107,8 @@
     }
 
     bool SaveMapToFile(Map map, std::string path) {
+
+        path = exe_dir + path;
 
         std::cout << "Saving map to path: " << path << std::endl;
 

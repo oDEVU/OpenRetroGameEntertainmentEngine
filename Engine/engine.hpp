@@ -7,6 +7,7 @@
 #include "map_loader.hpp"
 #include "engine_math.hpp"
 #include "camera.hpp"
+#include "pathhandler.hpp"
 
 orgy::Renderer render;
  
