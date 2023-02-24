@@ -11,6 +11,7 @@
 #include "engine_math.hpp"
 #include "camera.hpp"
 #include "debug_screen.hpp"
+#include "logger.hpp"
 
  namespace orgy
  {
@@ -23,7 +24,7 @@
             Renderer() {
                 font.loadFromFile("EngineAssets/fonts/font.ttf");
 
-                std::cout << "Renderer object created!" << std::endl;
+                stringLog("Renderer object created!",0);
             }
 
             void renderGame(sf::RenderWindow *window) {
@@ -51,7 +52,7 @@
                             window->close();
                             break;
                         case sf::Event::EventType::Resized:
-                            std::cout << "Window resized! \nNew size   x:" << event.size.width <<"   y:"<< event.size.height << "\n";
+                            stringLog("Window resized",0);
                             sf::FloatRect visibleArea(0, 0, event.size.width, event.size.height);
                             window->setView(sf::View(visibleArea));
                         }

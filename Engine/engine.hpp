@@ -8,6 +8,7 @@
 #include "engine_math.hpp"
 #include "camera.hpp"
 #include "pathhandler.hpp"
+#include "logger.hpp"
 
 orgy::Renderer render;
  

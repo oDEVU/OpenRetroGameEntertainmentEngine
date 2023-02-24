@@ -12,6 +12,8 @@
 #include "engine_math.hpp"
 #include "camera.hpp"
 #include "pathhandler.hpp"
+#include "functions.hpp"
+#include "logger.hpp"
 
 namespace orgy
 {
@@ -182,9 +184,10 @@ namespace orgy
         {
             if (!texture.loadFromFile(global_path + "EngineAssets/textures/empty.png"))
             {
-                std::cout << "Fatal error!!! could not find EngineAssets folder\n";
+                //std::cout << "Fatal error!!! could not find EngineAssets folder\n";
+                stringLog("Fatal error!!! could not find EngineAssets folder",1);
             }
-            std::cout << "Failed to load texture from path!\n";
+            stringLog("Failed to load texture from path!",1);
         }
 
         poly::textures_map.insert({texture_path, texture});
@@ -222,6 +225,9 @@ namespace orgy
         map->objs.at(s).distance /= map->objs.at(s).walls.size();
     }
 
+    //orgy::quick_sort(map->objs, 0, map->objs.size()-1);  // why the fuck is it slower
+
+    ///*
     for(s=0;s<map->getObjCount()-1;s++){
         for(w=0;w<map->getObjCount()-s-1;w++){
             if(map->getObjAt(w).distance < map->getObjAt(w+1).distance){
@@ -234,6 +240,7 @@ namespace orgy
             }
         }
     }
+    //*/
     
     //sectors
      
@@ -336,7 +343,7 @@ namespace orgy
                     map->objs.at(s).walls.at(0).ey = map->objs.at(s).walls.at(0).sy;
                     draw_entity(wx[0],wx[1],wy[0],wy[1],wy[2],wy[3],map->objs.at(s).walls.at(0).mat.txt_path, window);
                 }else{
-                    std::cout << "Unknown object type\n";
+                    stringLog("Tried to render unknown object type",0);
                 }
             }
             //map->objs.at(s).distance/=(map->objs.at(s).walls.size());

@@ -1,0 +1,6 @@
+Renderer object created!
+Loading map from path: /home/arch/Documents/GitHub/OpenRetroGameYngine/Project/Build/GameAssets/maps/level.omap
+Window resized
+Window resized
+Window resized
+Program closed succesfully.

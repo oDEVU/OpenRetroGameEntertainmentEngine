@@ -6,6 +6,7 @@
 #include <map>
 
 #include "ThirdParty/SelbaWard/SelbaWard.hpp"
+#include "logger.hpp"
 
 namespace poly {
 
@@ -64,9 +65,9 @@ void draw_poly_txt_affine(int x1, int y1, int x2, int y2, int x3, int y3, int x4
         {
             if (!texture.loadFromFile("empty.png"))
             {
-                std::cout << "Fatal error!!! could not find EngineAssets folder\n";
+                stringLog("Fatal error!!! could not find EngineAssets folder",1);
             }
-            std::cout << "Failed to load texture from path!\n";
+            stringLog("Failed to load texture from path!",1);
         }
 
         textures_map.insert({path, texture});
@@ -97,9 +98,9 @@ void draw_poly_txt_correct(int x1, int y1, int x2, int y2, int x3, int y3, int x
         {
             if (!texture.loadFromFile("EngineAssets/textures/empty.png"))
             {
-                std::cout << "Fatal error!!! could not find EngineAssets folder\n";
+                stringLog("Fatal error!!! could not find EngineAssets folder",1);
             }
-            std::cout << "Failed to load texture from path!\n";
+            stringLog("Failed to load texture from path!",1);
         }
 
         textures_map.insert({path, texture});

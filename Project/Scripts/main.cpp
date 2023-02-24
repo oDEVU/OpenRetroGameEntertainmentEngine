@@ -49,7 +49,7 @@ int main() {
 
     EndGame();
     
-    std::cout << "Program closed succesfully.\n";
+    stringLog("Program closed succesfully.",0);
 
     return 0;
 }

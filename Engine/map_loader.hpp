@@ -12,6 +12,7 @@
 #include "static.hpp"
 #include "map.hpp"
 #include "pathhandler.hpp"
+#include "logger.hpp"
 
  namespace orgy
  {
@@ -23,7 +24,7 @@
 
         Map map;
 
-        std::cout << "Loading map from path: " << path << std::endl;
+        stringLog("Loading map from path: " + path,0);
 
         std::ifstream map_file(path, std::ifstream::binary);
         Json::Reader reader;
@@ -96,7 +97,7 @@
 
                 obj.walls.push_back(wall);
             }else{
-                std::cout << "Could not load unknown object type.\n";
+                stringLog("Could not load unknown object type.",0);
             }
 
             map.addObj(obj);
@@ -110,9 +111,9 @@
 
         path = exe_dir + path;
 
-        std::cout << "Saving map to path: " << path << std::endl;
+        stringLog("Saving map to path: "+path,0);
+        stringLog("Saved map to path: "+path,0);
 
-        std::cout << "Saved map to path: " << path << std::endl;
         return true;
     }
  } // namespace orgy
