@@ -20,9 +20,10 @@
 
             bool affine_rendering = false;
             bool debug_lines = false;
+            bool global_light = true;
 
             Renderer() {
-                font.loadFromFile("EngineAssets/fonts/font.ttf");
+                font.loadFromFile(global_path + "EngineAssets/fonts/font.ttf");
 
                 stringLog("Renderer object created!",0);
             }
@@ -66,6 +67,10 @@
                             {
                                 debug_lines = !debug_lines;
                             }
+                            if (event.key.code == sf::Keyboard::F3)
+                            {
+                                global_light = !global_light;
+                            }
                         }
                     }
 
@@ -76,7 +81,7 @@
                     if(loaded_map){
                         //render map
 
-                        static_draw(window, temp_cam, &map, debug_lines, affine_rendering, font);
+                        static_draw(window, temp_cam, &map, debug_lines, affine_rendering, global_light, font);
                     }
 
                     if(show_fps){
@@ -151,6 +156,8 @@
             Camera cam;
 
         private:
+            std::string global_path = orgy::getExecutablePath().substr(0, orgy::getExecutablePath().find_last_of("\\/")+1);
+
             sf::Font font;
             double fps = 0; 
             double delta = 0;

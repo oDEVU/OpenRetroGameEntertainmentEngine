@@ -39,8 +39,6 @@ namespace orgy
     {
         std::string type = "static";
 
-        int extra = 0;
-
         double floor = 0;
         double celing = 0;
 
@@ -52,6 +50,12 @@ namespace orgy
         int surface = 0;
         int surf[32000];
         std::vector<wall> walls;
+
+        // text vars
+
+        sf::Text text;
+        int w = 0;
+        int h = 0;
     };
     
 } // namespace orgy

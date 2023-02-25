@@ -80,6 +80,7 @@
 
                 obj.walls.push_back(wall);
             }else if(obj.type == "text"){
+
                 obj.celing = map_raw_data["Objects"][i]["y"].asDouble();// << std::endl;
                 obj.floor = map_raw_data["Objects"][i]["y"].asDouble();// << std::endl;
 
@@ -88,12 +89,10 @@
                 wall.sy = map_raw_data["Objects"][i]["z"].asDouble();
                 wall.ex = map_raw_data["Objects"][i]["x"].asDouble();
                 wall.ey = map_raw_data["Objects"][i]["z"].asDouble();
-                wall.mat.txt_path = map_raw_data["Objects"][i]["text"].asString();
-                obj.extra = map_raw_data["Objects"][i]["font-size"].asDouble();
-                wall.mat.r = map_raw_data["Objects"][i]["r"].asInt();
-                wall.mat.g = map_raw_data["Objects"][i]["g"].asInt();
-                wall.mat.b = map_raw_data["Objects"][i]["b"].asInt();
-                wall.mat.a = map_raw_data["Objects"][i]["a"].asInt();
+
+                obj.text.setString(map_raw_data["Objects"][i]["text"].asString());
+                obj.text.setCharacterSize(map_raw_data["Objects"][i]["font-size"].asDouble());
+                obj.text.setColor(sf::Color(map_raw_data["Objects"][i]["r"].asInt(),map_raw_data["Objects"][i]["g"].asInt(),map_raw_data["Objects"][i]["b"].asInt(),map_raw_data["Objects"][i]["a"].asInt()));
 
                 obj.walls.push_back(wall);
             }else{
@@ -103,7 +102,7 @@
             map.addObj(obj);
         }
 
-
+        stringLog("Map loaded succesfully",0);
         return map;
     }
 

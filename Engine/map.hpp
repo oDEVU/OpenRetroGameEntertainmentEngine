@@ -22,6 +22,7 @@
             }
             
             std::vector<static_object> objs;
+            std::map<std::string, bool> arguments;
     };
  } // namespace orgy
  

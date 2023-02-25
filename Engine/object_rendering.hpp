@@ -112,7 +112,7 @@ namespace orgy
         poly::draw_poly( bx1,  sy2,  bx2,  ey2,  bx2,  ey1,  bx1,  sy1, color, window);  //draws colored poly.
     }
 }
-    void draw_text_3d(int x1, int x2, int b1, int b2, int t1, int t2, std::string text, sf::RenderWindow* window, int size, sf::Font font, sf::Color col){
+    void draw_text_3d(int x1, int x2, int b1, int b2, int t1, int t2, sf::RenderWindow* window, sf::Text txt, sf::Font font){
 
         if(x2 > 0 || x1 < window->getSize().x){
 
@@ -138,12 +138,10 @@ namespace orgy
         int ey1 = dyb*(bx2-xs+0.5)/dx+b1;
         int ey2 = dyt*(bx2-xs+0.5)/dx+t1;
 
-        sf::Text txt(text, font);
-        txt.setCharacterSize(size);
-        txt.setColor(col);
+        txt.setFont(font);
 
-        float width = txt.getLocalBounds().width;
-        float height = txt.getLocalBounds().height;
+        int width = txt.getLocalBounds().width;
+        int height = txt.getLocalBounds().height;
 
         txt.setPosition((x1-width/2), (sy1-height/2));
         window->draw(txt);
@@ -204,7 +202,7 @@ namespace orgy
     }
 }
 
-    void static_draw(sf::RenderWindow *window, Camera &cam, Map *map, bool debug_lines, bool affine_rendering, sf::Font font) {
+    void static_draw(sf::RenderWindow *window, Camera &cam, Map *map, bool debug_lines, bool affine_rendering, bool global_light, sf::Font font) {
         //poly::draw_poly_txt_correct(0,0,250,50,250,300,0,250,"../Engine/EngineAssets/textures/empty.png",window);
         //poly::draw_poly_txt_affine(0,300,250,350,250,600,0,550,"../Engine/EngineAssets/textures/empty.png",window);
         //sf::Color wall_color{ 255, 255, 255 };
@@ -320,30 +318,33 @@ namespace orgy
                 wx[2]=wx[2]*222/wy[2]+(window->getSize().x/2); wy[2]=wz[2]*222/wy[2]+(window->getSize().y/2); 
                 wx[3]=wx[3]*222/wy[3]+(window->getSize().x/2); wy[3]=wz[3]*222/wy[3]+(window->getSize().y/2); 
 
-                float angle = ((atan2(shy1 - shy2, shx1 - shx2))*180/M_PI)+180;
-
-                angle /= 360;
-                angle = pow((18*angle-9),2);//+160;
-                angle *= -1;
-                angle += 80;
-                if(angle > 80 || angle < 0){
-                    angle = 0;
-                }
-                
-                sf::Color shadow = sf::Color(0,0,0,angle);
-
                 if(map->objs.at(s).type == "static"){
                     draw_wall(wx[0],wx[1],wy[0],wy[1],wy[2],wy[3],1, s , 0, map->objs.at(s).walls.at(w), w, window, map->objs.at(s).flip,true, map->objs.at(s), debug_lines, affine_rendering);
-                    //shade_wall(wx[0],wx[1],wy[0],wy[1],wy[2],wy[3],shadow, window);
+                    if(global_light){
+
+                        float angle = ((atan2(shy1 - shy2, shx1 - shx2))*180/M_PI)+180;
+
+                        angle /= 360;
+                        angle = pow((18*angle-9),2);//+160;
+                        angle *= -1;
+                        angle += 80;
+                        if(angle > 80 || angle < 0){
+                            angle = 0;
+                        }
+                
+                        sf::Color shadow = sf::Color(0,0,0,angle);
+
+                        shade_wall(wx[0],wx[1],wy[0],wy[1],wy[2],wy[3],shadow, window);  
+                    }
                 }else if(map->objs.at(s).type == "text"){
-                    draw_text_3d(wx[0], wx[1], wy[0], wy[1], wy[2], wy[3], map->objs.at(s).walls.at(0).mat.txt_path, window, map->objs.at(s).extra, font, sf::Color(map->objs.at(s).walls.at(0).mat.r,map->objs.at(s).walls.at(0).mat.g,map->objs.at(s).walls.at(0).mat.b,map->objs.at(s).walls.at(0).mat.a));
+                    draw_text_3d(wx[0], wx[1], wy[0], wy[1], wy[2], wy[3],  window, map->objs.at(s).text, font);
                 }else if(map->objs.at(s).type == "entity"){
                     // TODO
                     map->objs.at(s).walls.at(0).ex = map->objs.at(s).walls.at(0).sx;
                     map->objs.at(s).walls.at(0).ey = map->objs.at(s).walls.at(0).sy;
                     draw_entity(wx[0],wx[1],wy[0],wy[1],wy[2],wy[3],map->objs.at(s).walls.at(0).mat.txt_path, window);
                 }else{
-                    stringLog("Tried to render unknown object type",0);
+                    stringLog("Tried to render unknown object type. \nmap_loader should not allow this to happen, it is possible that some objects got corrupted or map data was edited with outside program",0);
                 }
             }
             //map->objs.at(s).distance/=(map->objs.at(s).walls.size());
