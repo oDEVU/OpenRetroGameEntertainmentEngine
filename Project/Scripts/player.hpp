@@ -4,9 +4,9 @@
 #include "../../Engine/engine.hpp"
 #include <iostream>
 
-double player_walk_speed = 25;
-double player_fly_speed = 25;
-double player_rotation_speed = 25;
+double player_walk_speed = 60;
+double player_fly_speed = 60;
+double player_rotation_speed = 60;
 
 //player funtions
 
