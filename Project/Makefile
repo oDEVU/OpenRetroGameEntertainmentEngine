@@ -1,5 +1,5 @@
 CFLAGS = -std=c++20
-LDFLAGS = -lglfw -lsfml-graphics -lsfml-window -lsfml-system -lOpenCL -ljsoncpp -fcompare-debug-second -Wnarrowing -w -O3
+LDFLAGS = -lglfw -lGLU -lGL -lsfml-graphics -lsfml-window -lsfml-system -lOpenCL -ljsoncpp -fcompare-debug-second -Wnarrowing -w -O3
 HPP_FILES = Scripts/*.hpp ../Engine/*.hpp ../Engine/ThirdParty/SelbaWard/SelbaWard/*hpp
 CPP_FILES = Scripts/*.cpp ../Engine/*.cpp ../Engine/ThirdParty/SelbaWard/SelbaWard/*cpp
 PROJECT_NAME = game_name

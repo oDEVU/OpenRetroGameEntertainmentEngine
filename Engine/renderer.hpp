@@ -87,7 +87,7 @@
                     window->draw(txt);
                     }
 
-                    print_debug(window, font, w_y, debug_lines, affine_rendering);
+                    debuger.print_debug(window, font, w_y, debug_lines, affine_rendering, frame_count);
 
                     if(texts.size()>0){
                         for(int i = texts.size()-1; i >= 0; i--){
@@ -157,6 +157,7 @@
             bool show_fps = 0;
 
             int frame_count = 0;
+            screenDebuger debuger;
 
             bool loaded_map = 0;
 

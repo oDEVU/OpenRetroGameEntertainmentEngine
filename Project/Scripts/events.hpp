@@ -9,9 +9,13 @@
 
 double count = 0;
 
+sf::Clock deltaClock;
+
 void EventTick() {
     //std::cout << "test\n";
-    handle_player_input(0.001);
+
+    sf::Time dt = deltaClock.restart();
+    handle_player_input(dt.asSeconds());
 }
 
 void BeginGame() {
