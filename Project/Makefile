@@ -1,15 +1,25 @@
+# This file will be auto genrated by the editor for linux build
+
+# compilatin
 CFLAGS = -std=c++20
-LDFLAGS = -lglfw -lGLU -lGL -lsfml-graphics -lsfml-window -lsfml-system -lOpenCL -ljsoncpp -fcompare-debug-second -Wnarrowing -w -O3
-HPP_FILES = Scripts/*.hpp ../Engine/*.hpp ../Engine/ThirdParty/SelbaWard/SelbaWard/*hpp
-CPP_FILES = Scripts/*.cpp ../Engine/*.cpp ../Engine/ThirdParty/SelbaWard/SelbaWard/*cpp
-PROJECT_NAME = game_name
+LDFLAGS = -lglfw -lGLU -lGL -lsfml-graphics -lsfml-window -lsfml-system -lOpenCL -ljsoncpp -fcompare-debug-second -Wnarrowing -w -gdwarf-3 -O3 -shared-libgcc #dependencies
+
+# Engine specific
+ENGINE_PATH = ../Engine
+ENGINE_HPP_FILES = $(ENGINE_PATH)/*.hpp $(ENGINE_PATH)/ThirdParty/SelbaWard/SelbaWard/*hpp
+ENGINE_CPP_FILES = $(ENGINE_PATH)/*.cpp $(ENGINE_PATH)/ThirdParty/SelbaWard/SelbaWard/*cpp
+
+#Project specific
+PROJECT_HPP_FILES = Scripts/*.hpp 
+PROJECT_CPP_FILES = Scripts/*.cpp 
+PROJECT_NAME = otp # orgy test project
 BUILD_PATH = ./Build
 
-VulkanApp: $(HPP_FILES) $(CPP_FILES)
+Build: $(ENGINE_HPP_FILES) $(ENGINE_CPP_FILES) $(PROJECT_HPP_FILES) $(PROJECT_CPP_FILES)
 	rm -r $(BUILD_PATH) 
 	mkdir -p $(BUILD_PATH)
 	mkdir -p $(BUILD_PATH)/logs
 	touch $(BUILD_PATH)/logs/logfile.txt
-	g++ $(CFLAGS) -o $(BUILD_PATH)/$(PROJECT_NAME) $(CPP_FILES) $(LDFLAGS)
-	cp -r ./EngineAssets $(BUILD_PATH)/EngineAssets
+	g++ $(CFLAGS) -o $(BUILD_PATH)/$(PROJECT_NAME) $(PROJECT_CPP_FILES) $(ENGINE_CPP_FILES) $(LDFLAGS)
+	cp -r $(ENGINE_PATH)/EngineAssets $(BUILD_PATH)/EngineAssets
 	cp -r ./GameAssets $(BUILD_PATH)/GameAssets

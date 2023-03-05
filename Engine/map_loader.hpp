@@ -24,7 +24,7 @@
 
         Map map;
 
-        stringLog("Loading map from path: " + path,0);
+        consoleLog("Loading map from path: " + path,0);
 
         std::ifstream map_file(path, std::ifstream::binary);
         Json::Reader reader;
@@ -96,13 +96,13 @@
 
                 obj.walls.push_back(wall);
             }else{
-                stringLog("Could not load unknown object type.",0);
+                consoleLog("Could not load unknown object type.",0);
             }
 
             map.addObj(obj);
         }
 
-        stringLog("Map loaded succesfully",0);
+        consoleLog("Map loaded succesfully",0);
         return map;
     }
 
@@ -110,8 +110,8 @@
 
         path = exe_dir + path;
 
-        stringLog("Saving map to path: "+path,0);
-        stringLog("Saved map to path: "+path,0);
+        consoleLog("Saving map to path: "+path,0);
+        consoleLog("Saved map to path: "+path,0);
 
         return true;
     }

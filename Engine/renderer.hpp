@@ -25,7 +25,7 @@
             Renderer() {
                 font.loadFromFile(global_path + "EngineAssets/fonts/font.ttf");
 
-                stringLog("Renderer object created!",0);
+                consoleLog("Renderer object created!",0);
             }
 
             void renderGame(sf::RenderWindow *window) {
@@ -53,7 +53,7 @@
                             window->close();
                             break;
                         case sf::Event::EventType::Resized:
-                            stringLog("Window resized",0);
+                            consoleLog("Window resized",0);
                             sf::FloatRect visibleArea(0, 0, event.size.width, event.size.height);
                             window->setView(sf::View(visibleArea));
                         }

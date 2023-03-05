@@ -49,7 +49,7 @@ int main() {
 
     EndGame();
     
-    stringLog("Program closed succesfully.",0);
+    consoleLog("Program closed succesfully. ",0);
 
     return 0;
 }

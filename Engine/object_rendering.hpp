@@ -183,9 +183,9 @@ namespace orgy
             if (!texture.loadFromFile(global_path + "EngineAssets/textures/empty.png"))
             {
                 //std::cout << "Fatal error!!! could not find EngineAssets folder\n";
-                stringLog("Fatal error!!! could not find EngineAssets folder",1);
+                consoleLog("Fatal error!!! could not find EngineAssets folder",1);
             }
-            stringLog("Failed to load texture from path!",1);
+            consoleLog("Failed to load texture from path!",1);
         }
 
         poly::textures_map.insert({texture_path, texture});
@@ -344,7 +344,7 @@ namespace orgy
                     map->objs.at(s).walls.at(0).ey = map->objs.at(s).walls.at(0).sy;
                     draw_entity(wx[0],wx[1],wy[0],wy[1],wy[2],wy[3],map->objs.at(s).walls.at(0).mat.txt_path, window);
                 }else{
-                    stringLog("Tried to render unknown object type. \nmap_loader should not allow this to happen, it is possible that some objects got corrupted or map data was edited with outside program",0);
+                    consoleLog("Tried to render unknown object type. \nmap_loader should not allow this to happen, it is possible that some objects got corrupted or map data was edited with outside program",0);
                 }
             }
             //map->objs.at(s).distance/=(map->objs.at(s).walls.size());

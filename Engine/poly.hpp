@@ -65,9 +65,9 @@ void draw_poly_txt_affine(int x1, int y1, int x2, int y2, int x3, int y3, int x4
         {
             if (!texture.loadFromFile("empty.png"))
             {
-                stringLog("Fatal error!!! could not find EngineAssets folder",1);
+                consoleLog("Fatal error!!! could not find EngineAssets folder",1);
             }
-            stringLog("Failed to load texture from path!",1);
+            consoleLog("Failed to load texture from path!",1);
         }
 
         textures_map.insert({path, texture});
@@ -98,9 +98,9 @@ void draw_poly_txt_correct(int x1, int y1, int x2, int y2, int x3, int y3, int x
         {
             if (!texture.loadFromFile("EngineAssets/textures/empty.png"))
             {
-                stringLog("Fatal error!!! could not find EngineAssets folder",1);
+                consoleLog("Fatal error!!! could not find EngineAssets folder",1);
             }
-            stringLog("Failed to load texture from path!",1);
+            consoleLog("Failed to load texture from path!",1);
         }
 
         textures_map.insert({path, texture});
