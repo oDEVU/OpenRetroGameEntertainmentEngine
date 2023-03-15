@@ -45,7 +45,7 @@ int main() {
 
     std::thread tick(start_event_tick);
 
-    render.renderGame(window.getWindow());        
+    render.renderGame(&window);        
 
     EndGame();
     

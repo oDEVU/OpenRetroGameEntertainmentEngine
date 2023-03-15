@@ -124,4 +124,42 @@ void draw_poly_txt_correct(int x1, int y1, int x2, int y2, int x3, int y3, int x
     //std::cout << x << std::endl;
     window->draw(sprite);
 }
+
+void draw_poly_txt_correct_shade(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4, std::string path, sf::RenderWindow* window, int alpha){
+
+    if(!textures_map.contains(path)){
+
+        sf::Texture texture;
+        if (!texture.loadFromFile(path))
+        {
+            if (!texture.loadFromFile("EngineAssets/textures/empty.png"))
+            {
+                consoleLog("Fatal error!!! could not find EngineAssets folder",1);
+            }
+            consoleLog("Failed to load texture from path!",1);
+        }
+
+        textures_map.insert({path, texture});
+    }
+
+    int x = textures_map[path].getSize().x;//texture.getSize().x;
+    int y = textures_map[path].getSize().y;
+
+    //std::cout << "Texture size x: " << x << " | y: " << y <<"\n";
+    sw::ElasticSprite sprite(textures_map[path]);
+
+    sprite.setVertexOffset(0, { x1       , y4        });
+    sprite.setVertexOffset(3, { x2-x     , y3        });
+    sprite.setVertexOffset(2, { x3-x     , y2-y      });
+    sprite.setVertexOffset(1, { x4       , y1-y      });
+
+    sprite.activatePerspectiveInterpolation();
+    //sprite.activateBilinearInterpolation();
+    //sprite.setUseShader();
+
+    sprite.setColor(sf::Color(0,0,0,alpha));
+
+    //std::cout << x << std::endl;
+    window->draw(sprite);
+}
 }

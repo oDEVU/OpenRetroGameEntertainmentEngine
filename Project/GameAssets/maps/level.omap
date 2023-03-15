@@ -15,7 +15,7 @@
                     "g":255,
                     "b":255,
                     "a":255,
-                    "texture_path":"GameAssets/textures/fence.png"
+                    "texture_path":"GameAssets/textures/FENCE.png"
                 },
                 {
                     "sx":-26,
@@ -27,7 +27,7 @@
                     "g":255,
                     "b":255,
                     "a":255,
-                    "texture_path":"GameAssets/textures/fence.png"
+                    "texture_path":"GameAssets/textures/FENCE.png"
                 },
                 {
                     "sx":-26,
@@ -39,7 +39,7 @@
                     "g":255,
                     "b":255,
                     "a":255,
-                    "texture_path":"GameAssets/textures/fence.png"
+                    "texture_path":"GameAssets/textures/FENCE.png"
                 },
                 {
                     "sx":-24,
@@ -51,7 +51,7 @@
                     "g":255,
                     "b":255,
                     "a":255,
-                    "texture_path":"GameAssets/textures/fence.png"
+                    "texture_path":"GameAssets/textures/FENCE.png"
                 },
                 {
                     "sx":-16,
@@ -63,7 +63,7 @@
                     "g":255,
                     "b":255,
                     "a":255,
-                    "texture_path":"GameAssets/textures/fence.png"
+                    "texture_path":"GameAssets/textures/FENCE.png"
                 }
             ]
         },
@@ -131,13 +131,13 @@
             "celing_g":0,
             "celing_b":0,
             "celing_a":255,
-            "celing_texture_path":"GameAssets/textures/crate.jpg",
+            "celing_texture_path":"GameAssets/textures/WOODB.png",
             "floor_is_textured":true,
             "floor_r":255,
             "floor_g":0,
             "floor_b":0,
             "floor_a":255,
-            "floor_texture_path":"GameAssets/textures/crate.jpg",
+            "floor_texture_path":"GameAssets/textures/WOODB.png",
             "walls":[
                 {
                     "sx":64,
@@ -149,7 +149,7 @@
                     "g":0,
                     "b":0,
                     "a":255,
-                    "texture_path":"GameAssets/textures/crate.jpg"
+                    "texture_path":"GameAssets/textures/WOODB.png"
                 },
                 {
                     "sx":80,
@@ -161,7 +161,7 @@
                     "g":255,
                     "b":0,
                     "a":255,
-                    "texture_path":"GameAssets/textures/crate.jpg"
+                    "texture_path":"GameAssets/textures/WOODB.png"
                 },
                 {
                     "sx":80,
@@ -173,7 +173,7 @@
                     "g":0,
                     "b":255,
                     "a":255,
-                    "texture_path":"GameAssets/textures/crate.jpg"
+                    "texture_path":"GameAssets/textures/WOODB.png"
                 },
                 {
                     "sx":64,
@@ -185,7 +185,7 @@
                     "g":255,
                     "b":255,
                     "a":255,
-                    "texture_path":"GameAssets/textures/crate.jpg"
+                    "texture_path":"GameAssets/textures/WOODB.png"
                 }
             ]
         },
@@ -204,7 +204,7 @@
                     "g":0,
                     "b":0,
                     "a":255,
-                    "texture_path":"GameAssets/textures/brick.jpg"
+                    "texture_path":"GameAssets/textures/CLAYBRICKS.png"
                 },
                 {
                     "sx":48,
@@ -216,7 +216,7 @@
                     "g":255,
                     "b":0,
                     "a":255,
-                    "texture_path":"GameAssets/textures/brick.jpg"
+                    "texture_path":"GameAssets/textures/CLAYBRICKS.png"
                 },
                 {
                     "sx":40,
@@ -228,7 +228,7 @@
                     "g":0,
                     "b":255,
                     "a":255,
-                    "texture_path":"GameAssets/textures/brick.jpg"
+                    "texture_path":"GameAssets/textures/CLAYBRICKS.png"
                 }
             ]
         },

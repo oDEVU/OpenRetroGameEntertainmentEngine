@@ -19,11 +19,14 @@ namespace orgy
 {
     std::string global_path = orgy::getExecutablePath().substr(0, orgy::getExecutablePath().find_last_of("\\/")+1);
 
+    int global_window_x = 1920;
+    int global_window_y = 1080;
+
     void clip_behind_camera(double *x1,double *y1, double *z1, double x2,double y2,double z2){
         double da=*y1;
         double db=y2;
-        //double d=da-db;
-        //if (d==0){d=1;};
+        double d=da-db;
+        if (d==0){d=1;};
         double s = da / (da-db);
         *x1 = *x1 + s*(x2-(*x1));
         *y1 = *y1 + s*(y2-(*y1)); if(*y1<1){*y1=1;};
@@ -36,6 +39,40 @@ namespace orgy
         return distance;
     }
 
+    void draw_plane(sf::RenderWindow* window, double caml, double cama, double camx , double camy, double camz){
+        int x=0,y=0;
+        int xo = global_window_x / 2;
+        int yo = global_window_y / 2;
+        double lookUp=-caml*8; if(lookUp>global_window_y){lookUp=global_window_y;}
+        double moveUp=camz/16; if(moveUp==0){moveUp=0.0001;}
+
+        for(y=-lookUp;y<yo+lookUp;y++){
+            for(x=-xo;x<xo;x++){ 
+                double z = y + lookUp; if(z==0){z=0.0001;}
+                double fx = x/z*moveUp;
+                double fy = 222.0/z*moveUp;
+                double rx = fx*sin(d_to_rad(cama))-fy*cos(d_to_rad(cama))+camy/30;
+                double ry = fx*cos(d_to_rad(cama))+fy*sin(d_to_rad(cama))-camx/30;
+                if(rx<0){rx=-rx+1;}
+                if(ry<0){ry=-ry+1;}
+                if(rx<=0 || ry <= 0 || rx > 5 || ry > 5){continue;}
+                if((int)rx%2==(int)ry%2){
+                    //sf::RectangleShape rectangle;
+                    //rectangle.setSize(sf::Vector2f(1, 1));
+                    //rectangle.setFillColor(sf::Color::Red);
+                    //rectangle.setPosition(x+xo, y+yo);
+                    //window->draw(rectangle);
+                }else{
+                    //sf::RectangleShape rectangle;
+                    //rectangle.setSize(sf::Vector2f(1, 1));
+                    //rectangle.setFillColor(sf::Color::Green);
+                    //rectangle.setPosition(x+xo, y+yo);
+                    //window->draw(rectangle);
+                }
+            }
+        }
+    }
+
     void draw_wall(int x1, int x2, int b1, int b2, int t1, int t2, int c, int s, int t, wall wll, int w, sf::RenderWindow* window, int l, int loop, static_object S, bool debug_lines, bool affine_rendering){
     srand(time(0));
 
@@ -43,7 +80,7 @@ namespace orgy
 
         int x,y;
 
-        if(x2 > 0 || x1 < window->getSize().x){
+        if(x2 > 0 || x1 < global_window_x){
 
 
         int dyb = b2-b1;
@@ -59,8 +96,8 @@ namespace orgy
 
         if(x1<1){x1=1;}
         if(x2<1){x2=1;}
-        if(x1>(window->getSize().x-1)){x1=(window->getSize().x-1);}
-        if(x2>(window->getSize().x-1)){x2=(window->getSize().x-1);}
+        if(x1>(global_window_x-1)){x1=(global_window_x-1);}
+        if(x2>(global_window_x-1)){x2=(global_window_x-1);}
 
         int sy1 = dyb*(bx1-xs+0.5)/dx+b1;
         int sy2 = dyt*(bx1-xs+0.5)/dx+t1;
@@ -83,9 +120,9 @@ namespace orgy
         }
     }
 }
-    void shade_wall(int x1, int x2, int b1, int b2, int t1, int t2, sf::Color color, sf::RenderWindow* window){
+    void shade_wall(int x1, int x2, int b1, int b2, int t1, int t2, sf::Color color, sf::RenderWindow* window, wall wll, bool affine_rendering){
 
-        if(x2 > 0 || x1 < window->getSize().x){
+        if(x2 > 0 || x1 < global_window_x){
 
 
         int dyb = b2-b1;
@@ -99,22 +136,34 @@ namespace orgy
         int bx1 = x1;
         int bx2 = x2;
 
-        if(x1<1){x1=1;}
+        if(x1<1){x1=1;} 
         if(x2<1){x2=1;}
-        if(x1>(window->getSize().x-1)){x1=(window->getSize().x-1);}
-        if(x2>(window->getSize().x-1)){x2=(window->getSize().x-1);}
+        if(x1>(global_window_x-1)){x1=(global_window_x-1);}
+        if(x2>(global_window_x-1)){x2=(global_window_x-1);}
 
         int sy1 = dyb*(bx1-xs+0.5)/dx+b1;
         int sy2 = dyt*(bx1-xs+0.5)/dx+t1;
         int ey1 = dyb*(bx2-xs+0.5)/dx+b1;
         int ey2 = dyt*(bx2-xs+0.5)/dx+t1;
 
-        poly::draw_poly( bx1,  sy2,  bx2,  ey2,  bx2,  ey1,  bx1,  sy1, color, window);  //draws colored poly.
+        if(wll.mat.txt == 0){
+            if(affine_rendering == true){
+                // pass
+            }else{
+                poly::draw_poly( bx1,  sy2,  bx2,  ey2,  bx2,  ey1,  bx1,  sy1, color, window);  //draws colored poly.
+            }
+        }else{
+            if(affine_rendering == true){
+                // pass
+            }else{
+                poly::draw_poly_txt_correct_shade( bx1,  sy2,  bx2,  ey2,  bx2,  ey1,  bx1,  sy1, wll.mat.txt_path, window, color.a);  //draws textured poly.
+            }
+        }
     }
 }
     void draw_text_3d(int x1, int x2, int b1, int b2, int t1, int t2, sf::RenderWindow* window, sf::Text txt, sf::Font font){
 
-        if(x2 > 0 || x1 < window->getSize().x){
+        if(x2 > 0 || x1 < global_window_x){
 
 
         int dyb = b2-b1;
@@ -130,8 +179,8 @@ namespace orgy
 
         if(x1<1){x1=1;}
         if(x2<1){x2=1;}
-        if(x1>(window->getSize().x-1)){x1=(window->getSize().x-1);}
-        if(x2>(window->getSize().x-1)){x2=(window->getSize().x-1);}
+        if(x1>(global_window_x-1)){x1=(global_window_x-1);}
+        if(x2>(global_window_x-1)){x2=(global_window_x-1);}
 
         int sy1 = dyb*(bx1-xs+0.5)/dx+b1;
         int sy2 = dyt*(bx1-xs+0.5)/dx+t1;
@@ -153,7 +202,7 @@ namespace orgy
 
         //std::cout << texture_path << std::endl;
 
-        if(x2 > 0 || x1 < window->getSize().x){
+        if(x2 > 0 || x1 < global_window_x){
 
 
         int dyb = b2-b1;
@@ -169,8 +218,8 @@ namespace orgy
 
         if(x1<1){x1=1;}
         if(x2<1){x2=1;}
-        if(x1>(window->getSize().x-1)){x1=(window->getSize().x-1);}
-        if(x2>(window->getSize().x-1)){x2=(window->getSize().x-1);}
+        if(x1>(global_window_x-1)){x1=(global_window_x-1);}
+        if(x2>(global_window_x-1)){x2=(global_window_x-1);}
 
         int sy1 = dyb*(bx1-xs+0.5)/dx+b1;
         int sy2 = dyt*(bx1-xs+0.5)/dx+t1;
@@ -202,11 +251,14 @@ namespace orgy
     }
 }
 
-    void static_draw(sf::RenderWindow *window, Camera &cam, Map *map, bool debug_lines, bool affine_rendering, bool global_light, sf::Font font) {
+    void static_draw(sf::RenderWindow *window, Camera &cam, Map *map, bool debug_lines, bool affine_rendering, bool global_light, sf::Font font, Window *win) {
         //poly::draw_poly_txt_correct(0,0,250,50,250,300,0,250,"../Engine/EngineAssets/textures/empty.png",window);
         //poly::draw_poly_txt_affine(0,300,250,350,250,600,0,550,"../Engine/EngineAssets/textures/empty.png",window);
         //sf::Color wall_color{ 255, 255, 255 };
         //poly::draw_poly( 0,300,250,350,250,600,0,550, wall_color, window);
+    
+    global_window_x = window->getSize().x / win->getScale();
+    global_window_y = window->getSize().y / win->getScale();
 
 
     double wx[4],wy[4],wz[4];
@@ -313,16 +365,17 @@ namespace orgy
                     clip_behind_camera(&wx[3],&wy[3],&wz[3],wx[2],wy[2],wz[2]);
                 }
 
-                wx[0]=wx[0]*222/wy[0]+(window->getSize().x/2); wy[0]=wz[0]*222/wy[0]+(window->getSize().y/2); 
-                wx[1]=wx[1]*222/wy[1]+(window->getSize().x/2); wy[1]=wz[1]*222/wy[1]+(window->getSize().y/2);  
-                wx[2]=wx[2]*222/wy[2]+(window->getSize().x/2); wy[2]=wz[2]*222/wy[2]+(window->getSize().y/2); 
-                wx[3]=wx[3]*222/wy[3]+(window->getSize().x/2); wy[3]=wz[3]*222/wy[3]+(window->getSize().y/2); 
+                wx[0]=wx[0]*222/wy[0]+(global_window_x/2); wy[0]=wz[0]*222/wy[0]+(global_window_y/2); 
+                wx[1]=wx[1]*222/wy[1]+(global_window_x/2); wy[1]=wz[1]*222/wy[1]+(global_window_y/2);  
+                wx[2]=wx[2]*222/wy[2]+(global_window_x/2); wy[2]=wz[2]*222/wy[2]+(global_window_y/2); 
+                wx[3]=wx[3]*222/wy[3]+(global_window_x/2); wy[3]=wz[3]*222/wy[3]+(global_window_y/2); 
 
+                draw_plane(window, cam.l, cam.a, cam.x, cam.y, cam.z);
                 if(map->objs.at(s).type == "static"){
                     draw_wall(wx[0],wx[1],wy[0],wy[1],wy[2],wy[3],1, s , 0, map->objs.at(s).walls.at(w), w, window, map->objs.at(s).flip,true, map->objs.at(s), debug_lines, affine_rendering);
                     if(global_light){
 
-                        float angle = ((atan2(shy1 - shy2, shx1 - shx2))*180/M_PI)+180;
+                        double angle = ((atan2(shy1 - shy2, shx1 - shx2))*180/M_PI)+180;
 
                         angle /= 360;
                         angle = pow((18*angle-9),2);//+160;
@@ -334,7 +387,7 @@ namespace orgy
                 
                         sf::Color shadow = sf::Color(0,0,0,angle);
 
-                        shade_wall(wx[0],wx[1],wy[0],wy[1],wy[2],wy[3],shadow, window);  
+                        shade_wall(wx[0],wx[1],wy[0],wy[1],wy[2],wy[3],shadow, window, map->objs.at(s).walls.at(w), affine_rendering);  
                     }
                 }else if(map->objs.at(s).type == "text"){
                     draw_text_3d(wx[0], wx[1], wy[0], wy[1], wy[2], wy[3],  window, map->objs.at(s).text, font);

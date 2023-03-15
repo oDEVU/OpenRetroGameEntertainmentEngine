@@ -16,7 +16,7 @@ namespace orgy{
             int start = 55;
             std::string gpu = " ";
             std::string ver = " ";
-            std::vector<std::string> info = {"Open-Retro-Game-Yngine [O-R-G-Y] -Rewrited", " ", " ", "Current frame: ", "Debug lines: ", "Affine texture rendering: "};
+            std::vector<std::string> info = {"Open-Retro-Game-Yngine [O-R-G-Y] -Rewrited", " ", " ", "Current frame: ", "Debug lines: ", "Affine texture rendering: ", "Rendering resolution: 0:0"};
         public:
             screenDebuger(){
                 glfwInit();
@@ -28,7 +28,7 @@ namespace orgy{
                 info.at(2) = ver;
             }
 
-    void print_debug(sf::RenderWindow *window, sf::Font font, int w_y, bool debug_lines, bool affine_rendering, int frames){
+    void print_debug(sf::RenderWindow *window, sf::Font font, int w_y, bool debug_lines, bool affine_rendering, int frames, int x, int y){
         //glfwInit(); /* create opengl context */
         if(!isInitialized){
             glfwInit();
@@ -48,6 +48,7 @@ namespace orgy{
         info.at(3) = "Curent frame: " + std::to_string(frames);
         info.at(4) = "Debug lines: " + std::to_string(debug_lines);
         info.at(5) = "Affine texture rendering: " + std::to_string(affine_rendering);
+        info.at(6) = "Rendering resolution: " + std::to_string(x) + ":" + std::to_string(y);
 
         for(int i = 0; i < info.size(); i++){
             sf::Text txt(info.at(i), font);

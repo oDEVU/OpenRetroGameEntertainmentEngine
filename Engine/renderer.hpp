@@ -28,7 +28,10 @@
                 consoleLog("Renderer object created!",0);
             }
 
-            void renderGame(sf::RenderWindow *window) {
+            void renderGame(Window *win) {
+
+                sf::RenderWindow* window = win->getWindow();
+
                 sf::Clock clock;
                 double lastTime = 0;
 
@@ -56,6 +59,7 @@
                             consoleLog("Window resized",0);
                             sf::FloatRect visibleArea(0, 0, event.size.width, event.size.height);
                             window->setView(sf::View(visibleArea));
+                            win->reloadWindow();
                         }
                         if (event.type == sf::Event::KeyReleased)
                         {
@@ -81,7 +85,7 @@
                     if(loaded_map){
                         //render map
 
-                        static_draw(window, temp_cam, &map, debug_lines, affine_rendering, global_light, font);
+                        static_draw(window, temp_cam, &map, debug_lines, affine_rendering, global_light, font, win);
                     }
 
                     if(show_fps){
@@ -92,7 +96,7 @@
                     window->draw(txt);
                     }
 
-                    debuger.print_debug(window, font, w_y, debug_lines, affine_rendering, frame_count);
+                    debuger.print_debug(window, font, w_y, debug_lines, affine_rendering, frame_count, 0, 0);
 
                     if(texts.size()>0){
                         for(int i = texts.size()-1; i >= 0; i--){

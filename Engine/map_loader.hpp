@@ -56,6 +56,7 @@
 
                 for(Json::Value::ArrayIndex j = 0; j < map_raw_data["Objects"][i]["walls"].size(); j++){
                     wall wall;
+
                     wall.sx = map_raw_data["Objects"][i]["walls"][j]["sx"].asDouble();
                     wall.sy = map_raw_data["Objects"][i]["walls"][j]["sy"].asDouble();
                     wall.ex = map_raw_data["Objects"][i]["walls"][j]["ex"].asDouble();
@@ -66,6 +67,7 @@
                     wall.mat.b = map_raw_data["Objects"][i]["walls"][j]["b"].asInt();
                     wall.mat.a = map_raw_data["Objects"][i]["walls"][j]["a"].asInt();
                     wall.mat.txt_path = exe_dir + map_raw_data["Objects"][i]["walls"][j]["texture_path"].asString();
+
                     obj.walls.push_back(wall);
                 }
             }else if(obj.type == "entity"){
