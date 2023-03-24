@@ -15,9 +15,9 @@
 #include "functions.hpp"
 #include "logger.hpp"
 
-namespace orgy
+namespace orgee
 {
-    std::string global_path = orgy::getExecutablePath().substr(0, orgy::getExecutablePath().find_last_of("\\/")+1);
+    std::string global_path = orgee::getExecutablePath().substr(0, orgee::getExecutablePath().find_last_of("\\/")+1);
 
     int global_window_x = 1920;
     int global_window_y = 1080;
@@ -275,7 +275,7 @@ namespace orgy
         map->objs.at(s).distance /= map->objs.at(s).walls.size();
     }
 
-    //orgy::quick_sort(map->objs, 0, map->objs.size()-1);  // why the fuck is it slower
+    //orgee::quick_sort(map->objs, 0, map->objs.size()-1);  // why the fuck is it slower
 
     ///*
     for(s=0;s<map->getObjCount()-1;s++){
@@ -405,4 +405,4 @@ namespace orgy
     }
     }
 
-} // namespace orgy
+} // namespace orgee

@@ -10,5 +10,5 @@
 #include "pathhandler.hpp"
 #include "logger.hpp"
 
-orgy::Renderer render;
+orgee::Renderer render;
  

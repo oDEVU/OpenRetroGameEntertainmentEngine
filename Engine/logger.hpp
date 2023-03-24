@@ -5,7 +5,7 @@
 
 #include "pathhandler.hpp"
 
-std::string global_path = orgy::getExecutablePath().substr(0, orgy::getExecutablePath().find_last_of("\\/")+1);
+std::string global_path = orgee::getExecutablePath().substr(0, orgee::getExecutablePath().find_last_of("\\/")+1);
 
 void consoleLog(std::string text, bool printToTerminal){
 

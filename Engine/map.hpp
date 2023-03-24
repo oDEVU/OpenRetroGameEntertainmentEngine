@@ -5,7 +5,7 @@
 #include <iostream>
 #include "static.hpp"
 
- namespace orgy
+ namespace orgee
  {
     class Map{
         public:
@@ -24,5 +24,5 @@
             std::vector<static_object> objs;
             std::map<std::string, bool> arguments;
     };
- } // namespace orgy
+ } // namespace orgee
  

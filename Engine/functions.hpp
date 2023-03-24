@@ -7,7 +7,7 @@
 
 using namespace std;
 
-namespace orgy
+namespace orgee
 {
 
 int Partition(vector<static_object> &v, int start, int end){

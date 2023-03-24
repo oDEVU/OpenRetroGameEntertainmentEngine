@@ -24,9 +24,9 @@ void start_event_tick(){
 int main() {
     std::thread begin(BeginGame);
 
-    std::string path = orgy::getExecutablePath().substr(0, orgy::getExecutablePath().find_last_of("\\/")+1);
+    std::string path = orgee::getExecutablePath().substr(0, orgee::getExecutablePath().find_last_of("\\/")+1);
 
-    orgy::Window window("OpenRetroGameYngine - test project");
+    orgee::Window window("OpenRetroGameEntertainmentEngine - test project");
 
     window.setResolution(1280, 720);
 
@@ -35,11 +35,11 @@ int main() {
 
     render.showFps(true);
 
-    orgy::Map level;
+    orgee::Map level;
 
-    level = orgy::loadMapFromFile("GameAssets/maps/level.omap" );
+    level = orgee::loadMapFromFile("GameAssets/maps/level.omap" );
 
-    //orgy::SaveMapToFile(level, "level_backup.map");       // function to save level file
+    //orgee::SaveMapToFile(level, "level_backup.map");       // function to save level file
 
     render.LoadMap(level);
 

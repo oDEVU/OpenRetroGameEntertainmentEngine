@@ -4,7 +4,7 @@
 #include <SFML/Config.hpp>
 #include <iostream>
 
- namespace orgy
+ namespace orgee
  {
     class Window{
         public:
@@ -51,5 +51,5 @@
             sf::RenderWindow win;//(sf::VideoMode(800, 600), "SFML window");
             const unsigned int pixelSize{1u};  // temponary scaling method, dont recomended to use
     };
- } // namespace orgy
+ } // namespace orgee
  

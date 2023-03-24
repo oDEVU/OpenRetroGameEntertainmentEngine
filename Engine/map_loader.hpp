@@ -14,9 +14,9 @@
 #include "pathhandler.hpp"
 #include "logger.hpp"
 
- namespace orgy
+ namespace orgee
  {
-    std::string exe_dir = orgy::getExecutablePath().substr(0, orgy::getExecutablePath().find_last_of("\\/")+1);
+    std::string exe_dir = orgee::getExecutablePath().substr(0, orgee::getExecutablePath().find_last_of("\\/")+1);
 
     Map loadMapFromFile(std::string path) {
 
@@ -117,5 +117,5 @@
 
         return true;
     }
- } // namespace orgy
+ } // namespace orgee
  

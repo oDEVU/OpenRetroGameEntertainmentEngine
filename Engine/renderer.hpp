@@ -13,7 +13,7 @@
 #include "debug_screen.hpp"
 #include "logger.hpp"
 
- namespace orgy
+ namespace orgee
  {
     class Renderer{
         public:
@@ -160,7 +160,7 @@
             Camera cam;
 
         private:
-            std::string global_path = orgy::getExecutablePath().substr(0, orgy::getExecutablePath().find_last_of("\\/")+1);
+            std::string global_path = orgee::getExecutablePath().substr(0, orgee::getExecutablePath().find_last_of("\\/")+1);
 
             sf::Font font;
             double fps = 0; 
@@ -176,5 +176,5 @@
             Map map;
 
     };
- } // namespace orgy
+ } // namespace orgee
   

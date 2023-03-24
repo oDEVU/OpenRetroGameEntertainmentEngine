@@ -4,7 +4,7 @@
 #include <SFML/Config.hpp>
 #include <iostream>
 
- namespace orgy
+ namespace orgee
  {
     class Camera{
         public:
@@ -12,5 +12,5 @@
             double a=0;      // angle left-right
             double l=0;      // angle up-down
     };
- } // namespace orgy
+ } // namespace orgee
  

@@ -9,14 +9,14 @@
 
 #include "engine.hpp"
 
-namespace orgy{
+namespace orgee{
     class screenDebuger{
         private:
             bool isInitialized = false;
             int start = 55;
             std::string gpu = " ";
             std::string ver = " ";
-            std::vector<std::string> info = {"Open-Retro-Game-Yngine [O-R-G-Y] -Rewrited", " ", " ", "Current frame: ", "Debug lines: ", "Affine texture rendering: ", "Rendering resolution: 0:0"};
+            std::vector<std::string> info = {"Open Retro Game Entertainment Engine [O-R-G-E-E] -Rewrited", " ", " ", "Current frame: ", "Debug lines: ", "Affine texture rendering: ", "Rendering resolution: 0:0"};
         public:
             screenDebuger(){
                 glfwInit();

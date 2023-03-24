@@ -11,8 +11,8 @@ double player_rotation_speed = 60;
 //player funtions
 
 void move_player_forward(int speed, double delta) {
-    int dx=sin(orgy::d_to_rad(render.getCamera().a))*speed;
-    int dy=cos(orgy::d_to_rad(render.getCamera().a))*speed;
+    int dx=sin(orgee::d_to_rad(render.getCamera().a))*speed;
+    int dy=cos(orgee::d_to_rad(render.getCamera().a))*speed;
     render.cam.x+=dx*delta; 
     render.cam.y+=dy*delta; 
 
@@ -20,8 +20,8 @@ void move_player_forward(int speed, double delta) {
 } 
 
 void move_player_back(int speed , double delta) {
-    int dx=sin(orgy::d_to_rad(render.getCamera().a))*speed;
-    int dy=cos(orgy::d_to_rad(render.getCamera().a))*speed;
+    int dx=sin(orgee::d_to_rad(render.getCamera().a))*speed;
+    int dy=cos(orgee::d_to_rad(render.getCamera().a))*speed;
     render.cam.x-=dx*delta; 
     render.cam.y-=dy*delta; 
 
@@ -29,8 +29,8 @@ void move_player_back(int speed , double delta) {
 } 
 
 void move_player_left(int speed , double delta) {
-    int dx=sin(orgy::d_to_rad(render.getCamera().a))*speed;
-    int dy=cos(orgy::d_to_rad(render.getCamera().a))*speed;
+    int dx=sin(orgee::d_to_rad(render.getCamera().a))*speed;
+    int dy=cos(orgee::d_to_rad(render.getCamera().a))*speed;
     render.cam.x-=dy*delta; 
     render.cam.y+=dx*delta; 
 
@@ -38,8 +38,8 @@ void move_player_left(int speed , double delta) {
 } 
 
 void move_player_right(int speed , double delta) {
-    int dx=sin(orgy::d_to_rad(render.getCamera().a))*speed;
-    int dy=cos(orgy::d_to_rad(render.getCamera().a))*speed;
+    int dx=sin(orgee::d_to_rad(render.getCamera().a))*speed;
+    int dy=cos(orgee::d_to_rad(render.getCamera().a))*speed;
     render.cam.x+=dy*delta; 
     render.cam.y-=dx*delta;
 

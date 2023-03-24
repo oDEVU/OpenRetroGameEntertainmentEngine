@@ -5,7 +5,7 @@
 #include <iostream>
 #include <vector>
 
-namespace orgy
+namespace orgee
 {
     struct material
     {
@@ -93,4 +93,4 @@ namespace orgy
         int h = 0;
     };
     
-} // namespace orgy
+} // namespace orgee

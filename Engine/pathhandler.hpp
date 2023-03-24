@@ -31,7 +31,7 @@
 
 #endif
 
-namespace orgy {
+namespace orgee {
 
 #if defined(_WIN32)
 
