@@ -2,8 +2,6 @@
 
 [I AM CURENTLY REWRITING IT BECAUSE THIS CODE IS A JOKE]
 
-current builds are in branch 'rewrite' later it would be in brach 'engine MAJOR_VERSION' and 'editor MAJOR_VERSION'
-
 Retro doom like engine with modern liblares. O.R.G.Y uses sfml and c++.
 
 **Thanks to 3DSage for great tutorial.**
