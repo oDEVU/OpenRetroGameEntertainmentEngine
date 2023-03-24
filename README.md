@@ -1,4 +1,4 @@
-# OpenRetroGameYngine
+# OpenRetroGameEntertainmentEngine
 
 [I AM CURENTLY REWRITING IT BECAUSE THIS CODE IS A JOKE]
 
