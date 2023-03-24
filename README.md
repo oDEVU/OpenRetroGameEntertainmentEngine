@@ -1,4 +1,4 @@
-# OpenRetroGameYngine - Rewrite
+# OpenRetroGameEntertainmentEngine - Rewrite
 
 Retro doom like engine with modern liblares. O.R.G.Y uses sfml and c++.
 
