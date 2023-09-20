@@ -20,17 +20,6 @@
                     "type": "rect",
                     "height": "20%",
                     "width": "20%",
-                    "align": "topleft",
-                    "r": 0,
-                    "g": 255,
-                    "b": 0,
-                    "a": 255,
-                    "zindex": 0
-                },
-                {
-                    "type": "rect",
-                    "height": "20%",
-                    "width": "20%",
                     "align": "top",
                     "r": 255,
                     "g": 255,
@@ -206,6 +195,26 @@
                     "g": 0,
                     "b": 255,
                     "a": 100,
+                    "zindex": 0
+                },
+                {
+                    "type": "image",
+                    "height": "250px",
+                    "width": "250px",
+                    "x": "10%", 
+                    "y": "10%",
+                    "align": "topleft",
+                    "texture_path":"Data/img/TUX.png",
+                    "zindex": 0
+                },
+                {
+                    "type": "text",
+                    "text": "Example text Object. [Simple]",
+                    "x": "50%", 
+                    "y": "50%",
+                    "align": "none",
+                    "font_size": 50,
+                    "font_path": "EngineAssets/fonts/font.ttf",
                     "zindex": 0
                 },
                 {

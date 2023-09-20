@@ -51,11 +51,37 @@ namespace orgee
 
             virtual void test() {std::cout << "test";}
             
-            std::string type = "empty";
             vec2dyn position;
             vec2dyn size;
             alignment align;
             sf::Color color;
+            int zindex;
+    };
+
+    class Image : public LayoutElement {
+        public:
+            Elements GetType() { return ImageElement;}
+
+            virtual void test() {std::cout << "test";}
+            
+            vec2dyn position;
+            vec2dyn size;
+            alignment align;
+            std::string texture_path;
+            int zindex;
+    };
+
+    class Text : public LayoutElement {
+        public:
+            Elements GetType() { return TextElement;}
+
+            virtual void test() {std::cout << "test";}
+            
+            std::string text;
+            vec2dyn position;
+            int size;
+            alignment align;
+            std::string font_path;
             int zindex;
     };
 

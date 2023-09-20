@@ -15,3 +15,20 @@ Objects loaded succesfully
 Window resized
 Failed to load texture from path!
 Program closed succesfully. 
+Renderer object created!
+Loading map from path: /home/arch/Documents/GitHub/OpenRetroGameEntertainmentEngine/Project/Build/GameAssets/maps/level.omap
+Objects loaded succesfully
+Objects loaded succesfully
+Objects loaded succesfully
+Objects loaded succesfully
+Objects loaded succesfully
+Objects loaded succesfully
+Objects loaded succesfully
+Objects loaded succesfully
+Objects loaded succesfully
+Objects loaded succesfully
+Objects loaded succesfully
+Objects loaded succesfully
+Window resized
+Failed to load texture from path!
+Program closed succesfully. 

@@ -26,7 +26,7 @@ int main() {
 
     orgee::Map layout;
 
-    layout = orgee::loadMapFromFile("Data/layout/projectcreation.omap" );
+    layout = orgee::loadMapFromFile("Data/layout/test.omap" );
 
     render.LoadMap(layout);
 

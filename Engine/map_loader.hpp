@@ -174,6 +174,118 @@
                                        , map_raw_data["Layouts"][i]["LayoutElements"][j]["a"].asInt());
 
                 layout.ElementArr.push_back(elem);
+            }else if(type == "image"){
+                Image elem;
+
+                elem.zindex = map_raw_data["Layouts"][i]["LayoutElements"][j]["zindex"].asInt();
+
+                //auto zindex = map_raw_data["Layouts"][i]["LayoutElements"][j]["zindex"];//.asInt();
+
+                //std::cout << zindex << std::endl;
+
+                if(map_raw_data["Layouts"][i]["LayoutElements"][j]["align"].asString() == "none"){
+                    elem.position.x = map_raw_data["Layouts"][i]["LayoutElements"][j]["x"].asString();
+                    elem.position.y = map_raw_data["Layouts"][i]["LayoutElements"][j]["y"].asString();
+                    elem.align = None;
+                }else if(map_raw_data["Layouts"][i]["LayoutElements"][j]["align"].asString() == "topleft"){
+                    elem.position.x = map_raw_data["Layouts"][i]["LayoutElements"][j]["x"].asString();
+                    elem.position.y = map_raw_data["Layouts"][i]["LayoutElements"][j]["y"].asString();
+                    elem.align = TopLeft;
+                }else if(map_raw_data["Layouts"][i]["LayoutElements"][j]["align"].asString() == "top"){
+                    elem.position.x = map_raw_data["Layouts"][i]["LayoutElements"][j]["x"].asString();
+                    elem.position.y = map_raw_data["Layouts"][i]["LayoutElements"][j]["y"].asString();
+                    elem.align = Top;
+                }else if(map_raw_data["Layouts"][i]["LayoutElements"][j]["align"].asString() == "topright"){
+                    elem.position.x = map_raw_data["Layouts"][i]["LayoutElements"][j]["x"].asString();
+                    elem.position.y = map_raw_data["Layouts"][i]["LayoutElements"][j]["y"].asString();
+                    elem.align = TopRight;
+                }else if(map_raw_data["Layouts"][i]["LayoutElements"][j]["align"].asString() == "right"){
+                    elem.position.x = map_raw_data["Layouts"][i]["LayoutElements"][j]["x"].asString();
+                    elem.position.y = map_raw_data["Layouts"][i]["LayoutElements"][j]["y"].asString();
+                    elem.align = Right;
+                }else if(map_raw_data["Layouts"][i]["LayoutElements"][j]["align"].asString() == "bottomright"){
+                    elem.position.x = map_raw_data["Layouts"][i]["LayoutElements"][j]["x"].asString();
+                    elem.position.y = map_raw_data["Layouts"][i]["LayoutElements"][j]["y"].asString();
+                    elem.align = BottomRight;
+                }else if(map_raw_data["Layouts"][i]["LayoutElements"][j]["align"].asString() == "bottom"){
+                    elem.position.x = map_raw_data["Layouts"][i]["LayoutElements"][j]["x"].asString();
+                    elem.position.y = map_raw_data["Layouts"][i]["LayoutElements"][j]["y"].asString();
+                    elem.align = Bottom;
+                }else if(map_raw_data["Layouts"][i]["LayoutElements"][j]["align"].asString() == "bottomleft"){
+                    elem.position.x = map_raw_data["Layouts"][i]["LayoutElements"][j]["x"].asString();
+                    elem.position.y = map_raw_data["Layouts"][i]["LayoutElements"][j]["y"].asString();
+                    elem.align = BottomLeft;
+                }else if(map_raw_data["Layouts"][i]["LayoutElements"][j]["align"].asString() == "left"){
+                    elem.position.x = map_raw_data["Layouts"][i]["LayoutElements"][j]["x"].asString();
+                    elem.position.y = map_raw_data["Layouts"][i]["LayoutElements"][j]["y"].asString();
+                    elem.align = Left;
+                }else{
+                    consoleLog("Layout isnt valid",1);
+                    exit(0);
+                }
+
+                elem.size.x = map_raw_data["Layouts"][i]["LayoutElements"][j]["width"].asString();
+                elem.size.y = map_raw_data["Layouts"][i]["LayoutElements"][j]["height"].asString();
+
+                elem.texture_path = map_raw_data["Layouts"][i]["LayoutElements"][j]["texture_path"].asString();
+
+                layout.ElementArr.push_back(elem);
+            }else if(type == "text"){
+                Text elem;
+
+                elem.zindex = map_raw_data["Layouts"][i]["LayoutElements"][j]["zindex"].asInt();
+
+                //auto zindex = map_raw_data["Layouts"][i]["LayoutElements"][j]["zindex"];//.asInt();
+
+                //std::cout << zindex << std::endl;
+
+                if(map_raw_data["Layouts"][i]["LayoutElements"][j]["align"].asString() == "none"){
+                    elem.position.x = map_raw_data["Layouts"][i]["LayoutElements"][j]["x"].asString();
+                    elem.position.y = map_raw_data["Layouts"][i]["LayoutElements"][j]["y"].asString();
+                    elem.align = None;
+                }else if(map_raw_data["Layouts"][i]["LayoutElements"][j]["align"].asString() == "topleft"){
+                    elem.position.x = map_raw_data["Layouts"][i]["LayoutElements"][j]["x"].asString();
+                    elem.position.y = map_raw_data["Layouts"][i]["LayoutElements"][j]["y"].asString();
+                    elem.align = TopLeft;
+                }else if(map_raw_data["Layouts"][i]["LayoutElements"][j]["align"].asString() == "top"){
+                    elem.position.x = map_raw_data["Layouts"][i]["LayoutElements"][j]["x"].asString();
+                    elem.position.y = map_raw_data["Layouts"][i]["LayoutElements"][j]["y"].asString();
+                    elem.align = Top;
+                }else if(map_raw_data["Layouts"][i]["LayoutElements"][j]["align"].asString() == "topright"){
+                    elem.position.x = map_raw_data["Layouts"][i]["LayoutElements"][j]["x"].asString();
+                    elem.position.y = map_raw_data["Layouts"][i]["LayoutElements"][j]["y"].asString();
+                    elem.align = TopRight;
+                }else if(map_raw_data["Layouts"][i]["LayoutElements"][j]["align"].asString() == "right"){
+                    elem.position.x = map_raw_data["Layouts"][i]["LayoutElements"][j]["x"].asString();
+                    elem.position.y = map_raw_data["Layouts"][i]["LayoutElements"][j]["y"].asString();
+                    elem.align = Right;
+                }else if(map_raw_data["Layouts"][i]["LayoutElements"][j]["align"].asString() == "bottomright"){
+                    elem.position.x = map_raw_data["Layouts"][i]["LayoutElements"][j]["x"].asString();
+                    elem.position.y = map_raw_data["Layouts"][i]["LayoutElements"][j]["y"].asString();
+                    elem.align = BottomRight;
+                }else if(map_raw_data["Layouts"][i]["LayoutElements"][j]["align"].asString() == "bottom"){
+                    elem.position.x = map_raw_data["Layouts"][i]["LayoutElements"][j]["x"].asString();
+                    elem.position.y = map_raw_data["Layouts"][i]["LayoutElements"][j]["y"].asString();
+                    elem.align = Bottom;
+                }else if(map_raw_data["Layouts"][i]["LayoutElements"][j]["align"].asString() == "bottomleft"){
+                    elem.position.x = map_raw_data["Layouts"][i]["LayoutElements"][j]["x"].asString();
+                    elem.position.y = map_raw_data["Layouts"][i]["LayoutElements"][j]["y"].asString();
+                    elem.align = BottomLeft;
+                }else if(map_raw_data["Layouts"][i]["LayoutElements"][j]["align"].asString() == "left"){
+                    elem.position.x = map_raw_data["Layouts"][i]["LayoutElements"][j]["x"].asString();
+                    elem.position.y = map_raw_data["Layouts"][i]["LayoutElements"][j]["y"].asString();
+                    elem.align = Left;
+                }else{
+                    consoleLog("Layout isnt valid",1);
+                    exit(0);
+                }
+
+                elem.size = map_raw_data["Layouts"][i]["LayoutElements"][j]["font_size"].asInt();
+                elem.text = map_raw_data["Layouts"][i]["LayoutElements"][j]["text"].asString();
+
+                elem.font_path = map_raw_data["Layouts"][i]["LayoutElements"][j]["font_path"].asString();
+
+                layout.ElementArr.push_back(elem);
             }else{
                 Empty elem;
                 layout.ElementArr.push_back(elem);
