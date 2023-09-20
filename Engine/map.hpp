@@ -4,6 +4,7 @@
 #include <SFML/Config.hpp>
 #include <iostream>
 #include "static.hpp"
+#include "layout.hpp"
 
  namespace orgee
  {
@@ -22,6 +23,7 @@
             }
             
             std::vector<static_object> objs;
+            std::vector<Layout> layouts;
             std::map<std::string, bool> arguments;
     };
  } // namespace orgee

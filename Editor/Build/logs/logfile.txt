@@ -1,0 +1,2050 @@
+Renderer object created!
+Loading map from path: /home/arch/Documents/GitHub/OpenRetroGameEntertainmentEngine/Editor/Build/Data/layout/projectcreation.omap
+Map loaded succesfully
+Window resized
+Renderer object created!
+Loading map from path: /home/arch/Documents/GitHub/OpenRetroGameEntertainmentEngine/Editor/Build/Data/layout/projectcreation.omap
+Renderer object created!
+Loading map from path: /home/arch/Documents/GitHub/OpenRetroGameEntertainmentEngine/Editor/Build/Data/layout/projectcreation.omap
+Renderer object created!
+Loading map from path: /home/arch/Documents/GitHub/OpenRetroGameEntertainmentEngine/Editor/Build/Data/layout/projectcreation.omap
+Renderer object created!
+Loading map from path: /home/arch/Documents/GitHub/OpenRetroGameEntertainmentEngine/Editor/Build/Data/layout/projectcreation.omap
+Renderer object created!
+Loading map from path: /home/arch/Documents/GitHub/OpenRetroGameEntertainmentEngine/Editor/Build/Data/layout/projectcreation.omap
+Renderer object created!
+Loading map from path: /home/arch/Documents/GitHub/OpenRetroGameEntertainmentEngine/Editor/Build/Data/layout/projectcreation.omap
+Renderer object created!
+Loading map from path: /home/arch/Documents/GitHub/OpenRetroGameEntertainmentEngine/Editor/Build/Data/layout/projectcreation.omap
+Layouts loaded succesfully
+Layouts loaded succesfully
+Window resized
+Renderer object created!
+Loading map from path: /home/arch/Documents/GitHub/OpenRetroGameEntertainmentEngine/Editor/Build/Data/layout/projectcreation.omap
+Layouts loaded succesfully
+Layouts loaded succesfully
+Window resized
+Renderer object created!
+Loading map from path: /home/arch/Documents/GitHub/OpenRetroGameEntertainmentEngine/Editor/Build/Data/layout/projectcreation.omap
+Layouts loaded succesfully
+Layouts loaded succesfully
+Window resized
+Renderer object created!
+Loading map from path: /home/arch/Documents/GitHub/OpenRetroGameEntertainmentEngine/Editor/Build/Data/layout/projectcreation.omap
+Layouts loaded succesfully
+Layouts loaded succesfully
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Renderer object created!
+Loading map from path: /home/arch/Documents/GitHub/OpenRetroGameEntertainmentEngine/Editor/Build/Data/layout/projectcreation.omap
+Layouts loaded succesfully
+Layouts loaded succesfully
+Renderer object created!
+Loading map from path: /home/arch/Documents/GitHub/OpenRetroGameEntertainmentEngine/Editor/Build/Data/layout/projectcreation.omap
+Layouts loaded succesfully
+Layouts loaded succesfully
+Renderer object created!
+Loading map from path: /home/arch/Documents/GitHub/OpenRetroGameEntertainmentEngine/Editor/Build/Data/layout/projectcreation.omap
+Layouts loaded succesfully
+Layouts loaded succesfully
+Renderer object created!
+Loading map from path: /home/arch/Documents/GitHub/OpenRetroGameEntertainmentEngine/Editor/Build/Data/layout/projectcreation.omap
+Layouts loaded succesfully
+Layouts loaded succesfully
+Window resized
+Renderer object created!
+Loading map from path: /home/arch/Documents/GitHub/OpenRetroGameEntertainmentEngine/Editor/Build/Data/layout/projectcreation.omap
+Layouts loaded succesfully
+Layouts loaded succesfully
+Renderer object created!
+Loading map from path: /home/arch/Documents/GitHub/OpenRetroGameEntertainmentEngine/Editor/Build/Data/layout/projectcreation.omap
+Layouts loaded succesfully
+Layouts loaded succesfully
+Window resized
+Renderer object created!
+Loading map from path: /home/arch/Documents/GitHub/OpenRetroGameEntertainmentEngine/Editor/Build/Data/layout/projectcreation.omap
+Layouts loaded succesfully
+Layouts loaded succesfully
+Renderer object created!
+Loading map from path: /home/arch/Documents/GitHub/OpenRetroGameEntertainmentEngine/Editor/Build/Data/layout/projectcreation.omap
+Layouts loaded succesfully
+Layouts loaded succesfully
+Renderer object created!
+Loading map from path: /home/arch/Documents/GitHub/OpenRetroGameEntertainmentEngine/Editor/Build/Data/layout/projectcreation.omap
+Layouts loaded succesfully
+Layouts loaded succesfully
+Renderer object created!
+Loading map from path: /home/arch/Documents/GitHub/OpenRetroGameEntertainmentEngine/Editor/Build/Data/layout/projectcreation.omap
+Layouts loaded succesfully
+Layouts loaded succesfully
+Renderer object created!
+Loading map from path: /home/arch/Documents/GitHub/OpenRetroGameEntertainmentEngine/Editor/Build/Data/layout/projectcreation.omap
+Layouts loaded succesfully
+Layouts loaded succesfully
+Renderer object created!
+Loading map from path: /home/arch/Documents/GitHub/OpenRetroGameEntertainmentEngine/Editor/Build/Data/layout/projectcreation.omap
+Layouts loaded succesfully
+Layouts loaded succesfully
+Window resized
+Renderer object created!
+Loading map from path: /home/arch/Documents/GitHub/OpenRetroGameEntertainmentEngine/Editor/Build/Data/layout/projectcreation.omap
+Layouts loaded succesfully
+Layouts loaded succesfully
+Window resized
+Renderer object created!
+Loading map from path: /home/arch/Documents/GitHub/OpenRetroGameEntertainmentEngine/Editor/Build/Data/layout/projectcreation.omap
+Layouts loaded succesfully
+Layouts loaded succesfully
+Window resized
+Renderer object created!
+Loading map from path: /home/arch/Documents/GitHub/OpenRetroGameEntertainmentEngine/Editor/Build/Data/layout/projectcreation.omap
+Layouts loaded succesfully
+Layouts loaded succesfully
+Window resized
+Renderer object created!
+Loading map from path: /home/arch/Documents/GitHub/OpenRetroGameEntertainmentEngine/Editor/Build/Data/layout/projectcreation.omap
+Layouts loaded succesfully
+Layouts loaded succesfully
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Renderer object created!
+Loading map from path: /home/arch/Documents/GitHub/OpenRetroGameEntertainmentEngine/Editor/Build/Data/layout/projectcreation.omap
+Layouts loaded succesfully
+Layouts loaded succesfully
+Window resized
+Renderer object created!
+Loading map from path: /home/arch/Documents/GitHub/OpenRetroGameEntertainmentEngine/Editor/Build/Data/layout/projectcreation.omap
+Layouts loaded succesfully
+Layouts loaded succesfully
+Window resized
+Renderer object created!
+Loading map from path: /home/arch/Documents/GitHub/OpenRetroGameEntertainmentEngine/Editor/Build/Data/layout/projectcreation.omap
+Layouts loaded succesfully
+Layouts loaded succesfully
+Window resized
+Renderer object created!
+Loading map from path: /home/arch/Documents/GitHub/OpenRetroGameEntertainmentEngine/Editor/Build/Data/layout/projectcreation.omap
+Layouts loaded succesfully
+Layouts loaded succesfully
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Renderer object created!
+Loading map from path: /home/arch/Documents/GitHub/OpenRetroGameEntertainmentEngine/Editor/Build/Data/layout/projectcreation.omap
+Layouts loaded succesfully
+Layouts loaded succesfully
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Renderer object created!
+Loading map from path: /home/arch/Documents/GitHub/OpenRetroGameEntertainmentEngine/Editor/Build/Data/layout/projectcreation.omap
+Layouts loaded succesfully
+Layouts loaded succesfully
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Renderer object created!
+Loading map from path: /home/arch/Documents/GitHub/OpenRetroGameEntertainmentEngine/Editor/Build/Data/layout/projectcreation.omap
+Layouts loaded succesfully
+Layouts loaded succesfully
+Window resized
+Renderer object created!
+Loading map from path: /home/arch/Documents/GitHub/OpenRetroGameEntertainmentEngine/Editor/Build/Data/layout/projectcreation.omap
+Layouts loaded succesfully
+Layouts loaded succesfully
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Renderer object created!
+Loading map from path: /home/arch/Documents/GitHub/OpenRetroGameEntertainmentEngine/Editor/Build/Data/layout/test.omap
+Layouts loaded succesfully
+Layouts loaded succesfully
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Renderer object created!
+Loading map from path: /home/arch/Documents/GitHub/OpenRetroGameEntertainmentEngine/Editor/Build/Data/layout/test.omap
+Layouts loaded succesfully
+Layouts loaded succesfully
+Window resized
+Renderer object created!
+Loading map from path: /home/arch/Documents/GitHub/OpenRetroGameEntertainmentEngine/Editor/Build/Data/layout/test.omap
+loaded element
+Layouts loaded succesfully
+loaded element
+Layouts loaded succesfully
+Window resized
+Renderer object created!
+Loading map from path: /home/arch/Documents/GitHub/OpenRetroGameEntertainmentEngine/Editor/Build/Data/layout/test.omap
+loaded element
+Layouts loaded succesfully
+loaded element
+Layouts loaded succesfully
+Window resized
+Renderer object created!
+Loading map from path: /home/arch/Documents/GitHub/OpenRetroGameEntertainmentEngine/Editor/Build/Data/layout/test.omap
+loaded element
+Layouts loaded succesfully
+loaded element
+Layouts loaded succesfully
+Window resized
+Renderer object created!
+Loading map from path: /home/arch/Documents/GitHub/OpenRetroGameEntertainmentEngine/Editor/Build/Data/layout/test.omap
+loaded element
+Layouts loaded succesfully
+loaded element
+Layouts loaded succesfully
+Window resized
+Renderer object created!
+Loading map from path: /home/arch/Documents/GitHub/OpenRetroGameEntertainmentEngine/Editor/Build/Data/layout/test.omap
+loaded element
+Layouts loaded succesfully
+loaded element
+Layouts loaded succesfully
+Window resized
+Renderer object created!
+Loading map from path: /home/arch/Documents/GitHub/OpenRetroGameEntertainmentEngine/Editor/Build/Data/layout/test.omap
+loaded element
+Layouts loaded succesfully
+loaded element
+Layouts loaded succesfully
+Window resized
+Renderer object created!
+Loading map from path: /home/arch/Documents/GitHub/OpenRetroGameEntertainmentEngine/Editor/Build/Data/layout/test.omap
+loaded element
+Layouts loaded succesfully
+loaded element
+Layouts loaded succesfully
+Window resized
+Renderer object created!
+Loading map from path: /home/arch/Documents/GitHub/OpenRetroGameEntertainmentEngine/Editor/Build/Data/layout/test.omap
+loaded element
+Layouts loaded succesfully
+loaded element
+Layouts loaded succesfully
+Window resized
+Renderer object created!
+Loading map from path: /home/arch/Documents/GitHub/OpenRetroGameEntertainmentEngine/Editor/Build/Data/layout/test.omap
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+Layouts loaded succesfully
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Renderer object created!
+Loading map from path: /home/arch/Documents/GitHub/OpenRetroGameEntertainmentEngine/Editor/Build/Data/layout/test.omap
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+Layouts loaded succesfully
+Window resized
+Renderer object created!
+Loading map from path: /home/arch/Documents/GitHub/OpenRetroGameEntertainmentEngine/Editor/Build/Data/layout/test.omap
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+Renderer object created!
+Loading map from path: /home/arch/Documents/GitHub/OpenRetroGameEntertainmentEngine/Editor/Build/Data/layout/test.omap
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+Layouts loaded succesfully
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Renderer object created!
+Loading map from path: /home/arch/Documents/GitHub/OpenRetroGameEntertainmentEngine/Editor/Build/Data/layout/test.omap
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+Layouts loaded succesfully
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Renderer object created!
+Loading map from path: /home/arch/Documents/GitHub/OpenRetroGameEntertainmentEngine/Editor/Build/Data/layout/test.omap
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+Layouts loaded succesfully
+Window resized
+Renderer object created!
+Loading map from path: /home/arch/Documents/GitHub/OpenRetroGameEntertainmentEngine/Editor/Build/Data/layout/test.omap
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+Layouts loaded succesfully
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Renderer object created!
+Loading map from path: /home/arch/Documents/GitHub/OpenRetroGameEntertainmentEngine/Editor/Build/Data/layout/test.omap
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+Layouts loaded succesfully
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Renderer object created!
+Loading map from path: /home/arch/Documents/GitHub/OpenRetroGameEntertainmentEngine/Editor/Build/Data/layout/projectcreation.omap
+loaded element
+Layouts loaded succesfully
+Window resized
+Renderer object created!
+Loading map from path: /home/arch/Documents/GitHub/OpenRetroGameEntertainmentEngine/Editor/Build/Data/layout/test.omap
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+Layouts loaded succesfully
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Renderer object created!
+Loading map from path: /home/arch/Documents/GitHub/OpenRetroGameEntertainmentEngine/Editor/Build/Data/layout/test.omap
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+Layouts loaded succesfully
+Window resized
+Renderer object created!
+Loading map from path: /home/arch/Documents/GitHub/OpenRetroGameEntertainmentEngine/Editor/Build/Data/layout/test.omap
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+Layouts loaded succesfully
+Renderer object created!
+Loading map from path: /home/arch/Documents/GitHub/OpenRetroGameEntertainmentEngine/Editor/Build/Data/layout/test.omap
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+Layouts loaded succesfully
+Renderer object created!
+Loading map from path: /home/arch/Documents/GitHub/OpenRetroGameEntertainmentEngine/Editor/Build/Data/layout/test.omap
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+Layouts loaded succesfully
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Renderer object created!
+Loading map from path: /home/arch/Documents/GitHub/OpenRetroGameEntertainmentEngine/Editor/Build/Data/layout/test.omap
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+Layouts loaded succesfully
+Window resized
+Renderer object created!
+Loading map from path: /home/arch/Documents/GitHub/OpenRetroGameEntertainmentEngine/Editor/Build/Data/layout/test.omap
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+Layouts loaded succesfully
+Window resized
+Renderer object created!
+Loading map from path: /home/arch/Documents/GitHub/OpenRetroGameEntertainmentEngine/Editor/Build/Data/layout/test.omap
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+loaded element
+Layouts loaded succesfully
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Renderer object created!
+Loading map from path: /home/arch/Documents/GitHub/OpenRetroGameEntertainmentEngine/Editor/Build/Data/layout/projectcreation.omap
+loaded element
+Layouts loaded succesfully
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized
+Window resized

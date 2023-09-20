@@ -8,6 +8,7 @@
 #include "map.hpp"
 #include "static.hpp"
 #include "object_rendering.hpp"
+#include "layout_rendering.hpp"
 #include "engine_math.hpp"
 #include "camera.hpp"
 #include "debug_screen.hpp"
@@ -21,6 +22,7 @@
             bool affine_rendering = false;
             bool debug_lines = false;
             bool global_light = true;
+            bool osd = true;
 
             Renderer() {
                 font.loadFromFile(global_path + "EngineAssets/fonts/font.ttf");
@@ -75,6 +77,10 @@
                             {
                                 global_light = !global_light;
                             }
+                            if (event.key.code == sf::Keyboard::F4)
+                            {
+                                osd = !osd;
+                            }
                         }
                     }
 
@@ -86,6 +92,8 @@
                         //render map
 
                         static_draw(window, temp_cam, &map, debug_lines, affine_rendering, global_light, font, win);
+
+                        layout_draw(window, &map, font, win);
                     }
 
                     if(show_fps){
@@ -96,7 +104,8 @@
                     window->draw(txt);
                     }
 
-                    debuger.print_debug(window, font, w_y, debug_lines, affine_rendering, frame_count, 0, 0);
+                    if(osd)
+                        debuger.print_debug(window, font, w_y, debug_lines, affine_rendering, frame_count, 0, 0);
 
                     if(texts.size()>0){
                         for(int i = texts.size()-1; i >= 0; i--){
