@@ -16,333 +16,39 @@
 #include "logger.hpp"
 #include "window.hpp"
 #include "layout.hpp"
+#include <variant>
 
 namespace orgee
 {
     //std::string global_path = orgee::getExecutablePath().substr(0, orgee::getExecutablePath().find_last_of("\\/")+1);
-    std::map<std::string, sf::Font> font_map;
 
     void layout_draw(sf::RenderWindow *window, Map *map, sf::Font font, Window *win){
         for(int i = 0; i < map->layouts.size(); i++){
             for(int j = 0; j < map->layouts.at(i).ElementArr.size(); j++){
 
-                if(map->layouts.at(i).ElementArr.at(j).type() == typeid(Empty)){
+                //auto object = std::any_cast<LayoutElement*>(&map->layouts.at(i).ElementArr.at(j));
+
+                //object->Update(0);
+
+                auto object = map->layouts.at(i).ElementArr.at(j);
+                object->Draw(window);
+                
+
+                /*if(map->layouts.at(i).ElementArr.at(j).type() == typeid(Empty)){
                     // pass
                 }else if(map->layouts.at(i).ElementArr.at(j).type() == typeid(Rect)){
-                    //std::any_cast<Rect>(map->layouts.at(i).ElementArr.at(j)).test();
                     Rect temp = std::any_cast<Rect>(map->layouts.at(i).ElementArr.at(j));
-
-                    int height = 0;
-                    int width = 0;
-
-                    int find = temp.size.x.find("px");
-
-                    if(find != std::string::npos){
-                        width = stoi(temp.size.x.substr(0,find));
-                    }else{
-                       find = temp.size.x.find("%"); 
-
-                       float t = stoi(temp.size.x.substr(0,find));
-
-                       width = window->getSize().x * (float)(t/100);
-                    }
-
-                    find = temp.size.y.find("px");
-
-                    if(find != std::string::npos){
-                        height = stoi(temp.size.y.substr(0,find));
-                    }else{
-                       find = temp.size.x.find("%"); 
-
-                       float t = stoi(temp.size.y.substr(0,find));
-
-                       height = window->getSize().y * (float)(t/100);
-                    }
-
-                    int pos_x = 0;
-                    int pos_y = 0;
-
-                    if(temp.position.x != ""){
-
-                    int at = temp.position.x.find("px");
-
-                    //pos x
-                    if(at != std::string::npos){
-                        pos_x = stoi(temp.position.x.substr(0,at));
-                    }else{
-                       at = temp.position.x.find("%"); 
-
-                       float t = stoi(temp.position.x.substr(0,at));
-
-                       pos_x = window->getSize().x * (float)(t/100);
-                    }
-
-                    at = temp.position.y.find("px");
-
-                    //pos y
-                    if(at != std::string::npos){
-                        pos_y = stoi(temp.position.y.substr(0,at));
-                    }else{
-                       at = temp.position.x.find("%"); 
-
-                       float t = stoi(temp.position.y.substr(0,at));
-
-                       pos_y = window->getSize().y * (float)(t/100);
-                    }
-                    }
-
-                        int x = pos_x, y = pos_y;
-
-                        switch(temp.align) {
-                            case Bottom:
-                                pos_y = (window->getSize().y - height)-y;
-                                pos_x = ((window->getSize().x/2) - (width/2))+x;
-                                break;
-                            case BottomLeft:
-                                pos_y = window->getSize().y - height-y;
-                                pos_x = 0+x;
-                                break;
-                            case BottomRight:
-                                pos_y = window->getSize().y - height-y;
-                                pos_x = (window->getSize().x/1) - (width/1)-x;
-                                break;
-                            case Top:
-                                pos_y = 0+y;
-                                pos_x = (window->getSize().x/2) - (width/2)+x;
-                                break;
-                            case TopLeft:
-                                pos_y = 0+y;
-                                pos_x = 0+x;
-                                break;
-                            case TopRight:
-                                pos_y = 0+y;
-                                pos_x = (window->getSize().x/1) - (width/1)-x;
-                                break;
-                            case Right:
-                                pos_y = (window->getSize().y/2) - (height/2)+y;
-                                pos_x = (window->getSize().x/1) - (width/1)-x;
-                                break;
-                            case Left:
-                                pos_y = (window->getSize().y/2) - (height/2)+y;
-                                pos_x = 0+x;
-                                break;
-                            default:
-                                break;
-                        }
-
-
-                    sf::RectangleShape rectangle(sf::Vector2f(width,height));
-                    rectangle.setPosition(pos_x,pos_y);
-
-                    rectangle.setFillColor(temp.color);
-
-                    window->draw(rectangle);
+                    temp.Draw(window);
                 }else if(map->layouts.at(i).ElementArr.at(j).type() == typeid(Image)){
                     //std::any_cast<Rect>(map->layouts.at(i).ElementArr.at(j)).test();
                     Image temp = std::any_cast<Image>(map->layouts.at(i).ElementArr.at(j));
-
-                    int height = 0;
-                    int width = 0;
-
-                    int find = temp.size.x.find("px");
-
-                    if(find != std::string::npos){
-                        width = stoi(temp.size.x.substr(0,find));
-                    }else{
-                       find = temp.size.x.find("%"); 
-
-                       float t = stoi(temp.size.x.substr(0,find));
-
-                       width = window->getSize().x * (float)(t/100);
-                    }
-
-                    find = temp.size.y.find("px");
-
-                    if(find != std::string::npos){
-                        height = stoi(temp.size.y.substr(0,find));
-                    }else{
-                       find = temp.size.x.find("%"); 
-
-                       float t = stoi(temp.size.y.substr(0,find));
-
-                       height = window->getSize().y * (float)(t/100);
-                    }
-
-                    int pos_x = 0;
-                    int pos_y = 0;
-
-                    if(temp.position.x != ""){
-
-                    int at = temp.position.x.find("px");
-
-                    //pos x
-                    if(at != std::string::npos){
-                        pos_x = stoi(temp.position.x.substr(0,at));
-                    }else{
-                       at = temp.position.x.find("%"); 
-
-                       float t = stoi(temp.position.x.substr(0,at));
-
-                       pos_x = window->getSize().x * (float)(t/100);
-                    }
-
-                    at = temp.position.y.find("px");
-
-                    //pos y
-                    if(at != std::string::npos){
-                        pos_y = stoi(temp.position.y.substr(0,at));
-                    }else{
-                       at = temp.position.x.find("%"); 
-
-                       float t = stoi(temp.position.y.substr(0,at));
-
-                       pos_y = window->getSize().y * (float)(t/100);
-                    }
-                    }
-
-                        int x = pos_x, y = pos_y;
-
-                        switch(temp.align) {
-                            case Bottom:
-                                pos_y = (window->getSize().y - height)-y;
-                                pos_x = ((window->getSize().x/2) - (width/2))+x;
-                                break;
-                            case BottomLeft:
-                                pos_y = window->getSize().y - height-y;
-                                pos_x = 0+x;
-                                break;
-                            case BottomRight:
-                                pos_y = window->getSize().y - height-y;
-                                pos_x = (window->getSize().x/1) - (width/1)-x;
-                                break;
-                            case Top:
-                                pos_y = 0+y;
-                                pos_x = (window->getSize().x/2) - (width/2)+x;
-                                break;
-                            case TopLeft:
-                                pos_y = 0+y;
-                                pos_x = 0+x;
-                                break;
-                            case TopRight:
-                                pos_y = 0+y;
-                                pos_x = (window->getSize().x/1) - (width/1)-x;
-                                break;
-                            case Right:
-                                pos_y = (window->getSize().y/2) - (height/2)+y;
-                                pos_x = (window->getSize().x/1) - (width/1)-x;
-                                break;
-                            case Left:
-                                pos_y = (window->getSize().y/2) - (height/2)+y;
-                                pos_x = 0+x;
-                                break;
-                            default:
-                                break;
-                        }
-
-                    poly::draw_poly_txt_correct(pos_x, pos_y+height, pos_x+width, pos_y+height, pos_x+width, pos_y, pos_x, pos_y, global_path + temp.texture_path, window);
+                    temp.Draw(window);
                 }else if(map->layouts.at(i).ElementArr.at(j).type() == typeid(Text)){
                     //std::any_cast<Rect>(map->layouts.at(i).ElementArr.at(j)).test();
                     Text temp = std::any_cast<Text>(map->layouts.at(i).ElementArr.at(j));
-
-                    if(!font_map.contains(temp.font_path)){
-
-                        sf::Font new_font;
-                        if (!new_font.loadFromFile(global_path + temp.font_path))
-                        {
-                            if (!new_font.loadFromFile(global_path + "EngineAssets/fonts/font.ttf"))
-                            {
-                                consoleLog("Fatal error!!! could not find EngineAssets folder",1);
-                            }
-                            consoleLog("Failed to load font from path!",1);
-                        }
-
-                        font_map.insert({temp.font_path, new_font});
-                    }
-
-                    sf::Text txt((std::string)temp.text,font_map[temp.font_path]);
-                    txt.setFont(font_map[temp.font_path]);
-                    txt.setCharacterSize(temp.size);
-
-                    //std::cout << temp.size << std::endl;
-
-                    int width = txt.getLocalBounds().width;
-                    int height = txt.getLocalBounds().height;
-
-                    int pos_x = 0;
-                    int pos_y = 0;
-
-                    if(temp.position.x != ""){
-
-                    int at = temp.position.x.find("px");
-
-                    //pos x
-                    if(at != std::string::npos){
-                        pos_x = stoi(temp.position.x.substr(0,at));
-                    }else{
-                       at = temp.position.x.find("%"); 
-
-                       float t = stoi(temp.position.x.substr(0,at));
-
-                       pos_x = window->getSize().x * (float)(t/100);
-                    }
-
-                    at = temp.position.y.find("px");
-
-                    //pos y
-                    if(at != std::string::npos){
-                        pos_y = stoi(temp.position.y.substr(0,at));
-                    }else{
-                       at = temp.position.x.find("%"); 
-
-                       float t = stoi(temp.position.y.substr(0,at));
-
-                       pos_y = window->getSize().y * (float)(t/100);
-                    }
-                    }
-
-                        int x = pos_x, y = pos_y;
-
-                        switch(temp.align) {
-                            case Bottom:
-                                pos_y = (window->getSize().y - height)-y;
-                                pos_x = ((window->getSize().x/2) - (width/2))+x;
-                                break;
-                            case BottomLeft:
-                                pos_y = window->getSize().y - height-y;
-                                pos_x = 0+x;
-                                break;
-                            case BottomRight:
-                                pos_y = window->getSize().y - height-y;
-                                pos_x = (window->getSize().x/1) - (width/1)-x;
-                                break;
-                            case Top:
-                                pos_y = 0+y;
-                                pos_x = (window->getSize().x/2) - (width/2)+x;
-                                break;
-                            case TopLeft:
-                                pos_y = 0+y;
-                                pos_x = 0+x;
-                                break;
-                            case TopRight:
-                                pos_y = 0+y;
-                                pos_x = (window->getSize().x/1) - (width/1)-x;
-                                break;
-                            case Right:
-                                pos_y = (window->getSize().y/2) - (height/2)+y;
-                                pos_x = (window->getSize().x/1) - (width/1)-x;
-                                break;
-                            case Left:
-                                pos_y = (window->getSize().y/2) - (height/2)+y;
-                                pos_x = 0+x;
-                                break;
-                            default:
-                                break;
-                        }
-
-                    txt.setPosition((pos_x-width/2), (pos_y-height/2));
-                    window->draw(txt);
+                    temp.Draw(window);
                     //poly::draw_poly_txt_correct(pos_x, pos_y+height, pos_x+width, pos_y+height, pos_x+width, pos_y, pos_x, pos_y, global_path + temp.texture_path, window);
-                }
+                }*/
             }
         }
     }

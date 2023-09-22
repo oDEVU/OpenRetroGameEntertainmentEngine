@@ -13,6 +13,10 @@
                 title = name;
             }
 
+            void updateTitle(std::string title){
+                win.setTitle(title);
+            }
+
             void setResolution(int x, int y) {
                 sf::Vector2u viewSize{ x / pixelSize, y / pixelSize };
                 sf::View view(sf::Vector2f(viewSize/2u),sf::Vector2f(viewSize));

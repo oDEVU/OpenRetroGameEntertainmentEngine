@@ -58,7 +58,7 @@
                             window->close();
                             break;
                         case sf::Event::EventType::Resized:
-                            consoleLog("Window resized",0);
+                            //consoleLog("Window resized",0);
                             sf::FloatRect visibleArea(0, 0, event.size.width, event.size.height);
                             window->setView(sf::View(visibleArea));
                             win->reloadWindow();
@@ -98,7 +98,7 @@
 
                     if(show_fps){
                     //fps
-                    sf::Text txt("Hello, World !", font);
+                    sf::Text txt("Init", font);
                     txt.setString("FPS: "+std::to_string(fps)+"\n");
                     txt.setCharacterSize(w_y/70);
                     window->draw(txt);
