@@ -1,5 +1,5 @@
 
-![Logo](*Your_logo*.png)
+![Logo](https://raw.githubusercontent.com/oDEVU/OpenRetroGameEntertainmentEngine/master/repostuff/logofull.png)
 
 
 
