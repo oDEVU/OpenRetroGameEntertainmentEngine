@@ -440,7 +440,44 @@ namespace orgee
     };
 
     class BaseButton : public LayoutElement {
+        public:
+            BaseButton(vec2dyn c_position,vec2dyn c_size,alignment c_align,sf::Color c_color,int c_zindex, std::string c_text, int c_text_size, std::string c_font_path){
+                position = c_position;
+                size = c_size;
+                align = c_align;
+                color = c_color;
+                zindex = c_zindex;
+                text_string = c_text;
+                text_size = c_text_size;
+                font_path = c_font_path;
+            }
 
+            virtual void test() {std::cout << "test";}
+
+            virtual void Update(float delta) {};
+
+            virtual void Create() {
+                rect = new Rect(position,size,align,color,zindex);
+                text = new Text(position,text_size,align,font_path,text_string,zindex);
+
+                std::cout << "created" << std::endl;
+            };
+
+            void Draw(sf::RenderWindow *window) const override {
+                    rect->Draw(window);
+                    text->Draw(window);
+                }
+            
+            vec2dyn position;
+            vec2dyn size;
+            int text_size;
+            std::string font_path;
+            alignment align;
+            sf::Color color;
+            int zindex;
+            std::string text_string;
+            Rect *rect;//(position,size,align,color,index);
+            Text *text;// = new Text(text
     };
 
     class Layout

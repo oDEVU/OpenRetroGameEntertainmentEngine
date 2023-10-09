@@ -306,6 +306,79 @@
 
                 layout.ElementArr.push_back(new Text(position,size,align,font_path,text,zindex));
                 //layout.ElementArr.back() = &elem;
+            }else if(type == "basebutton"){
+
+                vec2dyn position;
+                vec2dyn size;
+                alignment align;
+                sf::Color color;
+                int zindex;
+
+                std::string text;
+                int text_size; 
+                std::string font_path;
+
+                zindex = map_raw_data["Layouts"][i]["LayoutElements"][j]["zindex"].asInt();
+
+                //auto zindex = map_raw_data["Layouts"][i]["LayoutElements"][j]["zindex"];//.asInt();
+
+                //std::cout << zindex << std::endl;
+
+                if(map_raw_data["Layouts"][i]["LayoutElements"][j]["align"].asString() == "none"){
+                    position.x = map_raw_data["Layouts"][i]["LayoutElements"][j]["x"].asString();
+                    position.y = map_raw_data["Layouts"][i]["LayoutElements"][j]["y"].asString();
+                    align = None;
+                }else if(map_raw_data["Layouts"][i]["LayoutElements"][j]["align"].asString() == "topleft"){
+                    position.x = map_raw_data["Layouts"][i]["LayoutElements"][j]["x"].asString();
+                    position.y = map_raw_data["Layouts"][i]["LayoutElements"][j]["y"].asString();
+                    align = TopLeft;
+                }else if(map_raw_data["Layouts"][i]["LayoutElements"][j]["align"].asString() == "top"){
+                    position.x = map_raw_data["Layouts"][i]["LayoutElements"][j]["x"].asString();
+                    position.y = map_raw_data["Layouts"][i]["LayoutElements"][j]["y"].asString();
+                    align = Top;
+                }else if(map_raw_data["Layouts"][i]["LayoutElements"][j]["align"].asString() == "topright"){
+                    position.x = map_raw_data["Layouts"][i]["LayoutElements"][j]["x"].asString();
+                    position.y = map_raw_data["Layouts"][i]["LayoutElements"][j]["y"].asString();
+                    align = TopRight;
+                }else if(map_raw_data["Layouts"][i]["LayoutElements"][j]["align"].asString() == "right"){
+                    position.x = map_raw_data["Layouts"][i]["LayoutElements"][j]["x"].asString();
+                    position.y = map_raw_data["Layouts"][i]["LayoutElements"][j]["y"].asString();
+                    align = Right;
+                }else if(map_raw_data["Layouts"][i]["LayoutElements"][j]["align"].asString() == "bottomright"){
+                    position.x = map_raw_data["Layouts"][i]["LayoutElements"][j]["x"].asString();
+                    position.y = map_raw_data["Layouts"][i]["LayoutElements"][j]["y"].asString();
+                    align = BottomRight;
+                }else if(map_raw_data["Layouts"][i]["LayoutElements"][j]["align"].asString() == "bottom"){
+                    position.x = map_raw_data["Layouts"][i]["LayoutElements"][j]["x"].asString();
+                    position.y = map_raw_data["Layouts"][i]["LayoutElements"][j]["y"].asString();
+                    align = Bottom;
+                }else if(map_raw_data["Layouts"][i]["LayoutElements"][j]["align"].asString() == "bottomleft"){
+                    position.x = map_raw_data["Layouts"][i]["LayoutElements"][j]["x"].asString();
+                    position.y = map_raw_data["Layouts"][i]["LayoutElements"][j]["y"].asString();
+                    align = BottomLeft;
+                }else if(map_raw_data["Layouts"][i]["LayoutElements"][j]["align"].asString() == "left"){
+                    position.x = map_raw_data["Layouts"][i]["LayoutElements"][j]["x"].asString();
+                    position.y = map_raw_data["Layouts"][i]["LayoutElements"][j]["y"].asString();
+                    align = Left;
+                }else{
+                    consoleLog("Layout isnt valid",1);
+                    exit(0);
+                }
+
+                size.x = map_raw_data["Layouts"][i]["LayoutElements"][j]["width"].asString();
+                size.y = map_raw_data["Layouts"][i]["LayoutElements"][j]["height"].asString();
+
+                color =  sf::Color(map_raw_data["Layouts"][i]["LayoutElements"][j]["r"].asInt()
+                                       , map_raw_data["Layouts"][i]["LayoutElements"][j]["g"].asInt()
+                                       , map_raw_data["Layouts"][i]["LayoutElements"][j]["b"].asInt()
+                                       , map_raw_data["Layouts"][i]["LayoutElements"][j]["a"].asInt());
+
+                text_size = map_raw_data["Layouts"][i]["LayoutElements"][j]["font_size"].asInt();
+                text = map_raw_data["Layouts"][i]["LayoutElements"][j]["text"].asString();
+
+                font_path = map_raw_data["Layouts"][i]["LayoutElements"][j]["font_path"].asString();
+
+                layout.ElementArr.push_back(new BaseButton(position,size,align,color,zindex,text,text_size,font_path));
             }else{
                 Empty elem;
                 layout.ElementArr.push_back(new Empty);

@@ -229,6 +229,22 @@
                     "b": 255,
                     "a": 100,
                     "zindex": 0
+                },
+                {
+                    "type": "basebutton",
+                    "height": "80px",
+                    "width": "200px",
+                    "x": "11%",
+                    "y": "11%",
+                    "align": "bottomright",
+                    "r": 25,
+                    "g": 25,
+                    "b": 25,
+                    "a": 255,
+                    "zindex": 0,
+                    "text": "Button",
+                    "font_size": 48,
+                    "font_path": "EngineAssets/fonts/font.ttf"
                 }
             ]
         }

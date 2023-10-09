@@ -32,6 +32,15 @@
 
             void renderGame(Window *win) {
 
+                
+                for(int i = 0; i < map.layouts.size(); i++){
+                    for(int j = 0; j < map.layouts.at(i).ElementArr.size(); j++){
+
+                        auto object = map.layouts.at(i).ElementArr.at(j);
+                        object->Create();
+                    }
+                }
+
                 sf::RenderWindow* window = win->getWindow();
 
                 sf::Clock clock;
