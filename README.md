@@ -1,61 +1,70 @@
+
+![Logo](*Your_logo*.png)
+
+
+
 # OpenRetroGameEntertainmentEngine - Rewrite
 
-Retro doom like engine with modern liblares. O.R.G.Y uses sfml and c++.
+Retro looking "3D" game engine, doom inspired, made using sfml and C++. Im miking it as a hobby project to better learn C++.
 
 This is attemt to rewrite my shitty ass code.
-
-**Thanks to 3DSage for great tutorial.**
+Project is inspired by 3DSage doom engine tutorial series.
 
 His chanel : https://www.youtube.com/c/3DSage
 
 Presentation : https://youtu.be/kIx6bQlxqQ0
 
-Documentation will be created when any usable version will be released.
 
-# Dependencies
-* [Qt](https://www.qt.io/download-open-source)  -for editor (not yet)
+
+
+## Dependencies
+
 * [SFML](https://www.sfml-dev.org/) -for main engine
 * [Selba Ward](https://github.com/Hapaxia/SelbaWard) -for textured walls rendering
 * jsoncpp -for asset loading and saving
 * boost
 * g++
+* make (very temponary scripts, they are trash)
 
-[uses c++20]
+[ using c++20 standard ]
+## Compiling editor (or project)
 
-# How to compile?
+Clone the project
 
-### **Arch linux:**
-
-1. Download zip or use git clone command.
-
-2. Download dependences.
-
-For example:
-```sh
-sudo pacman -Sy sfml
-```
-3. Go to Project folder
-
-4. Compile game:
-```sh
-make; clear; ./app (editor will make it much eaiser)
-
+```bash
+  git clone https://github.com/oDEVU/OpenRetroGameEntertainmentEngine
 ```
 
-### **Other OS:**
+Go to the project directory
 
-1. Download zip or use git clone command.
+```bash
+  cd OpenRetroGameEntertainmentEngine/Editor
+```
 
-2. Download and install dependences (You can find many tutorials for other platforms)
+Make project
 
-3. Compile it with your c++ compiler or just run make file.
+```bash
+  make -B
+```
 
-(i will add other OS later)
+Start compiled executable
+
+```bash
+  ./Build/Editor
+```
 
 
+## Roadmap
+
+- Making working layout system
+
+- Making Editor with it
+
+- Finally finish 3D part of the Engine
+
+- Killing my self
 
 
+## License
 
-
-
-
+[MIT](https://choosealicense.com/licenses/mit/)
