@@ -56,13 +56,13 @@ Start compiled executable
 
 ## Roadmap
 
-- Making working layout system
+- Making working layout system (Currently working on it)
 
 - Making Editor with it
 
 - Finally finish 3D part of the Engine
 
-- Killing my self
+- Killing my self (Currently working on it)
 
 
 ## License
